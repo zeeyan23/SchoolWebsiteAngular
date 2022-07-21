@@ -1,0 +1,219 @@
+<div class="row" *ngIf="isDean" >
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h4 class="m-b-0 text-dark">Add Fee Types</h4>
+            </div>
+          
+         
+            <form [formGroup]="feetypeForm" (ngSubmit)="submitForm()"  style="margin-top: 0px;" novalidate>
+                <div class="card-body">
+                    <a [routerLink]="['/fee/viewbill']">
+                        <button style="margin-left: 900px;margin-top:0px;" type="button" class="btn studentcard1">Add Category</button>
+                  </a>
+                </div>
+                <hr>
+                <div class="form-body">
+                    <div class="card-body">
+                        <div class="row p-t-20">
+                            <div class="col-md-4">
+                                <div class="form-group has-success">
+                                  <label class="control-label">Class:</label>
+                               
+                                  <!-- <input 
+                              type="text" 
+                              class="form-control" 
+                              placeholder="Select Class" 
+                              formControlName="class_name"
+                              name="class_name"
+                              list= "ddOptions"
+                              
+                              /> -->
+                              <select  class="form-control custom-select" class="form-control"  formControlName="class_name" >
+                                <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+                              </select>
+                                 
+                                </div>
+                              </div>
+                              <div *ngIf="feetypeForm.controls['class_name'].invalid && feetypeForm.controls['class_name'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['class_name'].errors.required">
+                              Class is required.
+                              </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Academic Year</label>
+                                    <input type="text" formControlName="academic_year" class="form-control form-control-danger" placeholder="Enter Academic Year">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['academic_year'].invalid && feetypeForm.controls['academic_year'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['academic_year'].errors.required">
+                               Academic Year is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Admission Fee</label>
+                                    <input type="text"  formControlName="admission_fee" class="form-control form-control-danger" placeholder="Enter Admission Fee">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['admission_fee'].invalid && feetypeForm.controls['admission_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['admission_fee'].errors.required">
+                               Admission Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Tuition Fee</label>
+                                    <input type="text"  formControlName="tuition_fee" class="form-control form-control-danger" placeholder="Enter Tuition Fee">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['tuition_fee'].invalid && feetypeForm.controls['tuition_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['tuition_fee'].errors.required">
+                               Tuition Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Exam Fee</label>
+                                    <input type="text"  formControlName="exam_fee" class="form-control form-control-danger" placeholder="Enter Exam Fee">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['exam_fee'].invalid && feetypeForm.controls['exam_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['exam_fee'].errors.required">
+                               Exam Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Computer Fee</label>
+                                    <input type="text"  formControlName="computer_fee" class="form-control form-control-danger" placeholder="Enter Computer Fee">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['computer_fee'].invalid && feetypeForm.controls['computer_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['computer_fee'].errors.required">
+                               Computer Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Tranport Fee</label>
+                                    <input type="text"  formControlName="transport_fee" class="form-control form-control-danger" placeholder="Enter Transport Fee">
+                                    <small class="form-control-feedback">  </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['transport_fee'].invalid && feetypeForm.controls['transport_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['transport_fee'].errors.required">
+                               Transport Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Food Fee</label>
+                                    <input type="text"  formControlName="food_fee" class="form-control form-control-danger" placeholder="Enter Food Fee">
+                                    <small class="form-control-feedback">  </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['food_fee'].invalid && feetypeForm.controls['food_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['food_fee'].errors.required">
+                               Food Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Hostel Fee</label>
+                                    <input type="text"  formControlName="hostel_fee" class="form-control form-control-danger" placeholder="Enter Hostel Fee">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['hostel_fee'].invalid && feetypeForm.controls['hostel_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['hostel_fee'].errors.required">
+                               Hostel Fee is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Miscellaneos Fee</label>
+                                    <input type="text"  formControlName="misc_fee" class="form-control form-control-danger" placeholder="Enter Miscellaneous Fee">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="feetypeForm.controls['misc_fee'].invalid && feetypeForm.controls['misc_fee'].touched" class="alert alert-danger">
+                                <div *ngIf="feetypeForm.controls['misc_fee'].errors.required">
+                                    Miscellaneos Fee is required.
+                              </div>
+                            </div>
+                            
+                          
+                        </div>
+                        <table class="table">
+                            <tr>
+                              <th colspan="2"></th>
+                              <th width="50px">
+                               
+                              </th>
+                            </tr>
+                            <tr
+                              *ngFor="let feesess of feeses; let i = index;"
+                              
+                            >
+                              <td>
+                                <label class="control-label"> Field Name :</label>
+                                <input
+                                  type="text"
+                                  name="name_{{feesess.id}}"
+                                  class="form-control"
+                                  placeholder="Name" 
+                                  [ngModelOptions]="{standalone: true}"
+                                  [(ngModel)]="feesess.name"
+                                />
+                              </td>
+                              <td>
+                                <label class="control-label">Amount :</label>
+                                <input
+                                  type="text"
+                                  name="amount_{{feesess.id}}"
+                                  class="form-control"
+                                  placeholder="amount"
+                                  [ngModelOptions]="{standalone: true}"
+                                  [(ngModel)]="feesess.amount"
+                                />
+                              </td>
+                              <td>
+                                <button (click)="removeQuantity(i)" class="btn btn-danger">
+                                  Remove
+                                </button>
+                              </td>
+                            </tr>
+                          </table>
+                        
+                    </div>
+                    <hr>
+                  
+                    <div class="form-actions">
+                        <div class="card-body">
+                            <button type="submit" class="btn studentcard1" >
+                                <i class="fa fa-check"></i> Save</button>
+                            <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+                            <button type="button"  style="margin-left: 10px;"(click)="addQuantity()" class="btn addm">Add More</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

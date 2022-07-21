@@ -1,0 +1,213 @@
+<div class="row"  *ngIf="isDean">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Add Class</h4>
+      </div>
+      <form [formGroup]="classForm" (ngSubmit)="submitForm()">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Class</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <!--/span-->
+       
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Class Name :</label>
+                  <br>
+                  <select
+                    class="form-control custom-select"
+                    formControlName="class_name"
+                    name="class_name"
+                    ngModel
+                  >
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                    <option value="Fourth">Fourth</option>
+                    <option value="Fifth">Fifth</option>
+                    <option value="Sixth">Sixth</option>
+                    <option value="Seventh">Seventh</option>
+                    <option value="Eighth">Eighth</option>
+                    <option value="Nineth">Nineth</option>
+                    <option value="Tenth">Tenth</option>
+                  </select>
+                  <small class="form-control-feedback"> Select Gender </small>
+                </div>
+              </div>
+              <div *ngIf="classForm.controls['class_name'].invalid && classForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="classForm.controls['class_name'].errors.required">
+               Class Name is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Section :</label>
+                  <input
+                    type="text"
+                    formControlName="section"
+                    class="form-control form-control-danger"
+                    name="section"
+                    placeholder="Enter Section"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="classForm.controls['section'].invalid && classForm.controls['section'].touched" class="alert alert-danger">
+                <div *ngIf="classForm.controls['section'].errors.required">
+               Section is required.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Teachers:</label>
+             
+                <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Select Teacher" 
+            formControlName="teachers"
+            name="teachers"
+            list= "ddOptions"
+            
+            />
+            <datalist id="ddOptions">
+              <option *ngFor="let test of staffs" [value]="test.staff_name">{{test.staff_name}}</option>
+            </datalist>
+               
+              </div>
+            </div>
+            <div *ngIf="classForm.controls['teachers'].invalid && classForm.controls['teachers'].touched" class="alert alert-danger">
+              <div *ngIf="classForm.controls['teachers'].errors.required">
+            Staff name is required.
+            </div>
+          </div>
+
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Subjects:</h4>
+                    <fieldset class="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="english"
+                          formControlName="english"
+                        />
+                        English
+                      </label>
+                     
+                    </fieldset>
+                    <fieldset class="checkbox checked">
+                      <label for="tuition_fee">
+                        <input
+                          type="checkbox"
+                          value="hindi"
+                          id="tuition_fee"
+                          name="hindi"
+                          formControlName="hindi"
+                          checked
+                        />
+                        Hindi </label
+                      >
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="kannada"
+                          name="kannada"
+                          formControlName="kannada"
+                        />
+                        Kannada
+                      </label>
+                      
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="Maths"
+                          name="Maths"
+                          formControlName="Maths"
+                        />
+                        Maths
+                      </label>
+                      
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="science"
+                          name="science"
+                          formControlName="science"
+                        />
+                        Science
+                      </label>
+                      
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="social_science"
+                          name="social_science"
+                          formControlName="social_science"
+                        />
+                        Social Science
+                      </label>
+                    
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="computer"
+                          name="computer"
+                          formControlName="computer"
+                        />
+                        Computer
+                      </label>
+                    
+                    </fieldset>
+                    <fieldset class="checkbox disabled">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="pt"
+                          name="pt"
+                          formControlName="pt"
+                        />
+                      Physical Training
+                      </label>
+                    
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+             
+
+              <!--/span-->
+            </div>
+         
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1" >
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button" style="margin-left:10px;" class="btn btn-secondary">Cancel</button> -->
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

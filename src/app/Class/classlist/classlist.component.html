@@ -1,0 +1,454 @@
+<div class="col-lg-2 col-md-4" *ngIf="isDean">
+  <a [routerLink]="['/class/addclass']">
+    <button type="button" class="btn btn-block btn-lg studentcard1 text-white">
+      ADD CLASS
+    </button>
+  </a>
+</div>
+<br>
+<div class="row" *ngIf="isDean">
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class Name</label>
+                    <select class="form-control custom-select" #selectedclass name="class_name">
+                      <option *ngFor="let item of classess" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Teacher</label>
+                    <select class="form-control custom-select" #selectedteacher name="teachers">
+                      <option *ngFor="let item of classess" [value]="item.teachers">{{item.teachers}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelected(selectedclass.value , selectedteacher.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Class</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2 ">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SL.NO</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Section</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Subjects</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr
+                *ngFor="
+                  let class of classes
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ class.class_name }}</td>
+                <td>{{ class.section }}</td>
+                <td>{{ class.teacher }}</td>
+                <td>{{ class.english }}<br>{{ class.hindi }}<br>{{ class.kannada }}<br>{{ class.Maths }}<br>
+                  {{ class.science }}<br>{{ class.social_science }}<br>{{ class.computer }}<br>{{ class.pt }}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-pencil"></i> Delete
+                  </button>
+                </td>
+              </tr> -->
+              <tr *ngFor="
+              let classs of classes
+                | paginate
+                  : {
+                      id: 'listing_pagination',
+                      itemsPerPage: 15,
+                      currentPage: page,
+                      totalItems: totalRec
+                    }
+                | filter: term;
+              let i = index
+            " >
+            <th scope="row">{{(page-1)*10+i+1}}</th>
+                <!-- <td>{{ class.id }}</td> -->
+                <td>{{ classs.class_name }}</td>
+                <td>{{ classs.section }}</td>
+                <td>{{ classs.teachers }}</td>
+                <td>{{ classs.Maths? 'Maths' : ''}}<br>
+                    {{ classs.computer? 'computer' : ''}}<br>
+                    {{ classs.english? 'english' : ''}}<br>
+                    {{ classs.hindi? 'hindi' : ''}}<br>
+                    {{ classs.kannada? 'kannada' : ''}}<br>
+                    {{ classs.pt? 'pt' : ''}}<br>
+                    {{ classs.science? 'science' : ''}}<br>
+                    {{ classs.social_science? 'social_science' : ''}}</td>
+                    <td>
+                      <button
+                      type="button"
+                      class="btn dlt btn-rounded text-white"
+                      (click)="openclass(classinfomodal, classs)"
+                    >
+                      <i class="far fa-edit"></i>
+                    </button>
+                      <button 
+       class="btn btn-outline-secondary"
+      mwlConfirmationPopover
+      [popoverTitle]="popoverTitle"
+      [popoverMessage]="popoverMessage"
+      placement="left"
+      (confirm)="deleteRow(class.id)"
+      (cancel)="cancelClicked = true">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="clash"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="clash">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Class Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SL.NO</th>
+      <th scope="col">Class Name</th>
+      <th scope="col">Section</th>
+      <th scope="col">Teacher</th>
+      <th scope="col">Subjects</th>
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let class of classes; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ class.class_name }}</td>
+                <td>{{ class.section }}</td>
+                <td>{{ class.teachers }}</td>
+                <td>{{ class.Maths? 'Maths' : ''}}<br>
+                    {{ class.computer? 'computer' : ''}}<br>
+                    {{ class.english? 'english' : ''}}<br>
+                    {{ class.hindi? 'hindi' : ''}}<br>
+                    {{ class.kannada? 'kannada' : ''}}<br>
+                    {{ class.pt? 'pt' : ''}}<br>
+                    {{ class.science? 'science' : ''}}<br>
+                    {{ class.social_science? 'social_science' : ''}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #classinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Class</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Class Name :</label>
+                <br>
+                <select
+                  class="form-control custom-select"
+                  formControlName="class_name"
+                  [(ngModel)]="classs.class_name"
+                  [ngModelOptions]="{ standalone: true }"
+                
+                >
+                  <option value="First">First</option>
+                  <option value="Second">Second</option>
+                  <option value="Third">Third</option>
+                  <option value="Fourth">Fourth</option>
+                  <option value="Fifth">Fifth</option>
+                  <option value="Sixth">Sixth</option>
+                  <option value="Seventh">Seventh</option>
+                  <option value="Eighth">Eighth</option>
+                  <option value="Nineth">Nineth</option>
+                  <option value="Tenth">Tenth</option>
+                </select>
+                <small class="form-control-feedback"> Select Gender </small>
+              </div>
+            </div>
+            <div *ngIf="classForm.controls['class_name'].invalid && classForm.controls['class_name'].touched" class="alert alert-danger">
+              <div *ngIf="classForm.controls['class_name'].errors.required">
+             Class Name is required.
+            </div>
+          </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Section :</label>
+                <input
+                  type="text"
+                  formControlName="section"
+                  [(ngModel)]="classs.section"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div *ngIf="classForm.controls['section'].invalid && classForm.controls['section'].touched" class="alert alert-danger">
+              <div *ngIf="classForm.controls['section'].errors.required">
+             Section is required.
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group has-success">
+              <label class="control-label">Teachers:</label>
+           
+              <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Select Teacher" 
+          formControlName="teachers"
+        
+          list= "ddOptions"
+          [(ngModel)]="classs.teachers"
+          [ngModelOptions]="{ standalone: true }"
+          
+          />
+          <datalist id="ddOptions">
+            <option *ngFor="let test of staffs" [value]="test.staff_name">{{test.staff_name}}</option>
+          </datalist>
+             
+            </div>
+          </div>
+          <div *ngIf="classForm.controls['teachers'].invalid && classForm.controls['teachers'].touched" class="alert alert-danger">
+            <div *ngIf="classForm.controls['teachers'].errors.required">
+          Staff name is required.
+          </div>
+        </div>
+
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Subjects:</h4>
+                  <fieldset class="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="english"
+                        formControlName="english"
+                        [(ngModel)]="classs.english"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      English
+                    </label>
+                   
+                  </fieldset>
+                  <fieldset class="checkbox checked">
+                    <label for="tuition_fee">
+                      <input
+                        type="checkbox"
+                        value="hindi"
+                        id="tuition_fee"
+                        name="hindi"
+                        formControlName="hindi"
+                        [(ngModel)]="classs.hindi"
+                        [ngModelOptions]="{ standalone: true }"
+                        checked
+                      />
+                      Hindi </label
+                    >
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="kannada"
+                        name="kannada"
+                        formControlName="kannada"
+                        [(ngModel)]="classs.kannada"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      Kannada
+                    </label>
+                    
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="Maths"
+                        name="Maths"
+                        formControlName="Maths"
+                        [(ngModel)]="classs.Maths"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      Maths
+                    </label>
+                    
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="science"
+                        name="science"
+                        formControlName="science"
+                        [(ngModel)]="classs.science"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      Science
+                    </label>
+                    
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="social_science"
+                        name="social_science"
+                        formControlName="social_science"
+                        [(ngModel)]="classs.social_science"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      Social Science
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="computer"
+                        name="computer"
+                        formControlName="computer"
+                        [(ngModel)]="classs.computer"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                      Computer
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="pt"
+                        name="pt"
+                        formControlName="pt"
+                        [(ngModel)]="classs.pt"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                    Physical Training
+                    </label>
+                  
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="Updateclass(classs.id)"
+            >
+              <i class="fa fa-check"></i> Update
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div> -->
+</ng-template>
+

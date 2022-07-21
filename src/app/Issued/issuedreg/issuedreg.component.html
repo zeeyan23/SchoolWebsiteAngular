@@ -1,0 +1,359 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-dark">Register Issue Books</h4>
+      </div>
+      <form [formGroup]="issuebookForm" (ngSubmit)="submitForm()"  novalidate>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Register Issued Book</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Date of Issue :</label>
+                  <input
+                    type="datetime-local"
+                    name="issuedate"
+                    formControlName="issuedate"
+                    class="form-control"
+                    placeholder="enter Accession Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['issuedate'].invalid && issuebookForm.controls['issuedate'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['issuedate'].errors.required">
+            Issue Date is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">SL no:</label>
+                  <input
+                    type="text"
+                    name="sr_no"
+                    formControlName="sr_no"
+                    class="form-control"
+                    placeholder="enter Accession Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['sr_no'].invalid && issuebookForm.controls['sr_no'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['sr_no'].errors.required">
+            Serial Number required.
+              </div>
+            </div>
+
+
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Accession Number:</label>
+                <br>
+               <select  class="form-control custom-select"  [(ngModel)]="selectedaccno"  formControlName="accession_no" (change)="valueSelected()">
+              <option *ngFor="let item of bookdata" [value]="item.accession_number">{{item.accession_number}}</option>
+            </select>
+              </div>
+            </div>
+            <div *ngIf="issuebookForm.controls['accession_no'].invalid && issuebookForm.controls['accession_no'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['accession_no'].errors.required">
+                  Accession Number is required.
+              </div>
+            </div>
+
+
+
+           <div class="col-md-10"><h3>Student Details :</h3></div>
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Register Number:</label>
+                  <br>
+                 <select  class="form-control custom-select"  [(ngModel)]="selectedreg"  formControlName="roll_no" (change)="valueSelectedd()">
+                <option *ngFor="let item of students" [value]="item.reg_number">{{item.reg_number}}</option>
+              </select>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['roll_no'].invalid && issuebookForm.controls['roll_no'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['roll_no'].errors.required">
+             Roll Number is required.
+              </div>
+            </div>
+              
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Name :</label>
+                  <input
+                    type="text"
+                    name="studentname"
+                    formControlName="studentname"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="studentname"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['studentname'].invalid && issuebookForm.controls['studentname'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['studentname'].errors.required">
+             Name is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Class :</label>
+                  <input
+                    type="text"
+                    name="class_name"
+                    formControlName="class_name"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="classname"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['class_name'].invalid && issuebookForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['class_name'].errors.required">
+             Class is required.
+              </div>
+            </div>
+
+
+
+            
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">father Name :</label>
+                  <input
+                    type="text"
+                    name="father_name"
+                    formControlName="father_name"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="fathername"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['father_name'].invalid && issuebookForm.controls['father_name'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['father_name'].errors.required">
+             FatherName is required.
+              </div>
+            </div>
+
+            
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Contact No. :</label>
+                  <input
+                    type="text"
+                    name="contact_num"
+                    formControlName="contact_num"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="contactnumber"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['contact_num'].invalid && issuebookForm.controls['contact_num'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['contact_num'].errors.required">
+             Contact Number is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Remark :</label>
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    name="remark"
+                    formControlName="remark"
+                    placeholder="Text Address..."
+                  ></textarea>
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['remark'].invalid && issuebookForm.controls['remark'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['remark'].errors.required">
+             Remark is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-10"><h3>Book Details :</h3></div>
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Title :</label>
+                  <input
+                    type="text"
+                    name="title"
+                    formControlName="title"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="titles"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['title'].invalid && issuebookForm.controls['title'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['title'].errors.required">
+             Title is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Author :</label>
+                  <input
+                    type="text"
+                    name="author"
+                    formControlName="author"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="authors"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['author'].invalid && issuebookForm.controls['author'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['author'].errors.required">
+             Author is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Subject :</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    formControlName="subject"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="subjects"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['subject'].invalid && issuebookForm.controls['subject'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['subject'].errors.required">
+             subject is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Publisher :</label>
+                  <input
+                    type="text"
+                    name="publisher"
+                    formControlName="publisher"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="publishers"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['publisher'].invalid && issuebookForm.controls['publisher'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['publisher'].errors.required">
+             Publisher is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Book Status:</label>
+                  <select formControlName="book_status" class="form-control custom-select">
+                    <option value="Pending">Pending</option>
+                    <option value="Recieved">Recieved</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Leave Type
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="issuebookForm.controls['book_status'].invalid && issuebookForm.controls['book_status'].touched" class="alert alert-danger">
+                <div *ngIf="issuebookForm.controls['book_status'].errors.required">
+             Book Status is required.
+              </div>
+            </div>
+
+            
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let issuesiess of issuesies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{issuesiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="issuesiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{issuesiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="issuesiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1">
+                <i class="fa fa-check"></i> Issue
+              </button>
+              <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+              <button type="button" style="margin-left: 10px;" (click)="addQuantity()" class="btn addm">Add More</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

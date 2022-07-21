@@ -1,0 +1,61 @@
+/* Point-zoom Container */
+.zoom-without-container {
+  transition: transform 0.2s; /* Animation */
+  margin: 0 auto;
+}
+.zoom-without-container img {
+  width: 100%;
+  height: auto;
+}
+.zoom-without-container:hover {
+  transform: scale(1.5);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#table {
+  display: none;
+}
+#tabless{
+  display: none;
+}
+.studentcard{
+  background-color :#26c6da;
+}
+.studentcard2{
+  background-color :white;
+}
+.studentcard1{
+  background:linear-gradient(150deg, #17a2b8 0%, #21ba45 150%); 
+  color: white;
+  
+}
+.dlt{
+    background: white;
+}
+.fa-edit{
+   color: black;
+}
+.fa-trash-alt{
+   color: red;
+}
+.pnt{
+   background: linear-gradient(45deg, #fbbd08, #fce44e) !important;
+   color: white;
+}
+
+
+th,
+td {
+  text-align: center;
+  /* border: 1px solid black; */
+  padding: 5px;
+}
+
+.container {
+  display: flex;
+}
+
+.text-area {
+  width: 100%;
+  margin: 5px;
+}
+

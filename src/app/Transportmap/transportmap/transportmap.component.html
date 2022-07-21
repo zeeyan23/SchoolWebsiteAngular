@@ -1,0 +1,47 @@
+<div class="main-content" *ngIf="isDean ||isStaff || isParent">
+    <div class="container-fluid">
+
+        <button mat-raised-button color="primary" style="margin-top:60px; margin-left: 1200px;" [routerLink]="['/map']" (click)="refresh()">Refresh</button>
+       
+        <div class="form-group">
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box blue"> </div>
+                <label style="color: black;">Two Wheeler Online Drivers</label>
+               
+            </div>
+            <div class="col-md-3">
+                <div class="box yellow"> </div>
+                <label style="color: black;">Two Wheeler Offline Drivers</label>
+               
+            </div>
+        
+        </div>
+        </div>
+       
+       <agm-map [latitude]=" 13.340881" [longitude]="74.742142" [zoom]="12">
+       <agm-marker class="pulse"  [iconUrl] ="iconUrl1" *ngFor="let twowhl of twowhl" (markerClick)="clickedMarker(infowindow)" [latitude]="twowhl.lat" [longitude]="twowhl.lng">
+        <agm-overlay [latitude]  = "twowhl.lat" [longitude] = "twowhl.lng" >
+            <div class="pulse"></div>
+        </agm-overlay>
+        <agm-info-window  #infowindow>
+              <strong *ngFor="let driver of twowhl.driver_info">{{driver.driver_name}}</strong><br>
+                <strong *ngFor="let driver of twowhl.driver_info">{{driver.phone}}</strong><br>
+                <strong *ngFor="let driver of twowhl.driver_info">{{driver.vehicle_number}}</strong>
+            </agm-info-window>
+           </agm-marker>
+
+           <agm-marker   [iconUrl] ="iconUrl2" *ngFor="let offtwowhl of offtwowhl" (markerClick)="clickedMarker(infowindow)" [latitude]="offtwowhl.lat" [longitude]="offtwowhl.lng">
+            <agm-info-window  #infowindow>
+               <strong *ngFor="let driver of offtwowhl.driver_info">{{driver.driver_name}}</strong><br>
+                <strong *ngFor="let driver of offtwowhl.driver_info">{{driver.phone}}</strong><br>
+                <strong *ngFor="let driver of offtwowhl.driver_info">{{driver.vehicle_number}}</strong>
+            </agm-info-window>
+           </agm-marker>
+
+         
+       </agm-map>
+      
+      </div>
+        </div>

@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header bg-info">
+          <h4 class="m-b-0 text-white">Add Classwork</h4>
+        </div>
+        <form [formGroup]="classworkForm" (ngSubmit)="onSubmit()">
+          <div class="card-body">
+            <h4 class="card-title">Classwork</h4>
+          </div>
+          <div></div>
+          <hr />
+          <div class="form-body">
+            <div class="card-body">
+              <div class="row p-t-20">
+                <div class="col-md-6">
+                  <div class="form-group has-success">
+                    <label class="control-label">Class:</label>
+                    <select
+                      formControlName="class_name"
+                      class="form-control custom-select"
+                    >
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                    <option value="Fourth">Fourth</option>
+                    </select>
+                    <small class="form-control-feedback">
+                      Select your class
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group has-success">
+                      <label class="control-label">Section:</label>
+                      <select
+                        formControlName="section"
+                        class="form-control custom-select"
+                      >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                      </select>
+                      <small class="form-control-feedback">
+                        Select your Section
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group has-success">
+                      <label class="control-label">Subject Name :</label>
+                      <select
+                        formControlName="subject_name"
+                        class="form-control custom-select"
+                      >
+                        <option value="Maths">Maths</option>
+                        <option value="Science">Science</option>
+                        <option value="Social">Social</option>
+                        <option value="Computer">Computer</option>
+                      </select>
+                      <small class="form-control-feedback">
+                        Select your Subject
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group has-danger">
+                      <label class="control-label"> Date:</label>
+                      <input
+                        type="date"
+                        formControlName="classwork_date"
+                        class="form-control form-control-danger"
+                        placeholder="Enter Date"
+                      />
+                      <small class="form-control-feedback"></small>
+                    </div>
+                  </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Remark :</label>
+                    <input
+                      type="text"
+                      formControlName="remark"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Remark"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+               
+               
+                
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Write classwork here *</label>
+                      <textarea
+                      formControlName="classwork_text"
+                        class="form-control"
+                        rows="10"
+                        placeholder="..."
+                      ></textarea>
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+  
+               
+              </div>
+            
+            </div>
+            <hr />
+  
+            <div class="form-actions">
+              <div class="card-body">
+                <button type="submit" class="btn btn-success">
+                  <i class="fa fa-check"></i> Submit
+                </button>
+                <button type="button" class="btn btn-dark">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

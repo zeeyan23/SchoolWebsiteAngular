@@ -1,0 +1,328 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Register Vehicle</h4>
+      </div>
+      <form [formGroup]="vehicleregForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Add Vehicle</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Reg.no :</label>
+                  <input
+                    type="text"
+                    formControlName="reg_no"
+                    class="form-control"
+                    placeholder="Enter Regno."
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['reg_no'].invalid && vehicleregForm.controls['reg_no'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['reg_no'].errors.required">
+              Register Number  is required.
+              </div>
+            </div> 
+
+
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Type:</label>
+                  <input
+                    type="text"
+                    formControlName="vehicle_type"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Type"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['vehicle_type'].invalid && vehicleregForm.controls['vehicle_type'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['vehicle_type'].errors.required">
+              Vehicle Type  is required.
+              </div>
+            </div>   
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Register Owner:</label>
+                  <input
+                    type="text"
+                    formControlName="reg_owner"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Registerd Owner"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['reg_owner'].invalid && vehicleregForm.controls['reg_owner'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['reg_owner'].errors.required">
+              Registered Owner   is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Address:</label>
+                  <input
+                    type="text"
+                    formControlName="owner_address"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Address"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['owner_address'].invalid && vehicleregForm.controls['owner_address'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['owner_address'].errors.required">
+              Address  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Month of Manufacture:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="month_manufacture"
+                    class="form-control form-control-danger"
+                    placeholder="Enter MOM"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['month_manufacture'].invalid && vehicleregForm.controls['month_manufacture'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['month_manufacture'].errors.required">
+             Manufacture month is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Makers Class:</label>
+                  <input
+                    type="text"
+                    formControlName="makers_class"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Makers class"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['makers_class'].invalid && vehicleregForm.controls['makers_class'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['makers_class'].errors.required">
+              Makers Class  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Seacting Capacity:</label>
+                  <input
+                    type="text"
+                    formControlName="seating_capacity"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Seating Capacity"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['seating_capacity'].invalid && vehicleregForm.controls['seating_capacity'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['seating_capacity'].errors.required">
+              Seating Capacity  is required.
+              </div>
+            </div> 
+
+            
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">vehicle No.</label>
+                  <input
+                    type="text"
+                    formControlName="vehicle_num"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Vehicle Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['vehicle_num'].invalid && vehicleregForm.controls['vehicle_num'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['vehicle_num'].errors.required">
+              Vehicle Number  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">regn Date:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="reg_date"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Reg.Date"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['reg_date'].invalid && vehicleregForm.controls['reg_date'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['reg_date'].errors.required">
+              Registration  Date  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Reg Valid Photo:</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    formControlName="reg_photo"
+                    id="ireg_photo"
+                    type="file"
+                    class="form-control"
+                    (change)="uploadFile($event)"
+                  />
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['reg_photo'].invalid && vehicleregForm.controls['reg_photo'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['reg_photo'].errors.required">
+              Vehicle photo  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Fuel used :</label>
+                  <input
+                    type="text"
+                    formControlName="fuel_use"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Fuel used"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['fuel_use'].invalid && vehicleregForm.controls['fuel_use'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['fuel_use'].errors.required">
+             Fuel is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Tax:</label>
+                  <input
+                    type="text"
+                    formControlName="tax"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Tax"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['tax'].invalid && vehicleregForm.controls['tax'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['tax'].errors.required">
+              Tax  is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Color:</label>
+                  <input
+                    type="text"
+                    formControlName="color"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Color"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="vehicleregForm.controls['color'].invalid && vehicleregForm.controls['color'].touched" class="alert alert-danger">
+                <div *ngIf="vehicleregForm.controls['color'].errors.required">
+              Colour is required.
+              </div>
+            </div> 
+             
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let vehicleregiess of vehicleregies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{vehicleregiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="vehicleregiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{vehicleregiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="vehicleregiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1" style="margin-right: 10px;">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+              <button
+                    type="button"
+                    (click)="addQuantity()"
+                    class="btn addm"
+                  >
+                    Add More
+                  </button>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

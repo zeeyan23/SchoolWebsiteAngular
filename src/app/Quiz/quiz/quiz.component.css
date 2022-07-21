@@ -1,0 +1,19 @@
+.border {
+  height: 375px;
+  background-color: rgb(243, 237, 235);
+  border: solid 2px black;
+}
+.card-img {
+  height: 250px;
+  width: 250px;
+}
+#word {
+  font-size: xx-large;
+  font-weight: 900;
+}
+
+.box {
+  width: 1300px;
+  height: 370px;
+  background-color: cornflowerblue;
+}

@@ -1,0 +1,181 @@
+<div class="row" *ngIf="isDean || isStaff || isParent">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Student Name</label>
+                    <select class="form-control custom-select" #selectedname name="student_name">
+                      <option *ngFor="let item of examtab" [value]="item.student_name">{{item.student_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Class Name</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of examtab" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedname.value , selectedclasss.value )" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+
+    <div class="col-md-2">
+      <input
+        type="text"
+        id="myInput"
+        class="form-control" style="margin-left:350px;"
+        placeholder="Search here..."
+        [(ngModel)]="term"
+        title="Type in a name"
+      />
+    </div>
+  </div>
+  
+  <div class="row" *ngIf="isDean || isStaff || isParent">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">View marks</h4>
+  
+          <div class="table-responsive studentcard2">
+            <table class="table table-hover studentcard2">
+              <thead class="studentcard text-white">
+                <tr>
+                  <th scope="col">SLno.</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Class Name</th>
+                  <th scope="col">Maths</th>
+                  <th scope="col">English</th>
+                  <th scope="col">Science</th>
+                  <th scope="col">Hindi</th>
+                  <th scope="col">Social Science</th>
+                  <th scope="col">Kannada</th>
+                  <th scope="col">Computer</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let exam of exams
+                      | paginate
+                        : {
+                            id: 'listing_pagination',
+                            itemsPerPage: 15,
+                            currentPage: page,
+                            totalItems: totalRec
+                          }
+                      | filter: term;
+                    let i = index
+                  "
+                >
+                  <th scope="row">{{(page-1)*15+i+1}}</th>
+                  <td>{{ exam.student_name }}</td>
+                  <td>{{ exam.class_name }}</td>
+                  <td>{{ exam.maths_obt_mark }}</td>
+                  <td>{{ exam.english_obt_mark }}</td>
+                  <td>{{ exam.science_obt_mark }}</td>
+                  <td>{{ exam.hindi_obt_mark }}</td>
+                  <td>{{ exam.social_obt_mark}}</td>
+                  <td>{{ exam.kannada_obt_mark }}</td>
+                  <td>{{ exam.computer_obt_mark }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-info btn-rounded"
+                      (click)="openModal(exam.id)"
+                    >
+                      <i class="fa fa-pencil"></i> View Details
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <pagination-controls
+                id="listing_pagination"
+                maxSize="5"
+                directionLinks="true"
+                (pageChange)="page = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-actions" *ngIf="isDean || isStaff || isParent">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+              <!-- <button
+                type="submit"
+                class="btn pnt"
+                printSectionId="fundd"
+                ngxPrint
+              >
+                <i class="fa fa-pencil"></i>Print
+              </button> -->
+              <!-- <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn studentcard1" (click)="download()">
+                Download To Excel
+              </button> -->
+              <!-- <button type="submit" class="btn btn-secondary">
+                <i class="fa fa-pencil"></i> back
+              </button> -->
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="fundd" style="background-color: #060818;">
+    <table  border="2" cellspacing="0">
+      <tr>
+        <th colspan="10" style="text-align: center">Exam details</th>
+      </tr>
+      <tr>
+        <th scope="col">SLno.</th>
+        <th scope="col">Exam Name</th>
+        <th scope="col">Start Name</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Total Marks</th>
+        <th scope="col">Hour</th>
+        <th scope="col">Class</th>
+      </tr>
+  
+      <tbody>
+        <tr *ngFor="let exam of exams; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ exam.exam_name }}</td>
+          <td>{{ exam.start_date }}</td>
+          <td>{{ exam.end_date }}</td>
+          <td>{{ exam.Total_marks }}</td>
+          <td>{{ exam.hour }}</td>
+          <td>{{ exam.class }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  
+ 
+  
+
+  
+

@@ -1,0 +1,405 @@
+<div class="row" *ngIf="isDean || isStaff">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class:</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of paytab" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedclasss.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row" *ngIf="isDean || isStaff">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Student Fee Report</h4>
+
+        <div class="table-responsive">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">RegNo.</th>
+                <th scope="col">Name</th>
+                <!-- <th scope="col">RegNo.</th> -->
+                <th scope="col">Class</th>
+                <th scope="col">Section</th>
+                <th scope="col">Category</th>
+                <th scope="col">Total fee</th>
+                <th scope="col">Paid</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total Due</th>
+                <th scope="col">Due Date</th>
+                <!-- <th scope="col">Penalty</th> -->
+                <!-- <th scope="col">Paid Through</th> -->
+                <!-- <th scope="col">Date Of Registration</th> -->
+                <!-- <th scope="col">Last date of Update</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let paid of pays
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{(page-1)*10+i+1}}</th>
+                <td>{{ paid.reg_number }}</td>
+                <td>{{ paid.student_name }}</td>
+              <td>{{ paid.class_name }}</td>
+                <td>{{ paid.section }}</td>
+                <td>{{ paid.category }}</td>
+                <td>{{ paid.total_fee }}</td>
+                <td>{{ paid.paid_fee }}</td>
+                <td
+                  [ngClass]="{
+                    red: paid.total_fee != paid.paid_fee,
+                    green: paid.total_fee == paid.paid_fee,
+                    blink_me: latest_date > paid.Due_date
+                  }"
+                >
+                  {{ (paid.total_fee == paid.paid_fee) ? 'Paid' : 'Pending' }}
+                </td>
+                <td>{{ paid.total_fee - paid.paid_fee }}</td>
+                <td>{{paid.Due_date | date:'yyyy-MM-dd' }}</td>
+                <!-- <td>{{ paid.Penalty }}</td> -->
+                <!-- <td>{{ paid.paid_by }}</td> -->
+                <!-- <td>{{ paid.date_of_registration }}</td> -->
+                <!-- <td>{{ paid.updation_date }}</td> -->
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openReport(feereportModal, paid)"
+                  >
+                    <i class="far fa-edit"></i> 
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean || isStaff">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="report"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-left:10px;margin-right:10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+<div id="report">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Fee Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SLno.</th>
+      <th scope="col">Name</th>
+      <th scope="col">RegNo.</th>
+      <th scope="col">Class</th>
+      <th scope="col">Section</th>
+      <th scope="col">Total paid</th>
+      <th scope="col">Total Due</th>
+      <th scope="col">Status</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Paid Date</th>
+      <th scope="col">Paid Through</th>
+   
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let paid of pays; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ paid.student_name }}</td>
+        <td>{{ paid.reg_number }}</td>
+        <td>{{ paid.class_name }}</td>
+        <td>{{ paid.section }}</td>
+        <td>{{ paid.total_paid }}</td>
+        <td>{{ paid.total_due | date:'yyyy-MM-dd'  }}</td>
+        <td
+          [ngClass]="{
+            red: paid.status == 'Pending',
+            green: paid.status == 'Paid'
+          }"
+        >
+          {{ paid.status }}
+        </td>
+        <td>{{ paid.Due_date | date:'yyyy-MM-dd' }}</td>
+        <td>{{ paid.Penalty }}</td>
+        <td>{{ paid.paid_by }}</td>
+       
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #feereportModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="paidinfoForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Fee Report</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Name :</label>
+                <input
+                  type="text"
+                  formControlName="student_name"
+                  [(ngModel)]="paid.student_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="name"
+                  placeholder="enter name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Register Number</label>
+                <input
+                  type="text"
+                  formControlName="reg_number"
+                  [(ngModel)]="paid.reg_number"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="register_number"
+                  placeholder="Enter Register Number"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">class</label>
+                <input
+                  type="text"
+                  formControlName="class_name"
+                  [(ngModel)]="paid.class_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="class"
+                  placeholder="Enter Class"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Section</label>
+                <input
+                  type="text"
+                  formControlName="section"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="paid.section"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="section"
+                  placeholder="Enter Section"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Total paid</label>
+                <input
+                  type="text"
+                  formControlName="paid_fee"
+                  [(ngModel)]="paid.paid_fee"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="total_paid"
+                  placeholder="Enter total Paid"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Total Due</label>
+                <input
+                  type="text"
+                  formControlName="total_due"
+                  [(ngModel)]="paid.total_due"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="total_due"
+                  placeholder="Enter Total Due"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Status</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="status"
+                  [(ngModel)]="paid.status"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="status"
+                >
+                  <option value="Paid">Paid</option>
+                  <option value="Pending">Pending</option>
+                </select>
+                <small class="form-control-feedback"> Select Status </small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Due Date</label>
+                <input
+                  type="datetime-local"
+                  formControlName="Due_date"
+                  [(ngModel)]="paid.Due_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="Due_date"
+                  placeholder="Enter Due Date"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Paid Through</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="paid_by"
+                  [(ngModel)]="paid.paid_by"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="paid_by"
+                >
+                  <option value="Cash">Cash</option>
+                  <option value="Check">Check</option>
+                  <option value="Online Payment">Online Payment</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select payment type
+                </small>
+              </div>
+            </div>
+         
+         
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Paid date</label>
+                <input
+                  type="datetime-local"
+                  formControlName="paid_date"
+                  [(ngModel)]="paid.paid_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="paid_date"
+                  placeholder="Enter Date of Update"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn btn-success" (click)=" Updatestudent(paid.id)">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

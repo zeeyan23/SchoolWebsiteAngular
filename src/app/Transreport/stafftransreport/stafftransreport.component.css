@@ -1,0 +1,27 @@
+#staftrans {
+  display: none;
+}
+.studentcard{
+  background-color :#26c6da;
+}
+.studentcard2{
+  background-color :white;
+}
+.studentcard1{
+  background:linear-gradient(150deg, #17a2b8 0%, #21ba45 150%); 
+  color: white;
+  
+}
+.dlt{
+    background: white;
+}
+.fa-edit{
+   color: black;
+}
+.fa-trash-alt{
+   color: red;
+}
+.pnt{
+   background: linear-gradient(45deg, #fbbd08, #fce44e) !important;
+   color: white;
+}

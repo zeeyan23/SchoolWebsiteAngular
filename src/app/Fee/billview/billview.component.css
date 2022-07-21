@@ -1,0 +1,27 @@
+#billl {
+  display: none;
+  }
+  h3 {
+    margin: 0 0 10px;
+  }
+  
+  pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+  }
+  .cal-events {
+    display: none !important;
+  }
+  .mc {
+    margin-top: 300px;
+    margin-left: 300px;
+  }
+  .studentcard1{
+    background:linear-gradient(150deg, #17a2b8 0%, #21ba45 150%); 
+    color: white;
+    
+  }
+  .addm{
+    background: #f2711c;
+    color: white;
+  }

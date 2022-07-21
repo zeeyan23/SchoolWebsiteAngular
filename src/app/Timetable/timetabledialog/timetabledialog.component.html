@@ -1,0 +1,97 @@
+<div class="main-content" style="margin-left: 200px;">
+
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-8">
+    <div class="card">
+    <div class="card-header card-header-success">
+      <button mat-raised-button id="modal-cancel-button" style="margin-left:550px;" (click)="closeModal()">Close</button>
+ 
+    <button
+    type="button"
+    class="btn btn-info"
+    (click)="downloadImage()"
+  >
+  Export as PNG
+  </button>
+   
+    </div>
+
+<div  class="card-body" >
+
+    
+   
+    <!-- <div>From Time:{{tabledataa?.from_time}}</div>
+    <div>To Time:{{tabledataa?.to_time}}</div>
+    <div>Monday:{{tabledataa?.monday}}</div>
+    <div>Tuesday:{{tabledataa?.tuesday}}</div> -->
+    <table #screen border="2" cellspacing="0">
+    <div>Class:{{data.timetable.class_name}}</div>
+    <div>Section:{{data.timetable.section}}</div>
+    <div>Date:{{data.timetable.timetable_date}}</div>
+      <tr>
+        <th colspan="8" style="text-align: center">Time Table</th>
+      </tr>
+      <tr> 
+        <!-- <th>Class</th>  -->
+          <th>Time From</th>
+        <th>Time To</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>wednesday</th>
+        <th>Thursaday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+      <tbody id="sortable" >
+        <!-- <tr class="ui-state-default ui-state-disabled">
+            <td colspan="3" class="ui-state-default">{{table.class_name}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr> -->
+       
+        <tr *ngFor="let timetab of data.addmoretimetable">
+            <td class="ui-state-default">{{timetab.from_time}}</td>
+            <td class="ui-state-default">{{timetab.to_time}}</td>
+            <td class="ui-state-default">{{timetab.monday}}</td>
+            <td class="ui-state-default">{{timetab.tuesday}}</td>
+            <td class="ui-state-default">{{timetab.wednesday}}</td>
+            <td class="ui-state-default">{{timetab.thursday}}</td>
+            <td class="ui-state-default">{{timetab.friday}}</td>
+            <td class="ui-state-default">{{timetab.saturday}}</td>
+            <td class="ui-state-default">{{timetab.comments}}</td>
+            
+        </tr>
+       
+        </tbody>
+      <!-- <tr  *ngFor="let dataa of Temptimetable"> 
+        <tr *ngFor="let tabledataa of Temptimetable">
+        
+        <td>{{ tabledataa?.from_time }}</td>
+        <td>{{ tabledataa?.to_time }}</td>
+        <td>{{ tabledataa?.monday }}</td>
+        <td>{{ tabledataa?.tuesday }}</td>
+        <td>{{ tabledataa?.wednesday }}</td>
+        <td>{{ tabledataa?.thursday }}</td>
+        <td>{{ tabledataa?.friday }}</td>
+        <td>{{ tabledataa?.saturday }}</td>
+      </tr>
+    </tr> -->
+    </table>
+  
+
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div>
+<div id="download">
+    <img #canvas>
+    <a #downloadLink></a>
+  </div>

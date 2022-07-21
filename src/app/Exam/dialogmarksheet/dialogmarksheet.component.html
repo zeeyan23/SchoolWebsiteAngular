@@ -1,0 +1,133 @@
+<div class="main-content" style="margin-left: 100px;">
+
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-8">
+    <div class="card">
+    <div class="card-header card-header-success">
+      <button mat-raised-button id="modal-cancel-button" style="margin-left:550px;margin-right: 20px;" (click)="closeModal()">Close</button>
+ 
+    <button
+    type="button"
+    class="btn "
+    (click)="downloadImage()"
+  >
+  Export as PNG
+  </button>
+   
+    </div>
+    
+    <div class="card-body">
+        <table #screen cellspacing="0" border="3"  cellpadding="2">
+            <tr height="60" style="background-color: rgb(21, 21, 110);color:white;text-align: center;font-size: large;">
+                <th colspan="15">Kinara school</th>
+                <img src="../assets/images/kinara_school_yermal.png" alt="Flowers in Chania" width="100" height="100">
+            </tr>
+            <tr>
+                <th rowspan="3">SLno</th>
+                <th rowspan="3">Subject Name</th>
+                <th rowspan="3">Maximum Marks</th>
+                <th rowspan="3">Obtained marks</th>
+                <th rowspan="3">Minimum Marks</th>
+                <th rowspan="3">Total Marks</th>
+                <th rowspan="3">Percentage</th>
+            </tr>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Maths</td>
+            <td>{{mathsmax}}</td>
+            <td>{{mathsobt}}</td>
+            <td>{{mathsmin}}</td>
+            <td>{{mathstot}}</td>
+            <td>{{mathsper}}</td>
+           
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>English</td>
+            <td>{{englishmax}}</td>
+            <td>{{englishobt}}</td>
+            <td>{{englishmin}}</td>
+            <td>{{englishtot}}</td>
+            <td>{{englishper}}</td>
+           
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Science</td>
+            <td>{{seincemax}}</td>
+            <td>{{seinceobt}}</td>
+            <td>{{seincemin}}</td>
+            <td>{{seincetot}}</td>
+            <td>{{seinceper}}</td>
+            
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Hindi</td>
+            <td>{{hindimax}}</td>
+            <td>{{hindiobt}}</td>
+            <td>{{hindimin}}</td>
+            <td>{{hinditot}}</td>
+            <td>{{hindiper}}</td>
+            
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Social Sceince</td>
+            <td>{{socialmax}}</td>
+            <td>{{socialobt}}</td>
+            <td>{{socialmin}}</td>
+            <td>{{socialtot}}</td>
+            <td>{{socialper}}</td>
+           
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Kannada</td>
+            <td>{{kannadamax}}</td>
+            <td>{{kannadobt}}</td>
+            <td>{{kannadmin}}</td>
+            <td>{{kannadtot}}</td>
+            <td>{{kannadper}}</td>
+           
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Computer</td>
+            <td>{{compmax}}</td>
+            <td>{{compobt}}</td>
+            <td>{{compmin}}</td>
+            <td>{{comptot}}</td>
+            <td>{{compper}}</td>
+           
+        </tr>
+        </tbody>
+        
+
+         <!-- <div mat-dialog-content>
+         
+          <mat-form-field>
+            <mat-label>Maths:</mat-label>
+            <br>
+            <input matInput [(ngModel)]="mathsmax">
+          </mat-form-field>
+        </div> -->
+        
+      
+     
+            <tr height="50"><th colspan="11"> Created by :Vijayalaxmi</th></tr>
+        </table>
+    </div>
+    </div>
+    </div> 
+    </div>
+    </div>
+    </div>
+    <div id="download">
+        <img #canvas>
+        <a #downloadLink></a>
+      </div>
+
+  

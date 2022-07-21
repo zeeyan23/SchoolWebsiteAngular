@@ -1,0 +1,16 @@
+a {
+  margin-left: 20%;
+  font-size: larger;
+}
+.studentcard1 {
+  background: linear-gradient(150deg, #17a2b8 0%, #21ba45 150%);
+  color: white;
+}
+.addm {
+  background: #f2711c;
+  color: white;
+}
+
+select {
+  width: 400px;
+}

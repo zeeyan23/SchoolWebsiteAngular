@@ -1,0 +1,360 @@
+<div class="row" *ngIf="isDean || isStaff || isParent">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of studentss" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Section</label>
+                    <select class="form-control custom-select" #selectedsectionn name="section">
+                      <option *ngFor="let item of studentss" [value]="item.section">{{item.section}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedclasss.value , selectedsectionn.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+
+</div>
+
+<div class="row" *ngIf="isDean || isStaff || isParent">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Homework</h4>
+
+        <div class="table-responsive" id="tab">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Class</th>
+                <th scope="col">Section</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Homework</th>
+                <th scope="col">Date</th>
+                <th scope="col">Remark</th>
+                <!-- <th scope="col">Submission date</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let homework of homeworks
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ homework.class_name }}</td>
+                <td>{{ homework.section }}</td>
+                <td>{{ homework.subject }}</td>
+                <td>{{ homework.homework }}</td>
+                <td>{{ homework.homework_date | date:'yyyy-MM-dd' }}</td>
+                <td>{{ homework.remark }}</td>
+                <!-- <td>{{ homework.dos }}</td> -->
+                <!-- <td class="zoom-without-container">
+                  <img
+                    src="{{ homework.homework_photo }}"
+                    width="100"
+                    height="100"
+                  />
+                </td> -->
+                <td style="white-space: nowrap">
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openHomework(homeworkinfomodal, homework)"
+                  >
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button 
+                    class="btn dlt btn-rounded action"
+                   mwlConfirmationPopover
+                   [popoverTitle]="popoverTitle"
+                   [popoverMessage]="popoverMessage"
+                   placement="left"
+                   (confirm)="deleteRow(homework.id)"
+                   (cancel)="cancelClicked = true" *ngIf="isDean || isStaff">
+                                     <i class="far fa-trash-alt"></i>
+                                   </button>
+                  <!-- <button type="button" class="btn dlt btn-rounded"  printSectionId="tab" ngxPrint>
+                    <i class="far fa-trash-alt"></i>
+                  </button> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean || isStaff || isParent">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+            type="button"
+            class="btn pnt btn-rounded"
+           
+            printSectionId="tab"
+            ngxPrint
+          >
+            <i class="fas fa-print"></i>Print
+          </button>
+            <!-- <button
+              type="submit"
+              
+              class="btn btn-secondary"
+            >
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #homeworkinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="homeworkForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Homework</h4>
+      </div>
+      <div></div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                  <label class="control-label">Class:</label>
+                  <select  class="form-control custom-select"  [(ngModel)]="homework.class_name"
+                  [ngModelOptions]="{ standalone: true }" class="form-control"  formControlName="class_name" >
+                      <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  <small class="form-control-feedback"> </small>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group has-danger">
+                <label class="control-label">Section:</label>
+                <select   class="form-control custom-select" [(ngModel)]="homework.section"
+                [ngModelOptions]="{ standalone: true }" class="form-control"  formControlName="section" >
+                    <option *ngFor="let item of classmemo" [value]="item.section">{{item.section}}</option>
+                  </select>
+                <small class="form-control-feedback"> </small>
+            </div>
+        </div>
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Subject Name :</label>
+                <select
+                  formControlName="subject"
+                  class="form-control custom-select"
+                  [(ngModel)]="homework.subject"
+                  [ngModelOptions]="{ standalone: true }"
+                  
+                >
+                  <option value="">Maths</option>
+                  <option value="">Science</option>
+                  <option value="">Social</option>
+                  <option value="">Computer</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select your Subject
+                </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label"> Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="homework_date"
+                  [(ngModel)]="homework.homework_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="homework_date"
+                  placeholder="Enter Date"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Remark :</label>
+                <input
+                  type="text"
+                  formControlName="remark"
+                  [(ngModel)]="homework.remark"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="remark"
+                  placeholder="Enter Remark"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Homework Image:</label>
+                <img
+                  src="http://localhost:8000{{ homework.homework_photo }}"
+                  width="300"
+                  height="200"
+                />
+                <input
+                  formControlName="homework_photo"
+                  type="file"
+                  class="form-control"
+                  #file
+                  (change)="uploadFile($event)"
+                />
+              </div>
+              <img
+                [src]="imageSrc"
+                *ngIf="imageSrc"
+                style="height: 200px; width: 300px"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Write Homework here *</label>
+                <textarea
+                  formControlName="homework"
+                  [(ngModel)]="homework.homework"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="homework_text"
+                  rows="10"
+                  placeholder="..."
+                ></textarea>
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="Updatehomework(homework.id)"
+            >
+              <i class="fa fa-check"></i>Update
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-warning btn-rounded"
+      (click)="download()"
+    >
+      Export To Pdf
+    </button> -->
+  
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>
+
+<!-- <div id="tab">
+  <table border="2" cellspacing="0" id="tableID" >
+    <tr>
+        <th colspan="10" style="text-align: center">Student Details</th>
+      </tr>
+      <tr>
+        <th scope="col">SLno.</th>
+        <th scope="col">Class Name.</th>
+        <th scope="col">Section</th>
+        <th scope="col">subject</th>
+        <th scope="col">Homework</th>
+        <th scope="col"> Homework date</th>
+        <th scope="col">remark</th>
+        <th scope="col">Date Of submission</th> -->
+<!-- <th scope="col">Email Address</th>
+       </tr>
+   
+    <tbody>
+      <tr *ngFor="let studentt of homeworks; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+      
+        <td>{{class_name }}</td>
+        <td>{{ studentt.section }}</td>
+        <td>{{ studentt.subject }}</td>
+        <td>{{ studentt.homework }}</td>
+        <td>{{ studentt.homework_date }}</td>
+        <td>{{ studentt.remark }}</td>
+        <td>{{ studentt.dos }}</td> -->
+<!-- <td>{{ studentt.student_address }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div> - -->

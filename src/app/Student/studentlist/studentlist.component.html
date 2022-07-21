@@ -1,0 +1,635 @@
+<div class="row"  *ngIf="isDean || isStaff">
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of studentss" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Section</label>
+                    <select class="form-control custom-select" #selectedsectionn name="section">
+                      <option *ngFor="let item of studentss" [value]="item.section">{{item.section}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedclasss.value , selectedsectionn.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+ </div>
+<div class="col-md-2">
+  <input  type="text" id="myInput" class="form-control" style="margin-left:350px;" placeholder="Search..."  [(ngModel)]="term" title="Type in a name">
+</div>
+</div>
+ 
+
+
+<div class="row"  *ngIf="isDean || isStaff">
+  <div class="col-md-12">
+    <div class="card" >
+      <div class="card-body" >
+        <h4 class="card-title">Students List</h4>
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Student Photo</th>
+                <th scope="col">RegNo.</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Section</th>
+                <th scope="col">Fathers Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Action</th>
+             
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let studentt of students  | paginate: { id:'listing_pagination',itemsPerPage: 15,currentPage: page,totalItems: totalRec }| filter:term; let i = index">
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td class="zoom-without-container">
+                  <img
+                    src="http://localhost:8000{{ studentt.student_photo }}"
+                    width="150"
+                    height="150"
+                  />
+                </td>
+                <td>{{ studentt.reg_number }}</td>
+                <td>{{ studentt.student_name }}</td>
+                <td>{{ studentt.class_name }}</td>
+                <td>{{ studentt.section }}</td>
+                <td>{{ studentt.father_name }}</td>
+                <td>{{ studentt.contact_num }}</td>
+                <td>{{ studentt.email_address}}</td>
+                <td style='white-space: nowrap'>
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded action"
+                    (click)="openStudent(studentmodal , studentt)"
+                  >
+                  <i class="far fa-edit"></i>
+                  </button>
+                  <button 
+                  class="btn dlt btn-rounded action"
+                 mwlConfirmationPopover
+                 [popoverTitle]="popoverTitle"
+                 [popoverMessage]="popoverMessage"
+                 placement="left"
+                 (confirm)="deleteRow(studentt.id)"
+                 (cancel)="cancelClicked = true">
+                                   <i class="far fa-trash-alt"></i>
+                                 </button>
+                
+                </td>
+
+                <!-- <td>
+                  <button type="button" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-pencil"></i> Delete
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions"  *ngIf="isDean || isStaff">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="stud"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" class="btn studentcard1" style="margin-left:10px" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-dark">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+<div id="stud">
+  <table border="2" cellspacing="0" >
+    <tr>
+        <th colspan="10" style="text-align: center">Student Details</th>
+      </tr>
+      <tr>
+        <th scope="col">SLno.</th>
+        <th scope="col">Student Photo</th>
+        <th scope="col">RegNo.</th>
+        <th scope="col">Student Name</th>
+        <th scope="col">Class</th>
+        <th scope="col">Section</th>
+        <th scope="col">Fathers Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Email Address</th>
+       </tr>
+   
+    <tbody>
+      <tr *ngFor="let studentt of students; let i = index">
+      <th scope="row">{{(page-1)*10+i+1}}</th>
+        <td class="zoom-without-container">
+          <img
+            src="http://localhost:8000{{ studentt.student_photo }}"
+            width="150"
+            height="150"
+          />
+        </td>
+        <td>{{ studentt.reg_number }}</td>
+        <td>{{ studentt.student_name }}</td>
+        <td>{{ studentt.class_name }}</td>
+        <td>{{ studentt.section }}</td>
+        <td>{{ studentt.father_name }}</td>
+        <td>{{ studentt.contact_num }}</td>
+        <td>{{ studentt.email_address}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+<ng-template #studentmodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Student</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="studentregForm" (ngSubmit)="submitForm()">
+      <div class="card-body">
+        <!-- <h4 class="card-title">Add Students</h4> -->
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Student Photo:</label>
+                <img
+                src="http://localhost:8000{{studentt.student_photo}}"
+                width="200"
+                height="150"
+              />
+                <input type="file"  #file formControlName="student_photo" class="form-control"  (change)="uploadFile($event)"  />
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Registration No.:</label>
+                <input
+                  type="text"
+                  formControlName="reg_number"
+                  class="form-control"
+                  [(ngModel)]="studentt.reg_number"
+                  [ngModelOptions]="{standalone: true}"
+
+                  
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+         
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Student Name :</label>
+                <input
+                  type="text"
+                  formControlName="student_name"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.student_name"
+                  [ngModelOptions]="{standalone: true}"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Class:</label>
+             
+                <!-- <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Select Class" 
+            formControlName="class"
+            name="class"
+            list= "ddOptions"
+            [(ngModel)]="selectedclass"
+            />
+            <datalist id="ddOptions" (change)="valueSelected()">
+              <option *ngFor="let test of classmemo" [value]="test.class_name">{{test.class_name}}</option>
+            </datalist> -->
+               
+            <select  class="form-control custom-select"  [(ngModel)]="selectedclass"  [(ngModel)]="studentt.class_name"   formControlName="class_name" (change)="valueSelected()">
+              <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+            </select>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">section:</label>
+                <select  class="form-control custom-select"  [(ngModel)]="studentt.section"  formControlName="section" >
+                  <option *ngFor="let item of classmemo" [value]="item.section">{{item.section}}</option>
+                </select>
+               
+              </div>
+            </div>
+            
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">DOB:</label>
+                <input type="datetime-local" class="form-control form-control-danger" formControlName="Dob"  [(ngModel)]="studentt.Dob" [ngModelOptions]="{standalone: true}"
+                />
+                
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Select Gender:</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="gender"
+                  [(ngModel)]="studentt.gender"
+                  [ngModelOptions]="{standalone: true}"
+
+                >
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+                <small class="form-control-feedback"> Select Gender </small>
+              </div>
+            </div>
+        
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Fathers Name :</label>
+                <input
+                  type="text"
+                  formControlName="father_name"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.father_name"
+                  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Mothers Name :</label>
+                <input
+                  type="text"
+                  formControlName="mother_name"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.mother_name"
+                  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Contact Number :</label>
+                <input
+                  type="text"
+                  formControlName="contact_num"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.contact_num"
+                  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label"
+                  >Alternative Contact Number :</label
+                >
+                <input
+                  type="text"
+                  formControlName="alter_num"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.alter_num"
+                  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+         
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Fathers DOB:</label>
+                <input type="datetime-local" class="form-control form-control-danger" formControlName="father_dob" [(ngModel)]="studentt.father_dob" 
+                [ngModelOptions]="{standalone: true}"
+              
+                />
+               
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+         
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Mothers DOB:</label>
+                <input type="datetime-local" class="form-control form-control-danger" formControlName="mother_dob"  [(ngModel)]="studentt.mother_dob" 
+                [ngModelOptions]="{standalone: true}"
+   
+                />
+                
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Anniversary Date:</label>
+                <input type="datetime-local" class="form-control form-control-danger" formControlName="anniversary_date"  [(ngModel)]="studentt.anniversary_date" 
+                [ngModelOptions]="{standalone: true}"
+               
+                />
+                
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+         
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Date of admission:</label>
+                <input type="datetime-local" class="form-control form-control-danger" formControlName="date_of_admission"  [(ngModel)]="studentt.date_of_admission" 
+                [ngModelOptions]="{standalone: true}"
+              
+                />
+                
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Fees :</h4>
+                 
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" name="admission_fee" disabled="true"   value="{{studentt.admission_fee}}" checked
+                    >
+                  <label for="defaultCheck">Admission Fee : {{studentt.admission_fee}}</label>
+                  </fieldset>
+
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" name="tuition_fee" disabled="true" checked="checked" value="{{studentt.tuition_fee}}">
+                    <label for="defaultCheck">Tuition Fee : {{studentt.tuition_fee}}</label>
+                  </fieldset>
+
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" ng-model="checkbox160" name="transport_fee"  checked="checked" value="{{studentt.transport_fee}}" (change)="cost(studentt.transport_fee,checkbox160)">
+                    <label for="defaultCheck">Transport Fee : {{studentt.transport_fee}}</label>
+                  </fieldset>
+
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" name="food_fee"  checked="checked" value="{{studentt.food_fee}}">
+                    <label for="defaultCheck">Food Fee : {{studentt.food_fee}}</label>
+                  </fieldset>
+
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" ng-model="checkbox150" name="hostel_fee"  checked="checked" value="{{studentt.hostel_fee}}" (change)="cost(studentt.hostel_fee,checkbox150)">
+                    <label for="defaultCheck">Hostel Fee : {{studentt.hostel_fee}}</label>
+                  </fieldset>
+
+                  <fieldset class="checkbox">
+                    <input type="checkbox"  id="defaultCheck" name="misc_fee" disabled="true"  checked="checked" value="{{studentt.misc_fee}}">
+                    <label for="defaultCheck">Misc Fee : {{studentt.misc_fee}}</label>
+                  </fieldset>
+                  <br>
+                
+                  <!-- </div> -->
+                  <label class="control-label">Total Fee :</label>
+                  <input
+                    type="text"
+                    formControlName="total_fee"
+                    class="form-control form-control-danger"
+                   [(ngModel)]="studentt.total_fee"  [ngModelOptions]="{standalone: true}"
+
+                  />
+                  <br>
+                  <label class="control-label">Category :</label>
+                  <select  formControlName="category"  [(ngModel)]="studentt.category"  [ngModelOptions]="{standalone: true}"
+                  (change)="categorySelected($event.target.value)">
+                    <option *ngFor="let cat of catgory" [value]="cat.category">{{cat.category}}</option>
+                  </select>
+                  <br>
+                  <label class="control-label">Paid Fee :</label>
+                  <input
+                    type="text"
+                    formControlName="paid_fee"
+                    class="form-control form-control-danger"
+                    [(ngModel)]="studentt.paid_fee"  [ngModelOptions]="{standalone: true}"
+
+                  />
+
+                  <label class="control-label">Due Date:</label>
+                    <input
+                      type="datetime-local"
+                      formControlName="Due_date"
+                      class="form-control form-control-danger"
+                      [(ngModel)]="studentt.Due_date"  [ngModelOptions]="{standalone: true}"
+
+                      placeholder="Enter Admission Date "
+                    />
+                 
+                </div>
+              </div>
+            </div>
+       
+
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Student Address :</label>
+                <textarea
+                  class="form-control"
+                  formControlName="student_address"
+                  ngModel
+                  rows="10"
+                  [(ngModel)]="studentt.student_address"  [ngModelOptions]="{standalone: true}"
+
+                ></textarea>
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">City :</label>
+                <input
+                  type="text"
+                  formControlName="city"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.city"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">State :</label>
+                <input
+                  type="text"
+                  formControlName="state"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.state"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Country :</label>
+                <input
+                  type="text"
+                  formControlName="country"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.country"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+         
+
+            
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Pincode :</label>
+                <input
+                  type="text"
+                  formControlName="pincode"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.pincode"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Academic Year:</label>
+                <input
+                  type="text"
+                  formControlName="academic_year"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.academic_year"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Email Address:</label>
+                <input
+                  type="email"
+                  formControlName="email_address"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="studentt.email_address"  [ngModelOptions]="{standalone: true}"
+
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          
+
+
+          </div>
+     
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn studentcard1" (click)=" Updatestudent(studentt.id)">
+              <i class="fa fa-check"></i> Update
+            </button>
+            <button type="button" style="margin-left: 10px;margin-right: 10px;"  (click)="modal.close('Save click')" class="btn btn-secondary">Cancel</button>
+         
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+     
+    >
+      Close
+    </button>
+  </div> -->
+</ng-template>

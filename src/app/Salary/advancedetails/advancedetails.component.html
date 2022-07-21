@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">View Advance Salary</h4>
+               
+                <div class="table-responsive">
+                    <table class="table table-hover table-info">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th scope="col">SLno.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col">Designation</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Advance Amount</th>
+                                <th scope="col"> Advance Amount Balance</th>
+                                <th scope="col">Remark</th>
+                                <th scope="col">Payment Mode</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let advance of advances; let i =index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{advance.name}}</td>
+                                <td>{{advance.contact_number}}</td>
+                                <td>{{advance.designation}}</td>
+                                <td>{{advance.date}}</td>
+                                <td>{{advance.advance_amount}}</td>
+                                <td>{{advance.advance_amount_balance}}</td>
+                                <td>{{advance.remark}}</td>
+                                <td>{{advance.payment_mode}}</td>
+                              
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

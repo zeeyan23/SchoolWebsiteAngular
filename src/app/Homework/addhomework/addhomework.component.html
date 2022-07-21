@@ -1,0 +1,179 @@
+<div class="row" *ngIf="isDean">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h4 class="m-b-0 text-dark">Add Homework</h4>
+        </div>
+        <form [formGroup]="homeworkForm" (ngSubmit)="submitForm()">
+          <div class="card-body">
+            <!-- <h4 class="card-title">Homework</h4> -->
+          </div>
+          <div></div>
+          <hr />
+          <div class="form-body">
+            <div class="card-body">
+              <div class="row p-t-20">
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                      <label class="control-label">Class:</label>
+                      <select  class="form-control custom-select" class="form-control"  formControlName="class_name" >
+                          <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+                        </select>
+                      <small class="form-control-feedback"> </small>
+                  </div>
+              </div>
+              <div *ngIf="homeworkForm.controls['class_name'].invalid && homeworkForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="homeworkForm.controls['class_name'].errors.required">
+              Class is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                    <label class="control-label">Section:</label>
+                    <select  class="form-control custom-select" class="form-control"  formControlName="section" >
+                        <option *ngFor="let item of classmemo" [value]="item.section">{{item.section}}</option>
+                      </select>
+                    <small class="form-control-feedback"> </small>
+                </div>
+            </div>
+            <div *ngIf="homeworkForm.controls['section'].invalid && homeworkForm.controls['section'].touched" class="alert alert-danger">
+              <div *ngIf="homeworkForm.controls['section'].errors.required">
+            Section is required.
+            </div>
+          </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group has-danger">
+                  <label class="control-label">Subject Name:</label>
+                  <select  class="form-control custom-select" class="form-control"  formControlName="subject" >
+                      <option *ngFor="let item of classmemo" [value]="item.subject">{{item.subject}}</option>
+                    </select>
+                  <small class="form-control-feedback"> </small>
+              </div>
+          </div> -->
+                  <div class="col-md-4">
+                    <div class="form-group has-success">
+                      <label class="control-label">Subject Name :</label>
+                      <select
+                        formControlName="subject"
+                        class="form-control custom-select"
+                      >
+                        <option value="Maths">Maths</option>
+                        <option value="Science">Science</option>
+                        <option value="Social">Social</option>
+                        <option value="Computer"></option>
+                      </select>
+                      <small class="form-control-feedback">
+                        Select your Subject
+                      </small>
+                    </div>
+                  </div>
+                  <div *ngIf="homeworkForm.controls['subject'].invalid && homeworkForm.controls['subject'].touched" class="alert alert-danger">
+                    <div *ngIf="homeworkForm.controls['subject'].errors.required">
+                  Subject is required.
+                  </div>
+                </div>
+
+
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label"> Date:</label>
+                      <input
+                        type="datetime-local"
+                        formControlName="homework_date"
+                        class="form-control form-control-danger"
+                        placeholder="Enter Date"
+                      />
+                      <small class="form-control-feedback"></small>
+                    </div>
+                  </div>
+                  <div *ngIf="homeworkForm.controls['homework_date'].invalid && homeworkForm.controls['homework_date'].touched" class="alert alert-danger">
+                    <div *ngIf="homeworkForm.controls['homework_date'].errors.required">
+                  Homework is required.
+                  </div>
+                </div>
+
+
+                <!--/span-->
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Remark :</label>
+                    <input
+                      type="text"
+                      formControlName="remark"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Remark"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div *ngIf="homeworkForm.controls['remark'].invalid && homeworkForm.controls['remark'].touched" class="alert alert-danger">
+                  <div *ngIf="homeworkForm.controls['remark'].errors.required">
+                Remark is required.
+                </div>
+              </div>
+               
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Homework Image:</label>
+                    
+                    <input
+                      formControlName="homework_photo"
+                      id="homework_photo"
+                      type="file"
+                      class="form-control"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                  <img
+                    [src]="imageSrc"
+                    *ngIf="imageSrc"
+                    style="height: 200px; width: 300px"
+                  />
+                </div>
+                <div *ngIf="homeworkForm.controls['homework_photo'].invalid && homeworkForm.controls['homework_photo'].touched" class="alert alert-danger">
+                  <div *ngIf="homeworkForm.controls['homework_photo'].errors.required">
+                Homework photo is required.
+                </div>
+              </div>
+
+                
+                <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Write Homework here *</label>
+                      <textarea
+                      formControlName="homework"
+                        class="form-control"
+                        rows="10"
+                        placeholder="..."
+                      ></textarea>
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div *ngIf="homeworkForm.controls['homework'].invalid && homeworkForm.controls['homework'].touched" class="alert alert-danger">
+                    <div *ngIf="homeworkForm.controls['homework'].errors.required">
+                  Homework is required.
+                  </div>
+                </div>
+  
+               
+              </div>
+            
+            </div>
+            <hr />
+  
+            <div class="form-actions">
+              <div class="card-body">
+                <button type="submit" class="btn studentcard1">
+                  <i class="fa fa-check"></i> Submit
+                </button>
+                <!-- <button type="button" style="margin-left: 10px;" class="btn btn-secondary">Cancel</button> -->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

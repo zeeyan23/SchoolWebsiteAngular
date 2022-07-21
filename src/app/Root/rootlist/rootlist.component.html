@@ -1,0 +1,313 @@
+<div class="col-lg-2 col-md-4" style="margin-bottom:20px;" *ngIf="isDean">
+  <a [routerLink]="['/root/regroot']">
+    <button type="button" class="btn btn-block btn-lg studentcard1">
+      Register Route
+    </button>
+  </a>
+</div>
+
+<div class="row" *ngIf="isDean">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Route name</label>
+                    <select class="form-control custom-select" #selectedroute name="Route_name">
+                      <option *ngFor="let item of roots" [value]="item.Route_name">{{item.Route_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedroute.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Route Details</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLNo</th>
+                <th scope="col">Route Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Vehicle no.</th>
+                <th scope="col">Driver Name</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Amount</th>
+               
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let root of roots
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+              <td>{{(page-1)*10+i+1}}</td>
+                <td>{{ root.Route_name }}</td>
+                <td>{{ root.vehicle_type }}</td>
+                <td>{{ root.vehicle_num }}</td>
+                <td>{{ root.Driver_name }}</td>
+                <td>{{ root.mobile_num }}</td>
+                <td>{{ root.amount }}</td>
+                
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openRoot(rootinfomodal, root)"
+                  >
+                  <i class="far fa-edit"></i>
+                   
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="rooot"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="rooot">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Fee Details</th>
+    </tr>
+    <tr>
+      <th scope="col">Route Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Vehicle no.</th>
+      <th scope="col">Driver Name</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Amount</th>
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let root of roots; let i = index">
+        <td>{{ root.Route_name }}</td>
+        <td>{{ root.vehicle_type }}</td>
+        <td>{{ root.vehicle_num }}</td>
+        <td>{{ root.Driver_name }}</td>
+        <td>{{ root.mobile_num }}</td>
+        <td>{{ root.amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #rootinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="routeregForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="card-body">
+        <h4 class="card-title">Update Route</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Route Name:</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="Route_name"
+                  [(ngModel)]="root.Route_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="Route_name"
+                >
+                  <option value="UDUPI-JUNTION">UDUPI-JUNTION</option>
+                  <option value="Ucchila">Ucchila</option>
+                  <option value="Kaup">Kaup</option>
+                  <option value="padubidri">padubidri</option>
+                </select>
+                <small class="form-control-feedback"> Select route Name </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">vehicle No.</label>
+                <input
+                  type="text"
+                  formControlName="vehicle_num"
+                  [(ngModel)]="root.vehicle_num"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="vehicle_num"
+                  placeholder="Enter Vehicle Number"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Driver Name</label>
+                <input
+                  type="text"
+                  formControlName="Driver_name"
+                  [(ngModel)]="root.Driver_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="Driver_name"
+                  placeholder="Enter Driver Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Amount</label>
+                <input
+                  type="text"
+                  formControlName="amount"
+                  [(ngModel)]="root.amount"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="amount"
+                  placeholder="Enter Amount"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Mobile No.</label>
+                <input
+                  type="text"
+                  formControlName="mobile_num"
+                  [(ngModel)]="root.mobile_num"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="mobile_num"
+                  placeholder="Enter Mobile No."
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">vehicle type:</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="vehicle_type"
+                  [(ngModel)]="root.vehicle_type"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="vehicle_type"
+                >
+                  <option value="Bus">Bus</option>
+                  <option value="Car">Car</option>
+                  <option value="Auto">Auto</option>
+                  <option value="omni">omni</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select Vehicle Type
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn btn-success"  (click)="Updateroute(root.id)">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

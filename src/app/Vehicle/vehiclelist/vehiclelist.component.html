@@ -1,0 +1,428 @@
+
+
+
+<div class="col-lg-2 col-md-4" style="margin-bottom:20px;" *ngIf="isDean">
+  <a [routerLink]="['/vehicle/regvehicle']">
+    <button type="button" class="btn btn-block btn-lg studentcard1">
+      Register Vehicle
+    </button>
+  </a>
+</div>
+<div class="row" *ngIf="isDean">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Vehicle Number :</label>
+                    <select class="form-control custom-select" #selectedvehiclenum name="vehicle_num">
+                      <option *ngFor="let item of vehics" [value]="item.vehicle_num">{{item.vehicle_num}}</option>
+                    </select>
+                  </div>
+                
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelected(selectedvehiclenum.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Vehicle Details</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLNo</th>
+                <th scope="col">Vehicle Number</th>
+                <th scope="col">Reg.no</th>
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">registerd Owner</th>
+                <th scope="col">Makers class</th>
+                <th scope="col">Seating Capacity</th>
+                <th scope="col">Registration date</th>
+                <th scope="col">Colour</th>
+
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let vehicles of vehic
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+              <th scope="row">{{(page-1)*15+i+1}}</th>
+               <td>{{vehicles.vehicle_num}}</td>
+                <td>{{ vehicles.reg_no }}</td>
+                <td>{{ vehicles.vehicle_type }}</td>
+                <td>{{ vehicles.reg_owner }}</td>
+                <td>{{ vehicles.makers_class }}</td>
+                <td>{{ vehicles.seating_capacity }}</td>
+                <td>{{ vehicles.reg_date| date:'yyyy-MM-dd' }}</td>
+                <td>{{ vehicles.color }}</td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openVehicle(vehicleinfomodal, vehicles)"
+                  >
+                  <i class="far fa-edit"></i>
+                    
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="vehicllee"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-left:10px;margin-right:10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="vehicllee">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Vehicle Details</th>
+    </tr>
+      <tr>
+        <th scope="col">Vehicle Number</th>
+                <th scope="col">Reg.no</th>
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">registerd Owner</th>
+                <th scope="col">Makers class</th>
+                <th scope="col">Seating Capacity</th>
+                <th scope="col">Registration date</th>
+                <th scope="col">Colour</th>
+      </tr>
+
+
+    <tbody>
+      <tr *ngFor="let vehicles of vehic; let i = index">
+        <td>{{vehicles.vehicle_num}}</td>
+                <td>{{ vehicles.reg_no }}</td>
+                <td>{{ vehicles.vehicle_type }}</td>
+                <td>{{ vehicles.reg_owner }}</td>
+                <td>{{ vehicles.makers_class }}</td>
+                <td>{{ vehicles.seating_capacity }}</td>
+                <td>{{ vehicles.reg_date | date:'yyyy-MM-dd' }}</td>
+                <td>{{ vehicles.color }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #vehicleinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="vehicleregForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="card-body">
+        <h4 class="card-title">Update Vehicle Details</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Reg.no :</label>
+                <input
+                  type="text"
+                  formControlName="reg_no"
+                  [(ngModel)]="vehicles.reg_no"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="reg_no"
+                  placeholder="Enter Regno."
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Type:</label>
+                <input
+                  type="text"
+                  formControlName="vehicle_type"
+                  [(ngModel)]="vehicles.vehicle_type"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="vehicle_type"
+                  placeholder="Enter Type"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Register Owner:</label>
+                <input
+                  type="text"
+                  formControlName="reg_owner"
+                  [(ngModel)]="vehicles.reg_owner"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="reg_owner"
+                  placeholder="Enter Registerd Owner"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Address:</label>
+                <input
+                  type="text"
+                  formControlName="owner_address"
+                  [(ngModel)]="vehicles.owner_address"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="owner_address"
+                  placeholder="Enter Address"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Month of Manufacture:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="month_manufacture"
+                  [(ngModel)]="vehicles.month_manufacture"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="month_manufacture"
+                  placeholder="Enter MOM"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Makers Class:</label>
+                <input
+                  type="text"
+                  formControlName="makers_class"
+                  [(ngModel)]="vehicles.makers_class"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="makers_class"
+                  placeholder="Enter Makers class"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Seacting Capacity:</label>
+                <input
+                  type="text"
+                  formControlName="seating_capacity"
+                  [(ngModel)]="vehicles.seating_capacity"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="seating_capacity"
+                  placeholder="Enter Seating Capacity"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">vehicle No.</label>
+                <input
+                  type="text"
+                  formControlName="vehicle_num"
+                  class="form-control form-control-danger"
+                  [(ngModel)]="vehicles.vehicle_num"
+                  [ngModelOptions]="{ standalone: true }"
+                  placeholder="Enter Vehicle Number"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+           
+          
+            
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">regn Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="reg_date"
+                  [(ngModel)]="vehicles.reg_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="reg_date"
+                  placeholder="Enter Reg.Date"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Reg Valid Photo:</label>
+                <img
+                src="http://localhost:8000{{ vehicles.reg_photo }}"
+                width="300"
+                height="200"
+              />
+              <input
+                formControlName="reg_photo"
+                type="file"
+                class="form-control"
+                #file 
+                (change)="uploadFile($event)"
+              />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Fuel used :</label>
+                <input
+                  type="text"
+                  formControlName="fuel_use"
+                  [(ngModel)]="vehicles.fuel_use"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="fuel_use"
+                  placeholder="Enter Fuel used"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Tax:</label>
+                <input
+                  type="text"
+                  formControlName="tax"
+                  [(ngModel)]="vehicles.tax"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="tax"
+                  placeholder="Enter Tax"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Color:</label>
+                <input
+                  type="text"
+                  formControlName="color"
+                  [(ngModel)]="vehicles.color"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="color"
+                  placeholder="Enter Color"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn btn-success"  (click)="Updatevehicle(vehicles.id)">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

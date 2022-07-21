@@ -1,0 +1,253 @@
+<div class="row" *ngIf="isDean || isStaff || isParent">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Leave Application</h4>
+      </div>
+      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Apply Leave</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">User Id :</label>
+                  <input
+                    type="text"
+                    formControlName="user_num"
+                    [(ngModel)]="userid"
+                    class="form-control form-control-danger"
+                    readonly
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['user_num'].invalid && leaveForm.controls['user_num'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['user_num'].errors.required">
+               User Number is required.
+              </div>
+            </div>
+ 
+          
+               <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">User Role:</label>
+                  <input
+                    type="text"
+                    formControlName="user_role"
+                    [(ngModel)]="usergroup"
+                    class="form-control form-control-danger"
+                    readonly
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['user_role'].invalid && leaveForm.controls['user_role'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['user_role'].errors.required">
+               User role is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Username :</label>
+                  <input
+                    type="text"
+                    formControlName="username"
+                    [(ngModel)]="username"
+                    class="form-control form-control-danger"
+                    readonly
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['username'].invalid && leaveForm.controls['username'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['username'].errors.required">
+               Username is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Email Address :</label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Valid Email Address"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['email'].invalid && leaveForm.controls['email'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['email'].errors.required">
+               Email is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Leave Type:</label>
+                  <select formControlName="leave_type" class="form-control custom-select">
+                    <option value="Sick Leave">Sick Leave</option>
+                    <option value="Casual Leave">Casual Leave</option>
+                    <option value="Maternity leave">Maternity leave</option>
+                    <option value="Paternity leave">Paternity leave</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Leave Type
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['leave_type'].invalid && leaveForm.controls['leave_type'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['leave_type'].errors.required">
+               Leave Type is required.
+              </div>
+            </div>
+
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Leave From:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="leave_form"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Date"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['leave_form'].invalid && leaveForm.controls['leave_form'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['leave_form'].errors.required">
+               Leave From is required.
+              </div>
+            </div>
+ 
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Leave To:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="leave_to"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Date"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['leave_to'].invalid && leaveForm.controls['leave_to'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['leave_to'].errors.required">
+              Leave To is required.
+              </div>
+            </div>
+ 
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Leave Reason :</label>
+                  <textarea
+                    class="form-control"
+                    formControlName="leave_reason"
+                    rows="8"
+                    placeholder="Text Address..."
+                  ></textarea>
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['leave_reason'].invalid && leaveForm.controls['leave_reason'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['leave_reason'].errors.required">
+               Leave Reason is required.
+              </div>
+            </div>
+ 
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Leave Status:</label>
+                  <select formControlName="leave_status" class="form-control custom-select">
+                    <option value="Pending">Pending</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Leave Type
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="leaveForm.controls['leave_status'].invalid && leaveForm.controls['leave_status'].touched" class="alert alert-danger">
+                <div *ngIf="leaveForm.controls['leave_status'].errors.required">
+               Leave Status is required.
+              </div>
+            </div>
+
+
+              <!--/span-->
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let leavies of leaves; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{leavies.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="leavies.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{leavies.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="leavies.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+           
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1" style="margin-right: 10px;">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+              <button
+              type="button"
+              (click)="addQuantity()"
+              class="btn addm"
+            >
+              Add More
+            </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

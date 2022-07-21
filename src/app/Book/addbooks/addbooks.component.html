@@ -1,0 +1,394 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Register Books</h4>
+      </div>
+      <form [formGroup]="addbookForm" (ngSubmit)="submitForm()"  novalidate>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Add Books</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Accession Number :</label>
+                  <input
+                    type="text"
+                    name="accession_number"
+                    formControlName="accession_number"
+                    class="form-control"
+                    placeholder="enter Accession Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['accession_number'].invalid && addbookForm.controls['accession_number'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['accession_number'].errors.required">
+              Accession Number is required.
+              </div>
+            </div>
+
+
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Barcode ID :</label>
+                  <input
+                    type="text"
+                   name="barcode_id"
+                   formControlName="barcode_id"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Barcode Id"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['barcode_id'].invalid && addbookForm.controls['barcode_id'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['barcode_id'].errors.required">
+              Barcode ID is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Title :</label>
+                  <input
+                    type="text"
+                    name="title"
+                    formControlName="title"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Title"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['title'].invalid && addbookForm.controls['title'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['title'].errors.required">
+              Title is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Subject :</label>
+                  <input
+                    type="text"
+                   name="subject"
+                   formControlName="subject"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Subject"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['subject'].invalid && addbookForm.controls['subject'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['subject'].errors.required">
+              Subject is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Author :</label>
+                  <input
+                    type="text"
+                    name="author"
+                    formControlName="author"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Author"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['author'].invalid && addbookForm.controls['author'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['author'].errors.required">
+             Author is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Publisher :</label>
+                  <input
+                    type="text"
+                    name="publisher"
+                    formControlName="publisher"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Publisher"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['publisher'].invalid && addbookForm.controls['publisher'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['publisher'].errors.required">
+              Publisher is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Edition :</label>
+                  <input
+                    type="text"
+                    name="edition"
+                    formControlName="edition"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Edition"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['edition'].invalid && addbookForm.controls['edition'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['edition'].errors.required">
+              Book edition is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Year :</label>
+                  <input
+                    type="text"
+                    name="year"
+                    formControlName="year"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Year"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['year'].invalid && addbookForm.controls['year'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['year'].errors.required">
+              Year is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Pages :</label>
+                  <input
+                    type="text"
+                    name="page"
+                    formControlName="page"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Pages"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['page'].invalid && addbookForm.controls['page'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['page'].errors.required">
+              No.of Pages is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Topic :</label>
+                  <input
+                    type="text"
+                    name="topic"
+                    formControlName="topic"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Topic"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['topic'].invalid && addbookForm.controls['topic'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['topic'].errors.required">
+              Topic is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">ISBN :</label>
+                  <input
+                    type="text"
+                    name="isbn"
+                    formControlName="isbn"
+                    class="form-control form-control-danger"
+                    placeholder="Enter ISBN"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['isbn'].invalid && addbookForm.controls['isbn'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['isbn'].errors.required">
+              ISBN is required.
+              </div>
+            </div>
+
+
+          
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Class :</label>
+                  <input
+                    type="text"
+                    name="class"
+                    formControlName="class_name"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Class"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['class_name'].invalid && addbookForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['class_name'].errors.required">
+              Class is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Bill no. :</label>
+                  <input
+                    type="text"
+                    name="bill_num"
+                    formControlName="bill_num"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Bill No."
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['bill_num'].invalid && addbookForm.controls['bill_num'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['bill_num'].errors.required">
+              Bill no. is required.
+              </div>
+            </div>
+
+
+            
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Book no. :</label>
+                  <input
+                    type="text"
+                     name="book_num"
+                     formControlName="book_num"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Book no."
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['book_num'].invalid && addbookForm.controls['book_num'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['book_num'].errors.required">
+             Book Number is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Cost :</label>
+                  <input
+                    type="text"
+                   name="cost"
+                   formControlName="cost"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Cost"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['cost'].invalid && addbookForm.controls['cost'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['cost'].errors.required">
+             Price is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Remark :</label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    name="remark"
+                    formControlName="remark"
+                    placeholder="Text Address..."
+                  ></textarea>
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addbookForm.controls['remark'].invalid && addbookForm.controls['remark'].touched" class="alert alert-danger">
+                <div *ngIf="addbookForm.controls['remark'].errors.required">
+              Remark is required.
+              </div>
+            </div>
+
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let bookiess of bookies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" style="margin-right: 10px;" class="btn studentcard1">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button" style="margin-left:10px;margin-right:10px" class="btn btn-secondary">Cancel</button> -->
+              <button type="button" (click)="addQuantity()" class="btn addm">Add More</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

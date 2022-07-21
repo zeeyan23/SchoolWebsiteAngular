@@ -1,0 +1,348 @@
+<div class="row" *ngIf="isDean || isStaff || isParent">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Name:</label>
+                    <select class="form-control custom-select" #selectedname name="username">
+                      <option *ngFor="let item of leavestab" [value]="item.username">{{item.username}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedname.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row" *ngIf="isDean || isStaff || isParent">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Leave Details</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">UserID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Leave from</th>
+                <th scope="col">Leave To</th>
+                <th scope="col">Status</th>
+                <th scope="col" *ngIf="isDean">Action</th>
+                <th scope="col" *ngIf="isDean">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leave of leaves  | paginate
+              : {
+                  id: 'listing_pagination',
+                  itemsPerPage: 15,
+                  currentPage: page,
+                  totalItems: totalRec
+                }
+            | filter: term; let i = index">
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ leave.user_num }}</td>
+                <td>{{ leave.username }}</td>
+                <td>{{ leave.leave_type }}</td>
+                <td>{{ leave.leave_form | date:'yyyy-MM-dd' }}</td>
+                <td>{{ leave.leave_to | date:'yyyy-MM-dd'}}</td>
+                <td
+                  [ngClass]="{
+                    red: leave.leave_status == 'Pending',
+                    green: leave.leave_status == 'Approved'
+                  }"
+                >
+                  {{ leave.leave_status}}
+                </td>
+                <td *ngIf="isDean">
+                  <button
+                    type="button"
+                    class="btn dlt"
+                    (click)="openLeave(leaveapplicationmodal, leave)"
+                  >
+                    <i class="fa fa-edit"></i> 
+                  </button>
+                  </td>
+                  <td *ngIf="isDean">
+                  <button 
+                    class="btn dlt"
+                   mwlConfirmationPopover
+                   [popoverTitle]="popoverTitle"
+                   [popoverMessage]="popoverMessage"
+                   placement="left"
+                   (confirm)="deleteRow(leave.id)"
+                   (cancel)="cancelClicked = true">
+                                     <i class="far fa-trash-alt"></i>
+                                   </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-actions">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="leavies"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="leavies">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Leave Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SLno.</th>
+                <th scope="col">UserID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Leave from</th>
+                <th scope="col">Leave To</th>
+                <th scope="col">Status</th>
+     
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let leave of leaves; let i = index">
+        <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ leave.user_num }}</td>
+                <td>{{ leave.username }}</td>
+                <td>{{ leave.leave_type }}</td>
+                <td>{{ leave.leave_form | date:'yyyy-MM-dd' }}</td>
+                <td>{{ leave.leave_to | date:'yyyy-MM-dd'}}</td>
+                <td
+                  [ngClass]="{
+                    red: leave.leave_status == 'Pending',
+                    green: leave.leave_status == 'Approved'
+                  }"
+                >
+                  {{ leave.leave_status}}
+                </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #leaveapplicationmodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Update Leave</h4>
+            </div>
+            <hr />
+            <div class="form-body">
+              <div class="card-body">
+                <div class="row p-t-20">
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">User Id :</label>
+                      <input
+                        type="text"
+                        formControlName="user_num"
+                        [(ngModel)]="leave.user_num"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        placeholder="Enter UserId"
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">User Role :</label>
+                      <input
+                        type="text"
+                        formControlName="user_role"
+                        [(ngModel)]="leave.user_role"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        placeholder="Enter User Role"
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Username :</label>
+                      <input
+                        type="text"
+                        formControlName="username"
+                        [(ngModel)]="leave.username"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        placeholder="Enter User Name"
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-success">
+                      <label class="control-label">Leave Type:</label>
+                      <select formControlName="leave_type"   [(ngModel)]="leave.leave_type"
+                      [ngModelOptions]="{ standalone: true }" class="form-control custom-select">
+                        <option value="Sick Leave">Sick Leave</option>
+                        <option value="Casual Leave">Casual Leave</option>
+                        <option value="Maternity leave">Maternity leave</option>
+                        <option value="Paternity leave">Paternity leave</option>
+                      </select>
+                      <small class="form-control-feedback">
+                        Select Leave Type
+                      </small>
+                    </div>
+                  </div>
+                  <!--/span-->
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Leave From:</label>
+                      <input
+                        type="datetime-local"
+                        formControlName="leave_form"
+                        [(ngModel)]="leave.leave_form"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        placeholder="Enter Date"
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Leave To:</label>
+                      <input
+                        type="datetime-local"
+                        formControlName="leave_to"
+                        [(ngModel)]="leave.leave_to"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        placeholder="Enter Date"
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Leave Reason :</label>
+                      <textarea
+                        class="form-control"
+                        formControlName="leave_reason"
+                        [(ngModel)]="leave.leave_reason"
+                        [ngModelOptions]="{ standalone: true }"
+                        rows="8"
+                        placeholder="Text Address..."
+                      ></textarea>
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-success">
+                      <label class="control-label">Leave Status:</label>
+                      <select formControlName="leave_status"   [(ngModel)]="leave.leave_status"
+                      class="form-control custom-select">
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                      </select>
+                      <small class="form-control-feedback">
+                        Select Leave Type
+                      </small>
+                    </div>
+                  </div>
+    
+                  <!--/span-->
+                </div>
+                
+               
+              </div>
+              <hr />
+    
+              <div class="form-actions">
+                <div class="card-body">
+                  <button type="submit" class="btn studentcard1"  (click)="Updateleave(leave.id)">
+                    <i class="fa fa-check"></i> Update
+                  </button>
+                  <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-secondary">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

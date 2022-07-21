@@ -1,0 +1,280 @@
+<div class="row" *ngIf="isDean || isStaff || isParent">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class:</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of examtab" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedclasss.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+    <div class="col-md-2">
+      <input
+        type="text"
+        id="myInput"
+        class="form-control" style="margin-left:350px;"
+        placeholder="Search here..."
+        [(ngModel)]="term"
+        title="Type in a name"
+      />
+    </div>
+  </div>
+  
+  <div class="row" *ngIf="isDean || isStaff || isParent">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">View Exams</h4>
+  
+          <div class="table-responsive studentcard2">
+            <table class="table table-hover studentcard2">
+              <thead class="studentcard text-white">
+                <tr>
+                  <th scope="col">SLno.</th>
+                  <th scope="col">Exam Name</th>
+                  <th scope="col">start Date</th>
+                  <th scope="col">End date</th>
+                  <th scope="col">total marks</th>
+                  <th scope="col">Hour</th>
+                  <th scope="col">Class Name</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let exam of exams
+                      | paginate
+                        : {
+                            id: 'listing_pagination',
+                            itemsPerPage: 15,
+                            currentPage: page,
+                            totalItems: totalRec
+                          }
+                      | filter: term;
+                    let i = index
+                  "
+                >
+                  <th scope="row">{{(page-1)*15+i+1}}</th>
+                  <td>{{ exam.exam_name }}</td>
+                  <td>{{ exam.start_date | date:'yyyy-MM-dd'  }}</td>
+                  <td>{{ exam.end_date | date:'yyyy-MM-dd'  }}</td>
+                  <td>{{ exam.Total_marks }}</td>
+                  <td>{{ exam.hour }}</td>
+                  <td>{{ exam.class_name }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-info btn-rounded"
+                      (click)="openModal(exam.id)"
+                    >
+                      <i class="fa fa-pencil"></i> View Details
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <pagination-controls
+                id="listing_pagination"
+                maxSize="5"
+                directionLinks="true"
+                (pageChange)="page = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-actions" *ngIf="isDean || isStaff || isParent">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+              <button
+                type="submit"
+                class="btn pnt"
+                printSectionId="fundd"
+                ngxPrint
+              >
+                <i class="fa fa-pencil"></i>Print
+              </button>
+              <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn studentcard1" (click)="download()">
+                Download To Excel
+              </button>
+              <!-- <button type="submit" class="btn btn-secondary">
+                <i class="fa fa-pencil"></i> back
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="fundd">
+    <table border="2" cellspacing="0">
+      <tr>
+        <th colspan="10" style="text-align: center">Exam details</th>
+      </tr>
+      <tr>
+                  <th scope="col">SLno.</th>
+                  <th scope="col">Exam Name</th>
+                  <th scope="col">start Date</th>
+                  <th scope="col">End date</th>
+                  <th scope="col">total marks</th>
+                  <th scope="col">Hour</th>
+                  <th scope="col">Class Name</th>
+      </tr>
+  
+      <tbody>
+        <tr *ngFor="let exam of exams; let i = index">
+          <th scope="row">{{(page-1)*15+i+1}}</th>
+          <td>{{ exam.exam_name }}</td>
+          <td>{{ exam.start_date | date:'yyyy-MM-dd' }}</td>
+          <td>{{ exam.end_date | date:'yyyy-MM-dd' }}</td>
+          <td>{{ exam.Total_marks }}</td>
+          <td>{{ exam.hour }}</td>
+          <td>{{ exam.class_name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #examinfomodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Exam update</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+            <div class="card-body">
+                <!-- <h4 class="card-title">Funds</h4> -->
+            </div>
+            <hr>
+            <div class="form-body">
+                <div class="card-body">
+                    <div class="row p-t-20">
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Exam Name</label>
+                                <input type="text" formControlName="exam_name"  [(ngModel)]="exam.exam_name"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter First Name">
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Start date</label>
+                                <input type="datetime-local" formControlName="start_date" [(ngModel)]="exam.start_date"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter Second Name">
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">End date</label>
+                                <input type="datetime-local" formControlName="end_date" [(ngModel)]="exam.end_date"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter Phone Number">
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Total marks</label>
+                                <input type="text" formControlName="Total_marks" [(ngModel)]="exam.Total_marks"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter Amount">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Hour</label>
+                                <input type="text" formControlName="hour" [(ngModel)]="exam.hour"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter Message">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Class</label>
+                                <input type="text" formControlName="class_name" [(ngModel)]="exam.class_name"
+                                [ngModelOptions]="{ standalone: true }" class="form-control form-control-danger" placeholder="Enter Message">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                        
+                        
+                        <!--/span-->
+                    </div>
+                    <!-- <table class="table" formArrayName="examies">
+                        <tr>
+                          <th colspan="2"></th>
+                          <th width="50px"></th>
+                        </tr>
+                        <tr *ngFor="let quantity of examies().controls; let i=index" [formGroupName]="i">
+                          <td>
+                            <label class="control-label"> Field Name :</label>
+                              <input type="text" formControlName="name" class="form-control">
+                          </td>
+                          <td>
+                            <label class="control-label">Value :</label>
+                              <input type="text" formControlName="value" class="form-control">
+                          </td>
+                          <td>
+                              <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                          </td>
+                        </tr>
+                      </table> -->
+                 
+                </div>
+                <hr>
+              
+                <div class="form-actions">
+                    <div class="card-body">
+                        <button type="button" class="btn studentcard1" (click)="Updateexam(exam.id)">
+                            <i class="fa fa-check"></i> Save</button>
+                        <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn btn-secondary">Cancel</button>
+                        <!-- <button type="button" (click)="addQuantity()" class="btn addm">Add More</button> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+    </div>
+  </ng-template>
+  

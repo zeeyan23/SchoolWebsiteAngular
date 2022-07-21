@@ -1,0 +1,488 @@
+<div class="row" *ngIf="isDean || isStaff">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Acession No.</label>
+                    <select class="form-control custom-select" #selectedaccno name="accession_number">
+                      <option *ngFor="let item of bookss" [value]="item.accession_number">{{item.accession_number}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Author</label>
+                    <select class="form-control custom-select" #selectedauthor name="author">
+                      <option *ngFor="let item of bookss" [value]="item.author">{{item.author}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelected(selectedaccno.value , selectedauthor.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+
+<div class="row" *ngIf="isDean || isStaff">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Book List</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2 ">
+            <thead class="studentcard  text-white">
+              <tr>
+                <th scope="col">SLNo.</th>
+                <th scope="col">Acession No.</th>
+                <th scope="col">Bracode ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Edition</th>
+                <th scope="col">Year</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let book of books  | paginate
+              : {
+                  id: 'listing_pagination',
+                  itemsPerPage: 15,
+                  currentPage: page,
+                  totalItems: totalRec
+                }
+            | filter: term; let i = index ">
+                <th scope="row">{{(page-1)*10+i+1}}</th>
+                <td>{{book.accession_number}}</td>
+                <td>{{book.barcode_id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.subject}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.edition}}</td>
+                <td>{{book.year}}</td>
+
+                <td>
+                  <button type="button" class="btn dlt  btn-rounded"
+                  (click)="openBook(booksinfomodal, book)">
+                  <i class="far fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-actions" *ngIf="isDean || isStaff">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="boooks"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="boooks">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Fee Details</th>
+    </tr>
+      <tr>
+        <th scope="col">Acession No.</th>
+        <th scope="col">Bracode ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Publisher</th>
+        <th scope="col">Edition</th>
+        <th scope="col">Year</th>
+      
+      </tr>
+ 
+    <tbody>
+      <tr *ngFor="let book of books  ; let i = index ">
+        <!-- <th scope="row">{{ i + 1 }}</th> -->
+        <td>{{book.accession_number}}</td>
+        <td>{{book.barcode_id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.subject}}</td>
+        <td>{{book.publisher}}</td>
+        <td>{{book.edition}}</td>
+        <td>{{book.year}}</td>
+  
+      
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+
+
+<ng-template #booksinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addbookForm" (ngSubmit)="onSubmit()"  novalidate>
+      <div class="card-body">
+        <h4 class="card-title">Update Book Details</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Accession Number :</label>
+                <input
+                  type="text"
+                  name="accession_number"
+                  formControlName="accession_number"
+                  [(ngModel)]="book.accession_number"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  placeholder="enter Accession Number"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Barcode ID :</label>
+                <input
+                  type="text"
+                 name="barcode_id"
+                 formControlName="barcode_id"
+                 [(ngModel)]="book.barcode_id"
+                 [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Barcode Id"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Title :</label>
+                <input
+                  type="text"
+                  name="title"
+                  formControlName="title"
+                  [(ngModel)]="book.title"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Title"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Subject :</label>
+                <input
+                  type="text"
+                 name="subject"
+                 formControlName="subject"
+                 [(ngModel)]="book.subject"
+                 [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Subject"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Author :</label>
+                <input
+                  type="text"
+                  name="author"
+                  formControlName="author"
+                  [(ngModel)]="book.author"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Author"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Publisher :</label>
+                <input
+                  type="text"
+                  name="publisher"
+                  formControlName="publisher"
+                  [(ngModel)]="book.publisher"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Publisher"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Edition :</label>
+                <input
+                  type="text"
+                  name="edition"
+                  formControlName="edition"
+                  [(ngModel)]="book.edition"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Edition"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Year :</label>
+                <input
+                  type="text"
+                  name="year"
+                  formControlName="year"
+                  [(ngModel)]="book.year"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Year"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Pages :</label>
+                <input
+                  type="text"
+                  name="page"
+                  formControlName="page"
+                  [(ngModel)]="book.page"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Pages"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Topic :</label>
+                <input
+                  type="text"
+                  name="topic"
+                  formControlName="topic"
+                  [(ngModel)]="book.topic"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Topic"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">ISBN :</label>
+                <input
+                  type="text"
+                  name="isbn"
+                  formControlName="isbn"
+                  [(ngModel)]="book.isbn"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter ISBN"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Source :</label>
+                <input
+                  type="text"
+                  name="source"
+                  formControlName="source"
+                  [(ngModel)]="book.source"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Source"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div> -->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Class :</label>
+                <input
+                  type="text"
+                  name="class_name"
+                  formControlName="class_name"
+                  [(ngModel)]="book.class_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Class"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Bill no. :</label>
+                <input
+                  type="text"
+                  name="bill_num"
+                  formControlName="bill_num"
+                  [(ngModel)]="book.bill_num"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Bill No."
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Date :</label>
+                <input
+                  type="datetime-local"
+                  name="date"
+                  formControlName="date"
+                  [(ngModel)]="book.date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Date"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div> -->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Book no. :</label>
+                <input
+                  type="text"
+                   name="book_num"
+                   formControlName="book_num"
+                   [(ngModel)]="book.book_num"
+                   [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Book no."
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Cost :</label>
+                <input
+                  type="text"
+                 name="cost"
+                 formControlName="cost"
+                 [(ngModel)]="book.cost"
+                 [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Cost"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Remark :</label>
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  name="remark"
+                  formControlName="remark"
+                  [(ngModel)]="book.remark"
+                  [ngModelOptions]="{ standalone: true }"
+                  placeholder="Text Address..."
+                ></textarea>
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn btn-success"  (click)="Updatebook(book.id)">
+              <i class="fa fa-check"></i> Update
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

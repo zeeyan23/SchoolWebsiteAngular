@@ -1,0 +1,37 @@
+<div class="box" *ngIf="!quizOver">
+  <h1 style="text-align: center">Quiz</h1>
+
+  <div class="card bg-dark text-white">
+    <div *ngIf="!quizOver">
+      <app-question
+        [questionIndex]="currentIndex"
+        (answers)="receiveAnswers($event)"
+        (totalQuestions)="getTotalQuestions($event)"
+      >
+      </app-question>
+      <br />
+      <button class="btn btn-primary" (click)="goPrevious()">Previous</button>
+      |
+      <button class="btn btn-success" (click)="goNext()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!--This div renders if quizOver is true-->
+<div *ngIf="quizOver" class="border">
+  <h2>Completed!</h2>
+  <div class="row">
+    <div class="col-md-4">
+      
+    </div>
+    <div class="col-md-6" id="word">
+      Your score is {{ score }} / {{ totalQuestions }}
+      <br>
+      <img src="assets/images/policy-icon-1.png" class="card-img" alt="..." />
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <!--  -->
+  <br />
+  <button class="btn btn-info" (click)="restartQuiz()">Retake Quiz</button>
+</div>

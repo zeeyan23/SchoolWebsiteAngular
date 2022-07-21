@@ -1,0 +1,255 @@
+<div class="row">
+  <div class="col-md-3">
+    <input
+      type="text"
+      id="myInput"
+      style="margin-left: 700px"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Homework</h4>
+
+        <div class="table-responsive">
+          <table class="table table-hover table-warning">
+            <thead class="bg-warning text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Class</th>
+                <th scope="col">Section</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Classwork</th>
+                <th scope="col">Date</th>
+                <th scope="col">Remark</th>
+                <th scope="col">Updated By</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let work of works
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ work.class_name }}</td>
+                <td>{{ work.section }}</td>
+                <td>{{ work.subject }}</td>
+                <td>{{ work.classwork }}</td>
+                <td>{{ work.classwork_date }}</td>
+                <td>{{ work.remark }}</td>
+                <td>{{ work.updatedby }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-rounded"
+                    (click)="openclasswork(classworkinfomodal, work)"
+                  >
+                    <i class="fa fa-pencil"></i> View Details
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-rounded">
+                    <i class="fa fa-pencil"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-dark">
+              <i class="fa fa-pencil"></i> back
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+<ng-template #classworkinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="classworkForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Classwork</h4>
+      </div>
+      <div></div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-6">
+              <div class="form-group has-success">
+                <label class="control-label">Class:</label>
+                <select
+                  formControlName="class_name"
+                  class="form-control custom-select"
+                  [(ngModel)]="work.class_name"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option value="First">First</option>
+                  <option value="second">Second</option>
+                  <option value="Third">Third</option>
+                  <option value="Fourth">Fourth</option>
+                </select>
+                <small class="form-control-feedback"> Select your class </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group has-success">
+                <label class="control-label">Section:</label>
+                <select
+                  formControlName="section"
+                  [(ngModel)]="work.section"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control custom-select"
+                  name="section"
+                >
+                  <option value="">A</option>
+                  <option value="">B</option>
+                  <option value="">C</option>
+                  <option value="">D</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select your Section
+                </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-success">
+                <label class="control-label">Subject Name :</label>
+                <select
+                  formControlName="subject"
+                  [(ngModel)]="work.subject"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control custom-select"
+                  name="subject"
+                >
+                  <option value="">Maths</option>
+                  <option value="">Science</option>
+                  <option value="">Social</option>
+                  <option value="">Computer</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select your Subject
+                </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label"> Date:</label>
+                <input
+                  type="date"
+                  formControlName="classwork_date"
+                  [(ngModel)]="work.classwork_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="classwork_date"
+                  placeholder="Enter Date"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Remark :</label>
+                <input
+                  type="text"
+                  formControlName="remark"
+                  [(ngModel)]="work.remark"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="remark"
+                  placeholder="Enter Remark"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Write classwork here *</label>
+                <textarea
+                  formControlName="classwork"
+                  class="form-control"
+                  [(ngModel)]="work.classwork"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="classwork"
+                  rows="10"
+                  placeholder="..."
+                ></textarea>
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-check"></i> Submit
+            </button>
+            <button type="button" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

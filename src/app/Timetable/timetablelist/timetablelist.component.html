@@ -1,0 +1,191 @@
+<div class="col-sm-12 col-md-5" *ngIf="isDean || isStaff || isParent">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class:</label>
+                    <select class="form-control custom-select" #selectedclasss name="class_name">
+                      <option *ngFor="let item of timetable" [value]="item.class_name">{{item.class_name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedclasss.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="isDean || isStaff || isParent">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Timetable List</h4>
+               
+                <div class="table-responsive">
+                    <table class="table table-hover studentcard2">
+                        <thead class="studentcard text-white">
+                            <tr>
+                                <th scope="col">SLno.</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Section</th>
+                                <!-- <th scope="col">Updated By</th> -->
+                                <th scope="col">Date</th>
+                                <th  scope="col">Action</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let timetables of times | paginate: { id:'listing_pagination',itemsPerPage: 15,currentPage: page,totalItems: totalRec };let i =index">
+                                <th scope="row">{{(page-1)*15+i+1}}</th>
+                                <td>{{timetables.timetable.class_name}}</td>
+                                <td>{{timetables.timetable.section}}</td>
+                                <td>{{timetables.timetable.timetable_date}}</td>
+                                <!-- <td>{{timet.class}}</td> -->
+                                <td><button type="button" class="btn studentcard1 btn-rounded" (click)="openDialog(timetables)" ><i class="fa fa-pencil"></i>View</button></td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</div>
+
+
+
+
+
+  <ng-template #timetableinfomodal let-modal class="dddd">
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Timetable</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- <div class="tab" id="time">
+        <table border="2" cellspacing="0">
+          <tr>
+            <th colspan="8" style="text-align: center">Time Table</th>
+          </tr>
+          <tr>  -->
+            <!-- <th>Class</th>  -->
+             <!-- <th>Time From</th>
+            <th>Time To</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>wednesday</th>
+            <th>Thursaday</th>
+            <th>Friday</th>
+            <th>Saturday</th> -->
+          <!-- </tr> -->
+          <!-- <tr  *ngFor="let tabledata of timetables"> -->
+            <!-- <td>{{ timetables.class}}</td> -->
+            <!-- <td>{{ tabledata.to_time }}</td>
+            <td>{{ tabledata.monday }}</td>
+            <td>{{ tabledata.tuesday }}</td>
+            <td>{{ tabledata.wednesday }}</td>
+            <td>{{ tabledata.thursday }}</td>
+            <td>{{ tabledata.friday }}</td>
+            <td>{{ tabledata.saturday }}</td> -->
+          <!-- </tr> -->
+        <!-- </table>
+      
+      </div> -->
+      <div>Class:{{timetables.class_name}}</div>
+      <div>Section:{{timetables.section}}</div>
+      <div>Date:{{timetables.timetable_date}}</div>
+     
+      <!-- <div>From Time:{{tabledataa?.from_time}}</div>
+      <div>To Time:{{tabledataa?.to_time}}</div>
+      <div>Monday:{{tabledataa?.monday}}</div>
+      <div>Tuesday:{{tabledataa?.tuesday}}</div> -->
+      <table border="2" cellspacing="0">
+        <tr>
+          <th colspan="8" style="text-align: center">Time Table</th>
+        </tr>
+        <tr> 
+          <!-- <th>Class</th>  -->
+            <th>Time From</th>
+          <th>Time To</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>wednesday</th>
+          <th>Thursaday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+        </tr>
+        <tbody id="sortable" *ngFor="let timetables of Temptimetable">
+          <!-- <tr class="ui-state-default ui-state-disabled">
+              <td colspan="3" class="ui-state-default">{{table.class_name}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr> -->
+          <tr *ngFor="let timetables of timetables.periods">
+              <td class="ui-state-default">{{timetables.from_time}}</td>
+              <td class="ui-state-default">{{timetables.to_time}}</td>
+              <td class="ui-state-default">{{timetables.monday}}</td>
+              <td class="ui-state-default">{{timetables.tuesday}}</td>
+              <td class="ui-state-default">{{timetables.wednesday}}</td>
+              <td class="ui-state-default">{{timetables.thursday}}</td>
+              <td class="ui-state-default">{{timetables.friday}}</td>
+              <td class="ui-state-default">{{timetables.saturday}}</td>
+              <td class="ui-state-default">{{timetables.comments}}</td>
+              
+          </tr>
+          </tbody>
+        <!-- <tr  *ngFor="let dataa of Temptimetable"> 
+          <tr *ngFor="let tabledataa of Temptimetable">
+          
+          <td>{{ tabledataa?.from_time }}</td>
+          <td>{{ tabledataa?.to_time }}</td>
+          <td>{{ tabledataa?.monday }}</td>
+          <td>{{ tabledataa?.tuesday }}</td>
+          <td>{{ tabledataa?.wednesday }}</td>
+          <td>{{ tabledataa?.thursday }}</td>
+          <td>{{ tabledataa?.friday }}</td>
+          <td>{{ tabledataa?.saturday }}</td>
+        </tr>
+      </tr> -->
+      </table>
+    
+  
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-warning btn-rounded"
+        onclick="window.print()"
+      >
+        Export To Pdf
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+    </div>
+  </ng-template>
+  
+

@@ -1,0 +1,666 @@
+<div class="row" *ngIf="isDean || isStaff">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Add marksheet</h4>
+      </div>
+      <form [formGroup]="addmarksheetForm" (ngSubmit)="onSubmit()"  novalidate>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Add Books</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group">
+                  
+                  <label class="control-label">Student Name :</label>
+                  <input
+                    type="text"
+                    name="student_name"
+                    formControlName="student_name"
+                    class="form-control"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addmarksheetForm.controls['student_name'].invalid && addmarksheetForm.controls['student_name'].touched" class="alert alert-danger">
+                <div *ngIf="addmarksheetForm.controls['student_name'].errors.required">
+              Student Name is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  
+                  <label class="control-label">Class :</label>
+                  <input
+                    type="text"
+                    name="class_name"
+                    formControlName="class_name"
+                    class="form-control"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="addmarksheetForm.controls['class_name'].invalid && addmarksheetForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="addmarksheetForm.controls['class_name'].errors.required">
+              Class is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  
+                  <label class="control-label">Roll no :</label>
+                  <input
+                    type="text"
+                    name="Roll_no"
+                    formControlName="Roll_no"
+                    class="form-control"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+
+              <div *ngIf="addmarksheetForm.controls['Roll_no'].invalid && addmarksheetForm.controls['Roll_no'].touched" class="alert alert-danger">
+                <div *ngIf="addmarksheetForm.controls['Roll_no'].errors.required">
+              Roll Number is required.
+              </div>
+            </div> 
+
+
+              <div class="col-md-2">
+                <label class="control-label">Maths :</label>
+                </div>
+                <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <label class="control-label">Maximum Marks :</label>
+                  <input
+                    type="text"
+                    name="maths_max_marks"
+                    formControlName="maths_max_marks"
+                    class="form-control"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-2">
+                
+                <div class="form-group has-danger">
+                  <label class="control-label">Obtained Marks:</label>
+                  <input
+                    type="text"
+                   name="maths_obt_mark"
+                   formControlName="maths_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <label class="control-label">Minimun Marks :</label>
+                  <input
+                    type="text"
+                    name="maths_min_mark"
+                    formControlName="maths_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <label class="control-label">Total Marks :</label>
+                  <input
+                    type="text"
+                   name="maths_tot_mark"
+                   formControlName="maths_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <label class="control-label">percentage :</label>
+                  <input
+                    type="text"
+                    name="maths_percentg"
+                    formControlName="maths_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">English :</label>
+                </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Publisher :</label> -->
+                  <input
+                    type="text"
+                    name="english_max_marks"
+                    formControlName="english_max_marks"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Edition :</label> -->
+                  <input
+                    type="text"
+                    name="english_obt_mark"
+                    formControlName="english_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Year :</label> -->
+                  <input
+                    type="text"
+                    name="english_min_mark"
+                    formControlName="english_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Pages :</label> -->
+                  <input
+                    type="text"
+                    name="english_tot_mark"
+                    formControlName="english_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Topic :</label> -->
+                  <input
+                    type="text"
+                    name="english_percentg"
+                    formControlName="english_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">Science:</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">ISBN :</label> -->
+                  <input
+                    type="text"
+                    name="science_max_mark"
+                    formControlName="science_max_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Source :</label> -->
+                  <input
+                    type="text"
+                    name="science_obt_mark"
+                    formControlName="science_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Class :</label> -->
+                  <input
+                    type="text"
+                    name="science_min_mark"
+                    formControlName="science_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Bill no. :</label> -->
+                  <input
+                    type="text"
+                    name="science_tot_mark"
+                    formControlName="science_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+
+            
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="science_percentg"
+                    formControlName="science_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">Hindi :</label>
+              </div>
+            
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="hindi_max_mark"
+                    formControlName="hindi_max_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="hindi_obt_mark"
+                    formControlName="hindi_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="hindi_min_mark"
+                    formControlName="hindi_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="hindi_tot_mark"
+                    formControlName="hindi_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="hindi_percentg"
+                    formControlName="hindi_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">Social Sceince :</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="social_max_mark"
+                    formControlName="social_max_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+             
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="social_obt_mark"
+                    formControlName="social_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="social_min_mark"
+                    formControlName="social_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="social_tot_mark"
+                    formControlName="social_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="social_percentg"
+                    formControlName="social_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <label class="control-label">Kannada :</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="kannada_max_mark"
+                    formControlName="kannada_max_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="kannada_obt_mark"
+                    formControlName="kannada_obt_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Date :</label> -->
+                  <input
+                    type="text"
+                    name="kannada_min_mark"
+                    formControlName="kannada_min_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Book no. :</label> -->
+                  <input
+                    type="text"
+                     name="kannada_tot_mark"
+                     formControlName="kannada_tot_mark"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Cost :</label> -->
+                  <input
+                    type="text"
+                   name="kannada_percentg"
+                   formControlName="kannada_percentg"
+                    class="form-control form-control-danger"
+                    placeholder=""
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="control-label">Computer:</label>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Remark :</label> -->
+                  <input
+                    class="form-control"
+                
+                    name="computer_max_mark"
+                    formControlName="computer_max_mark"
+                    placeholder=""
+                  >
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Remark :</label> -->
+                  <input
+                    class="form-control"
+                   
+                    name="computer_obt_mark"
+                    formControlName="computer_obt_mark"
+                    placeholder=""
+                  >
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Remark :</label> -->
+                  <input
+                    class="form-control"
+                   
+                    name="computer_min_mark"
+                    formControlName="computer_min_mark"
+                    placeholder=""
+                  >
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Remark :</label> -->
+                  <input
+                    class="form-control"
+                   
+                    name="computer_tot_mark"
+                    formControlName="computer_tot_mark"
+                    placeholder=""
+                  >
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group has-danger">
+                  <!-- <label class="control-label">Remark :</label> -->
+                  <input
+                    class="form-control"
+                   
+                    name="computer_percentg"
+                    formControlName="computer_percentg"
+                    placeholder=""
+                  >
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let bookiess of bookies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value 1 :</label>
+                  <input
+                    type="text"
+                    name="value1_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value1"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value1"
+                  />
+                </td>
+
+                <td>
+                  <label class="control-label">Value 2 :</label>
+                  <input
+                    type="text"
+                    name="value2_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value2"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value2"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value 3 :</label>
+                  <input
+                    type="text"
+                    name="value3_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value3"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value3"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value 4 :</label>
+                  <input
+                    type="text"
+                    name="value4_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value4"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value4"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value 5 :</label>
+                  <input
+                    type="text"
+                    name="value5_{{bookiess.id}}"
+                    class="form-control"
+                    placeholder="value5"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="bookiess.value5"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+              <button type="button" style="margin-left:10px;" (click)="addQuantity()" class="btn addm">Add More</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Serach</h4>
+            <form class="m-t-20">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="helpInput11" placeholder="Class">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="helpInput11" placeholder="section">
+                    </div>
+                    <div class="col-md-4 block-tag">
+                        <button type="button" class="btn btn-success btn-rounded"><i class="fa fa-pencil"></i> search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">View Due Students</h4>
+               
+                <div class="table-responsive">
+                    <table class="table table-hover table-info">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th scope="col">SLno.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">RegNo.</th>
+                                <th scope="col">Father Name</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Section</th>
+                                <th scope="col">Total Paid</th>
+                                <th scope="col">Total Due</th>
+                                <th scope="col">Last Paid Date</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let due of dues; let i =index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{due.name}}</td>
+                                <td>{{due.register_number}}</td>
+                                <td>{{due.fathers_name}}</td>
+                                <td>{{due.class}}</td>
+                                <td>{{due.section}}</td>
+                                <td>{{due.total_paid}}</td>
+                                <td>{{due.total_due}}</td>
+                                <td>{{due.last_paid_date}}</td>
+                              
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-actions">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn btn-info">
+                            <i class="fa fa-pencil"></i>Send SMS</button>
+                        <button type="submit" class="btn btn-info">
+                            <i class="fa fa-pencil"></i>Print</button>
+                        <button type="button" class="btn btn-success">Download To Excel</button>
+                        <button type="submit" class="btn btn-dark">
+                            <i class="fa fa-pencil"></i> back</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"> </div>
+        </div>
+    </div>
+</div>

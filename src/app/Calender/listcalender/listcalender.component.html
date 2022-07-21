@@ -1,0 +1,300 @@
+
+  <div class="row" *ngIf="isDean">
+  <div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <!-- <h4 class="card-title">Search</h4> -->
+            <form class="m-t-20">
+                <div class="row">
+                    <div class="col-md-4">
+                      <label>Class Name</label>
+                      <select class="form-control custom-select" #selecteddate name="startdate">
+                        <option *ngFor="let item of calenders" [value]="item.startdate">{{item.startdate}}</option>
+                      </select>
+                    </div>
+                   
+                    <div class="col-md-4 block-tag">
+                      <br>
+                        <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelected(selecteddate.value)" ><i class="fa fa-pencil"></i> search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  
+    <div class="col-md-2">
+      <input
+        type="text"
+        id="myInput"
+        class="form-control" style="margin-left:350px;"
+        placeholder="Search here..."
+        [(ngModel)]="term"
+        title="Type in a name"
+      />
+    </div>
+  </div>
+  <div class="row" *ngIf="isDean">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Calender Events List</h4>
+  
+          <div class="table-responsive studentcard2">
+            <table class="table table-hover studentcard2 ">
+              <thead class="studentcard text-white">
+                <tr>
+                  <th scope="col">SL.NO</th>
+                  <th scope="col">From Date</th>
+                  <th scope="col">To Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr
+                  *ngFor="
+                    let class of classes
+                      | paginate
+                        : {
+                            id: 'listing_pagination',
+                            itemsPerPage: 15,
+                            currentPage: page,
+                            totalItems: totalRec
+                          }
+                      | filter: term;
+                    let i = index
+                  "
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ class.class_name }}</td>
+                  <td>{{ class.section }}</td>
+                  <td>{{ class.teacher }}</td>
+                  <td>{{ class.english }}<br>{{ class.hindi }}<br>{{ class.kannada }}<br>{{ class.Maths }}<br>
+                    {{ class.science }}<br>{{ class.social_science }}<br>{{ class.computer }}<br>{{ class.pt }}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-rounded">
+                      <i class="fa fa-pencil"></i> Delete
+                    </button>
+                  </td>
+                </tr> -->
+                <tr *ngFor="
+                let cal of calender
+                  | paginate
+                    : {
+                        id: 'listing_pagination',
+                        itemsPerPage: 15,
+                        currentPage: page,
+                        totalItems: totalRec
+                      }
+                  | filter: term;
+                let i = index
+              " >
+              <th scope="row">{{(page-1)*10+i+1}}</th>
+                  <!-- <td>{{ class.id }}</td> -->
+                  <td>{{ cal.startdate | date:'yyyy-MM-dd' }}</td>
+                  <td>{{ cal.enddate | date:'yyyy-MM-dd' }}</td>
+                  <td>{{ cal.titlee }}</td>
+                  <td>
+                        <button
+                        type="button"
+                        class="btn dlt btn-rounded text-white"
+                        (click)="openclass(classinfomodal, cal)"
+                      >
+                        <i class="far fa-edit"></i>
+                      </button>
+                        <button 
+         class="btn btn-outline-secondary"
+        mwlConfirmationPopover
+        [popoverTitle]="popoverTitle"
+        [popoverMessage]="popoverMessage"
+        placement="left"
+        (confirm)="deleteRow(cal.id)"
+        (cancel)="cancelClicked = true">
+                          <i class="far fa-trash-alt"></i>
+                        </button>
+                      </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <pagination-controls
+                id="listing_pagination"
+                maxSize="5"
+                directionLinks="true"
+                (pageChange)="page = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions" *ngIf="isDean">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+              <button
+                type="submit"
+                class="btn pnt"
+                printSectionId="clash"
+                ngxPrint
+              >
+                <i class="fa fa-pencil"></i>Print
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="clash">
+    <table border="2" cellspacing="0">
+      <tr>
+        <th colspan="10" style="text-align: center">Class Details</th>
+      </tr>
+      <tr>
+        <th scope="col">SL.NO</th>
+        <th scope="col">Class Name</th>
+        <th scope="col">Section</th>
+        <th scope="col">Teacher</th>
+        <th scope="col">Subjects</th>
+      </tr>
+  
+      <tbody>
+        <tr *ngFor="let cal of calender; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ cal.startdate }}</td>
+          <td>{{ cal.enddate }}</td>
+          <td>{{ cal.titlee }}</td>
+                
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #classinfomodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addeventForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+          <h4 class="card-title">Update Class</h4>
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+                <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Start date :</label>
+                      <input
+                        type="datetime-local"
+                        formControlName="startdate"
+                        [(ngModel)]="cal.startdate"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+    
+                      
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="
+                      addeventForm.controls['startdate'].invalid &&
+                      addeventForm.controls['startdate'].touched
+                    "
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="addeventForm.controls['startdate'].errors.required">
+                      Start date is required.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">End date :</label>
+                      <input
+                        type="datetime-local"
+                        formControlName="enddate"
+                        [(ngModel)]="cal.enddate"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                       
+                        
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+    
+                  <div class="col-md-4">
+                    <div class="form-group has-danger">
+                      <label class="control-label">Title :</label>
+                      <input
+                        type="text"
+                        formControlName="titlee"
+                        [(ngModel)]="cal.titlee"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control form-control-danger"
+                        
+    
+                      />
+                      <small class="form-control-feedback"> </small>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="
+                      addeventForm.controls['titlee'].invalid &&
+                      addeventForm.controls['titlee'].touched
+                    "
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="addeventForm.controls['titlee'].errors.required">
+                      Title is required.
+                    </div>
+                  </div>
+    
+             
+            </div>
+          </div>
+          <hr />
+  
+          <div class="form-actions">
+            <div class="card-body">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="Updatecal(cal.id)"
+              >
+                <i class="fa fa-check"></i> Update
+              </button>
+              <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+    </div> -->
+  </ng-template>
+  
+  

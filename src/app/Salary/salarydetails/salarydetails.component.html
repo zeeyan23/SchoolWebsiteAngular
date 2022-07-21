@@ -1,0 +1,361 @@
+<div class="row" *ngIf="isDean">
+<div class="col-sm-12 col-md-5">
+  <div class="card">
+      <div class="card-body">
+          <!-- <h4 class="card-title">Search</h4> -->
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Class</label>
+                    <select class="form-control custom-select" #selectedstaffname name="name">
+                      <option *ngFor="let item of sal" [value]="item.name">{{item.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                    <br>
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedstaffname.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control"
+      style="margin-left:350px"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Salary</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Date</th>
+                <th scope="col">Year Of Experience</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Amount Balance</th>
+                <th scope="col">Advance Amount</th>
+                <th scope="col">Remark</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let salary of salaries
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ salary.name }}</td>
+                <td>{{ salary.contact_no }}</td>
+                <td>{{ salary.designation }}</td>
+                <td>{{ salary.date | date:'yyyy-MM-dd'  }}</td>
+                <td>{{ salary.yoe }}</td>
+                <td>{{ salary.amount }}</td>
+                <td>{{ salary.amount_balance }}</td>
+                <td>{{ salary.advance_amount }}</td>
+                <td>{{ salary.remark }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openSalary(salarymodal, salary)"
+                  >
+                    <i class="far fa-edit"></i> 
+                  </button>
+                </td>
+
+                <td>
+                  <button type="button" class="btn dlt btn-rounded">
+                    <i class="far fa-trash-alt"></i> 
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="sally"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+<div id="sally">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Salary Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SLno.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Date</th>
+      <th scope="col">Year Of Experience</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Amount Balance</th>
+      <th scope="col">Advance Amount</th>
+      <th scope="col">Remark</th>
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let salary of salaries; let i = index">
+        <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ salary.name }}</td>
+                <td>{{ salary.contact_no }}</td>
+                <td>{{ salary.designation }}</td>
+                <td>{{ salary.date | date:'yyyy-MM-dd'  }}</td>
+                <td>{{ salary.yoe }}</td>
+                <td>{{ salary.amount }}</td>
+                <td>{{ salary.amount_balance }}</td>
+                <td>{{ salary.advance_amount }}</td>
+                <td>{{ salary.remark }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #salarymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="salaryForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Salary</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Name :</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  [(ngModel)]="salary.name"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control"
+                  name="name"
+                  placeholder="enter Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Contact No.:</label>
+                <input
+                  type="text"
+                  formControlName="contact_no"
+                  [(ngModel)]="salary.contact_no"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="contact_no"
+                  placeholder="Enter Contact No."
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Designation:</label>
+                <input
+                  type="text"
+                  formControlName="designation"
+                  [(ngModel)]="salary.designation"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="designation"
+                  placeholder="Enter designation"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="date"
+                  [(ngModel)]="salary.date"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="date"
+                  placeholder="Enter Date"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Year Of Experience:</label>
+                <input
+                  type="text"
+                  formControlName="yoe"
+                  [(ngModel)]="salary.yoe"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="yoe"
+                  placeholder="Enter Experience"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Amount:</label>
+                <input
+                  type="text"
+                  formControlName="amount"
+                  [(ngModel)]="salary.amount"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="amount"
+                  placeholder="Enter Amount"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Amount Balance:</label>
+                <input
+                  type="text"
+                  formControlName="amount_balance"
+                  [(ngModel)]="salary.amount_balance"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="amount_balance"
+                  placeholder="Enter Amount Balance"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Advance Amount:</label>
+                <input
+                  type="text"
+                  formControlName="advance_amount"
+                  [(ngModel)]="salary.advance_amount"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="advance_amount"
+                  placeholder="Enter Advance Amount"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Remark:</label>
+                <input
+                  type="text"
+                  formControlName="remark"
+                  [(ngModel)]="salary.remark"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="remark"
+                  placeholder="Enter Remark"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="button" class="btn btn-success" (click)="Updatesalary(salary.id)">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

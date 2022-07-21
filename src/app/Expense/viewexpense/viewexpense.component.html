@@ -1,0 +1,284 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control"
+      style="margin-left: 850px;margin-bottom: 20px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Expense</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Expense Name</th>
+                <th scope="col">Expense deatails</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date of Expense</th>
+                <th scope="col">Payment Mode</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let expense of expenses
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ expense.expense_type }}</td>
+                <td>{{ expense.expense_detail }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.expense_date | date:'yyyy-MM-dd' }}</td>
+                <td>{{ expense.payment_mode }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt"
+                    (click)="openExpense(expenseinfomodal, expense)"
+                  >
+                    <i class="fa fa-edit"></i> 
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="exxpense"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+<div id="exxpense">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Expense Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SLno.</th>
+                <th scope="col">Expense Name</th>
+                <th scope="col">Expense deatails</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date of Expense</th>
+                <th scope="col">Payment Mode</th>
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let expense of expenses; let i = index">
+        <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ expense.expense_type }}</td>
+                <td>{{ expense.expense_detail }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.expense_date | date:'yyyy-MM-dd'  }}</td>
+                <td>{{ expense.payment_mode }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #expenseinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Expense</h4>
+      </div>
+      <div></div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Select Expense Type:</label>
+                <select
+                  formControlName="expense_type"
+                  [(ngModel)]="expense.expense_type"
+                  name="expense_type"
+                  class="form-control custom-select"
+                >
+                  <option value="Teachers Salary">Teachers Salary</option>
+                  <option value="Daily Expenses">Daily Expenses</option>
+                  <option value="Class Expenses">Class Expenses</option>
+                  <option value="Purchase">Purchase</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select your Expense
+                </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Expense Details</label>
+                <input
+                  type="text"
+                  formControlName="expense_detail"
+                  [(ngModel)]="expense.expense_detail"
+                  class="form-control form-control-danger"
+                  name="expense_detail"
+                  placeholder="Enter Expense Details"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Amount</label>
+                <input
+                  type="text"
+                  formControlName="amount"
+                  [(ngModel)]="expense.amount"
+                  class="form-control form-control-danger"
+                  name="amount"
+                  placeholder="Enter Amount"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Proof:</label>
+                <br>
+                <img
+                src="http://localhost:8000{{ expense.expense_proof }}"
+                width="300"
+                height="200"
+              />
+              <input
+                formControlName="expense_proof"
+                type="file"
+                class="form-control"
+                #file 
+                (change)="uploadFile($event)"
+              />
+              </div>
+              <img
+                [src]="imageSrc"
+                *ngIf="imageSrc"
+                style="height: 200px; width: 300px"
+              />
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Expense Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="expense_date"
+                  [(ngModel)]="expense.expense_date"
+                  class="form-control form-control-danger"
+                  name="expense_date"
+                  placeholder="Enter Expense Date"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Payment Mode:</label>
+                <select
+                  formControlName="payment_mode"
+                  [(ngModel)]="expense.payment_mode"
+                  name="payment_mode"
+                  class="form-control custom-select"
+                >
+                  <option value="Cash">Cash</option>
+                  <option value="Cheque">Cheque</option>
+                  <option value="Net Banking">Net Banking</option>
+                </select>
+                <small class="form-control-feedback">
+                  Select Payment Mode
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="submit" class="btn btn-success" (click)="Updateexpense(expense.id)">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

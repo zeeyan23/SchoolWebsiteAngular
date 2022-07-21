@@ -1,0 +1,190 @@
+<div class="row" *ngIf="isDean || isStaff">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-dark">Add Exam</h4>
+      </div>
+      <form [formGroup]="examForm" (ngSubmit)="submitForm()">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Funds</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Exam Name</label>
+                  <input
+                    type="text"
+                    formControlName="exam_name"
+                    class="form-control form-control-danger"
+                    placeholder="Enter First Name"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="examForm.controls['exam_name'].invalid && examForm.controls['exam_name'].touched" class="alert alert-danger">
+                <div *ngIf="examForm.controls['exam_name'].errors.required">
+              Exam name is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Start date</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="start_date"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Second Name"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="examForm.controls['start_date'].invalid && examForm.controls['start_date'].touched" class="alert alert-danger">
+                <div *ngIf="examForm.controls['start_date'].errors.required">
+              Start date is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">End date</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="end_date"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Phone Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="examForm.controls['end_date'].invalid && examForm.controls['end_date'].touched" class="alert alert-danger">
+                <div *ngIf="examForm.controls['end_date'].errors.required">
+              End Date is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Total marks</label>
+                  <input
+                    type="text"
+                    formControlName="Total_marks"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Amount"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="examForm.controls['Total_marks'].invalid && examForm.controls['Total_marks'].touched" class="alert alert-danger">
+                <div *ngIf="examForm.controls['Total_marks'].errors.required">
+              Total Marks is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Hour</label>
+                  <input
+                    type="text"
+                    formControlName="hour"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Message"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="examForm.controls['hour'].invalid && examForm.controls['hour'].touched" class="alert alert-danger">
+                <div *ngIf="examForm.controls['hour'].errors.required">
+              Hour is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                    <label class="control-label">Class:</label>
+                    <select  class="form-control custom-select" class="form-control"  formControlName="class_name" >
+                        <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+                      </select>
+                    <small class="form-control-feedback"> </small>
+                </div>
+            </div>
+            <div *ngIf="examForm.controls['class_name'].invalid && examForm.controls['class_name'].touched" class="alert alert-danger">
+              <div *ngIf="examForm.controls['class_name'].errors.required">
+            Class is required.
+            </div>
+          </div>
+
+              <!--/span-->
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let examiess of examies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{examiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="examiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{examiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="examiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button
+                type="button"
+                style="margin-left: 10px; margin-right: 10px"
+                class="btn btn-secondary"
+              >
+                Cancel
+              </button> -->
+              <button type="button" style="margin-left: 10px;" (click)="addQuantity()" class="btn addm">
+                Add More
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

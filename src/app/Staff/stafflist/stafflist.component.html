@@ -1,0 +1,484 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-sm-12 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <form class="m-t-20">
+          <div class="row">
+            <div class="col-md-4">
+              <label>Staff Name:</label>
+              <select class="form-control custom-select" #staffnames name="staff_name">
+                <option *ngFor="let item of staffss" [value]="item.staff_name">
+                  {{ item.staff_name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-4 block-tag">
+              <br>
+              <button
+                type="button"
+                class="btn studentcard1 btn-rounded"
+                (click)="valueSelected(staffnames.value)"
+              >
+                <i class="fa fa-pencil"></i> search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control" style="margin-left:350px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+
+
+
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Staff List</h4>
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Staff Photo</th>
+                <th scope="col">Staff Name</th>
+                <th scope="col">Reg Number</th>
+                <th scope="col">Gendar</th>
+                <th scope="col">Age</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Action</th>
+                <!-- <th scope="col">Action</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let staff of staffs
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td class="zoom-without-container">
+                  <img
+                    src="http://localhost:8000{{ staff.staff_photo }}"
+                    width="200"
+                    height="150"
+                  />
+                </td>
+                <td>{{ staff.staff_name }}</td>
+                <td>{{ staff.reg_num }}</td>
+                <td>{{ staff.gendar }}</td>
+                <td>{{ staff.age }}</td>
+                <td>{{ staff.dob | date:'yyyy-MM-dd' }}</td>
+                <td>{{ staff.designation }}</td>
+                <td style="white-space: nowrap">
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded text-white"
+                    (click)="openstaff(staffinfomodal, staff)"
+                  >
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button 
+                  class="btn btn-outline-secondary"
+                 mwlConfirmationPopover
+                 [popoverTitle]="popoverTitle"
+                 [popoverMessage]="popoverMessage"
+                 placement="left"
+                 (confirm)="deleteRow(staff.id)"
+                 (cancel)="cancelClicked = true">
+                                   <i class="far fa-trash-alt"></i>
+                                 </button>
+                </td>
+
+                <!-- <td>
+                  <button type="button" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-pencil"></i> Delete
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="staffy"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button
+              type="button"
+              class="btn studentcard1"
+              style="margin-right: 10px; margin-left: 10px"
+              (click)="download()"
+            >
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="staffy">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Staff Details</th>
+    </tr>
+    <tr>
+      <th scope="col">SLno.</th>
+                <th scope="col">Staff Photo</th>
+                <th scope="col">Staff Name</th>
+                <th scope="col">Reg Number</th>
+                <th scope="col">Gendar</th>
+                <th scope="col">Age</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Designation</th>
+    </tr>
+
+    <tbody>
+      <tr *ngFor="let staff of staffs; let i = index">
+        <th scope="row">{{(page-1)*15+i+1}}</th>
+        <td class="zoom-without-container">
+          <img
+            src="http://localhost:8000{{ staff.staff_photo }}"
+            width="200"
+            height="150"
+          />
+        </td>
+        <td>{{ staff.staff_name }}</td>
+        <td>{{ staff.reg_num }}</td>
+        <td>{{ staff.gendar }}</td>
+        <td>{{ staff.age }}</td>
+        <td>{{ staff.dob | date:'yyyy-MM-dd'}}</td>
+        <td>{{ staff.designation }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #staffinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Staff</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label>Staff Photo:</label>
+                <img
+                  src="http://localhost:8000{{ staff.staff_photo }}"
+                  width="300"
+                  height="200"
+                />
+                <input
+                  formControlName="staff_photo"
+                  type="file"
+                  class="form-control"
+                  #file 
+                  (change)="uploadFile($event)"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Name :</label>
+                <input
+                  type="text"
+                  formControlName="staff_name"
+                  [(ngModel)]="staff.staff_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="staff_name"
+                  placeholder="Enter Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Reg No.:</label>
+                <input
+                  type="text"
+                  formControlName="reg_num"
+                  [(ngModel)]="staff.reg_num"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="reg_num"
+                  placeholder="Enter Registration Number"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-success">
+                <label class="control-label">Select Gender:</label>
+                <select
+                  class="form-control custom-select"
+                  formControlName="gendar"
+                  [(ngModel)]="staff.gendar"
+                  [ngModelOptions]="{standalone: true}"
+
+                >
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+                <small class="form-control-feedback"> Select Gender </small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Age :</label>
+                <input
+                  type="text"
+                  formControlName="age"
+                  [(ngModel)]="staff.age"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="age"
+                  placeholder="Enter Age"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">DOB :</label>
+                <input
+                  type="datetime-local"
+                  formControlName="dob"
+                  [(ngModel)]="staff.dob"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="dob"
+                  placeholder="Enter DOB"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Designation :</label>
+                <input
+                  type="text"
+                  formControlName="designation"
+                  [(ngModel)]="staff.designation"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="designation"
+                  placeholder="Enter Designation"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Fathers Name :</label>
+                <input
+                  type="text"
+                  formControlName="father_name"
+                  [(ngModel)]="staff.father_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="father_name"
+                  placeholder="Enter Fathers Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Mothers Name :</label>
+                <input
+                  type="text"
+                  formControlName="mothers_name"
+                  [(ngModel)]="staff.mothers_name"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="mothers_name"
+                  placeholder="Enter Mothers Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Phone :</label>
+                <input
+                  type="text"
+                  formControlName="phone"
+                  [(ngModel)]="staff.phone"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="phone"
+                  placeholder="Enter phone"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Email Adress :</label>
+                <input
+                  type="text"
+                  formControlName="email"
+                  [(ngModel)]="staff.email"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="email"
+                  placeholder="Enter Email Address"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Qualification :</label>
+                <input
+                  type="text"
+                  formControlName="qualification"
+                  [(ngModel)]="staff.qualification"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="qualification"
+                  placeholder="Enter Qualification"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Date Of Joining :</label>
+                <input
+                  type="datetime-local"
+                  formControlName="doj"
+                  [(ngModel)]="staff.doj"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="doj"
+                  placeholder="Enter Date Of Joining"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Subject :</label>
+                <input
+                  type="text"
+                  formControlName="subject"
+                  [(ngModel)]="staff.subject"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="subject"
+                  placeholder="Enter Subject"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Year Of Experience:</label>
+                <input
+                  type="text"
+                  formControlName="yoe"
+                  [(ngModel)]="staff.yoe"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="yoe"
+                  placeholder="Enter YOE"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="Updatestaff(staff.id)"
+            >
+              <i class="fa fa-check"></i> Update
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div> -->
+</ng-template>

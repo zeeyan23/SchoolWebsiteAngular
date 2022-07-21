@@ -1,0 +1,353 @@
+<div class="row">
+  <div class="col-md-3">
+    <input
+      type="text"
+      id="myInput"
+      style="margin-left: 700px"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Staff Route Report</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">Staff ID</th>
+                <th scope="col">Staff Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">vehicle No.</th>
+                <th scope="col">Type</th>
+                <th scope="col">Driver Name</th>
+                <th scope="col">Emp Mobile</th>
+                <th scope="col">Route Name</th>
+                <th scope="col">Stop Name</th>
+                <!-- <th scope="col">Amount</th> -->
+
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let stafrep of stafreports
+                    | paginate
+                      : {
+                          id: 'listing_pagination',
+                          itemsPerPage: 15,
+                          currentPage: page,
+                          totalItems: totalRec
+                        }
+                    | filter: term;
+                  let i = index
+                "
+              >
+                <th scope="row">{{ stafrep.saff_id }}</th>
+                <td>{{ stafrep.name }}</td>
+                <td>{{ stafrep.gender }}</td>
+                <td>{{ stafrep.mobile }}</td>
+                <td>{{ stafrep.vehicle_no }}</td>
+                <td>{{ stafrep.type }}</td>
+                <td>{{ stafrep.driver }}</td>
+                <td>{{ stafrep.emp_mob }}</td>
+                <td>{{ stafrep.route_name }}</td>
+                <td>{{ stafrep.stop_name }}</td>
+
+                <td>
+                  <!-- <td>{{stafrep.stop_name }}</td> -->
+                  <button
+                    type="button"
+                    class="btn dlt btn-rounded"
+                    (click)="openStafftrans(stafftransinfomodal, stafrep)"
+                  >
+                  <i class="far fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="staftrans"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-right:10px;margin-left:10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="staftrans">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Staff Route Details</th>
+    </tr>
+      <tr>
+        <th scope="col">Staff ID</th>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">vehicle No.</th>
+        <th scope="col">Type</th>
+        <th scope="col">Driver Name</th>
+        <th scope="col">Emp Mobile</th>
+        <th scope="col">Route Name</th>
+        <th scope="col">Stop Name</th>
+        <!-- <th scope="col">Amount</th> -->
+      </tr>
+    
+
+    <tbody>
+      <tr *ngFor="let stafrep of stafreports; let i = index">
+        <th scope="row">{{ stafrep.saff_id }}</th>
+        <td>{{ stafrep.name }}</td>
+        <td>{{ stafrep.gender }}</td>
+
+        <td>{{ stafrep.mobile }}</td>
+        <td>{{ stafrep.vehicle_no }}</td>
+        <td>{{ stafrep.type }}</td>
+        <td>{{ stafrep.driver }}</td>
+        <td>{{ stafrep.emp_mob }}</td>
+        <td>{{ stafrep.route_name }}</td>
+        <td>{{ stafrep.stop_name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #stafftransinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="stafftransForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Staff Route Details</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Staff ID:</label>
+                <input
+                  type="text"
+                  formControlName="saff_id"
+                  [(ngModel)]="stafrep.saff_id"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control"
+                  name="saff_id"
+                  placeholder="enter Id"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  [(ngModel)]="stafrep.name"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="name"
+                  placeholder="Enter Name"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Gender</label>
+                <input
+                  type="text"
+                  formControlName="gender"
+                  [(ngModel)]="stafrep.gender"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="gender"
+                  placeholder="Enter Gender"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Mobile</label>
+                <input
+                  type="text"
+                  formControlName="mobile"
+                  [(ngModel)]="stafrep.mobile"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="mobile"
+                  placeholder="Enter Mobile"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Vehicle Number</label>
+                <input
+                  type="text"
+                  formControlName="vehicle_no"
+                  [(ngModel)]="stafrep.vehicle_no"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="vehicle_no"
+                  placeholder="Enter Vehicle Number"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Type</label>
+                <input
+                  type="text"
+                  formControlName="type"
+                  [(ngModel)]="stafrep.type"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="type"
+                  placeholder="Enter Computer Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Driver Name</label>
+                <input
+                  type="text"
+                  formControlName="driver"
+                  [(ngModel)]="stafrep.driver"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="driver"
+                  placeholder="Enter Transport Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Driver Mobile</label>
+                <input
+                  type="text"
+                  formControlName="emp_mob"
+                  [(ngModel)]="stafrep.emp_mob"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="emp_mob"
+                  placeholder="Enter Food Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Route Name</label>
+                <input
+                  type="text"
+                  formControlName="route_name"
+                  [(ngModel)]="stafrep.route_name"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="route_name"
+                  placeholder="Enter Hostel Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group has-danger">
+                <label class="control-label">Stop Name</label>
+                <input
+                  type="text"
+                  formControlName="stop_name"
+                  [(ngModel)]="stafrep.stop_name"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control form-control-danger"
+                  name="stop_name"
+                  placeholder="Enter Miscellaneous Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,212 @@
+<div class="row" *ngIf="isDean">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="m-b-0 text-dark">Add Salary Details</h4>
+            </div>
+            <form [formGroup]="salaryForm" (ngSubmit)="onSubmit()" >
+                <div class="card-body">
+                    <!-- <h4 class="card-title">Add Salary</h4> -->
+                </div>
+                <hr>
+                <div class="form-body">
+                    <div class="card-body">
+                        <div class="row p-t-20">
+                            <div class="col-md-4">
+                                <div class="form-group has-success">
+                                  <label class="control-label">Name:</label>
+                               
+                                  <input 
+                              type="text" 
+                              class="form-control" 
+                              placeholder="Select Teacher" 
+                              formControlName="name"
+                              name="name"
+                              list= "ddOptions"
+                              
+                              />
+                              <datalist id="ddOptions">
+                                <option *ngFor="let test of staffs" [value]="test.staff_name">{{test.staff_name}}</option>
+                              </datalist>
+                                 
+                                </div>
+                              </div>
+                              <div *ngIf="salaryForm.controls['name'].invalid && salaryForm.controls['name'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['name'].errors.required">
+                             Staff Name is required.
+                              </div>
+                            </div>
+
+
+                            <!--/span-->
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Contact No.:</label>
+                                    <input type="text" formControlName="contact_no" class="form-control form-control-danger" placeholder="Enter Contact No.">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['contact_no'].invalid && salaryForm.controls['contact_no'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['contact_no'].errors.required">
+                              Contact Number is required.
+                              </div>
+                            </div> 
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Designation:</label>
+                                    <input type="text" formControlName="designation" class="form-control form-control-danger" placeholder="Enter designation">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['designation'].invalid && salaryForm.controls['designation'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['designation'].errors.required">
+                              Designation is required.
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Date:</label>
+                                    <input type="datetime-local" formControlName="date" class="form-control form-control-danger" placeholder="Enter Date">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['date'].invalid && salaryForm.controls['date'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['date'].errors.required">
+                              Date is required.
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Year Of Experience:</label>
+                                    <input type="text" formControlName="yoe" class="form-control form-control-danger" placeholder="Enter Experience">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['yoe'].invalid && salaryForm.controls['yoe'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['yoe'].errors.required">
+                              Experience is required.
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Amount:</label>
+                                    <input type="text" formControlName="amount" class="form-control form-control-danger" placeholder="Enter Amount">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['amount'].invalid && salaryForm.controls['amount'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['amount'].errors.required">
+                              Amount is required.
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Amount Balance:</label>
+                                    <input type="text" formControlName="amount_balance" class="form-control form-control-danger" placeholder="Enter Amount Balance">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['amount_balance'].invalid && salaryForm.controls['amount_balance'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['amount_balance'].errors.required">
+                              Account Balance is required.
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Advance Amount:</label>
+                                    <input type="text" formControlName="advance_amount" class="form-control form-control-danger" placeholder="Enter Advance Amount">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['advance_amount'].invalid && salaryForm.controls['advance_amount'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['advance_amount'].errors.required">
+                              Advance Amount is required.
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group has-danger">
+                                    <label class="control-label">Remark:</label>
+                                    <input type="text" formControlName="remark" class="form-control form-control-danger" placeholder="Enter Remark">
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div *ngIf="salaryForm.controls['remark'].invalid && salaryForm.controls['remark'].touched" class="alert alert-danger">
+                                <div *ngIf="salaryForm.controls['remark'].errors.required">
+                              Remark is required.
+                              </div>
+                            </div>
+                           
+                            
+                            <!--/span-->
+                        </div>
+                        <table class="table">
+                            <tr>
+                              <th colspan="2"></th>
+                              <th width="50px">
+                               
+                              </th>
+                            </tr>
+                            <tr
+                              *ngFor="let salariess of salaries; let i = index;"
+                              
+                            >
+                              <td>
+                                <label class="control-label"> Field Name :</label>
+                                <input
+                                  type="text"
+                                  name="name_{{salariess.id}}"
+                                  class="form-control"
+                                  placeholder="Name" 
+                                  [ngModelOptions]="{standalone: true}"
+                                  [(ngModel)]="salariess.name"
+                                />
+                              </td>
+                              <td>
+                                <label class="control-label">Value :</label>
+                                <input
+                                  type="text"
+                                  name="value_{{salariess.id}}"
+                                  class="form-control"
+                                  placeholder="value"
+                                  [ngModelOptions]="{standalone: true}"
+                                  [(ngModel)]="salariess.value"
+                                />
+                              </td>
+                              <td>
+                                <button (click)="removeQuantity(i)" class="btn btn-danger">
+                                  Remove
+                                </button>
+                              </td>
+                            </tr>
+                          </table>
+                       
+                    </div>
+                    <hr>
+                  
+                    <div class="form-actions">
+                        <div class="card-body">
+                            <button type="submit" class="btn studentcard1" style="margin-right: 10px;">
+                                <i class="fa fa-check"></i> Save</button>
+                            <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+                            <button type="button" (click)="addQuantity()" class="btn addm">Add More</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

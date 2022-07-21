@@ -1,0 +1,204 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-dark">Add Expense</h4>
+      </div>
+      <form [formGroup]="expenseForm" (ngSubmit)="submitForm()">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Expense</h4> -->
+        </div>
+        <div></div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Select Expense Type:</label>
+                  <select
+                    formControlName="expense_type"
+                    class="form-control custom-select"
+                  >
+                    <option value="Teachers Salary">Teachers Salary</option>
+                    <option value="Daily Expenses">Daily Expenses</option>
+                    <option value="Class Expenses">Class Expenses</option>
+                    <option value="Purchase">Purchase</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select your Expense
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['expense_type'].invalid && expenseForm.controls['expense_type'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['expense_type'].errors.required">
+              Expense Type is required.
+              </div>
+            </div>
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Expense Details</label>
+                  <input
+                    type="text"
+                    formControlName="expense_detail"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Expense Details"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['expense_detail'].invalid && expenseForm.controls['expense_detail'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['expense_detail'].errors.required">
+               Expense Details is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Amount</label>
+                  <input
+                    type="text"
+                    formControlName="amount"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Amount"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['amount'].invalid && expenseForm.controls['amount'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['amount'].errors.required">
+               Amount is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Proof:</label>
+                  <input
+                    formControlName="expense_proof"
+                    id="expense_proof"
+                    type="file"
+                    class="form-control"
+                    (change)="uploadFile($event)"
+                  />
+                </div>
+                <img
+                  [src]="imageSrc"
+                  *ngIf="imageSrc"
+                  style="height: 200px; width: 300px"
+                />
+              </div>
+              <div *ngIf="expenseForm.controls['expense_proof'].invalid && expenseForm.controls['expense_proof'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['expense_proof'].errors.required">
+              Expense Proof photo is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Expense Date:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="expense_date"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Expense Date"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['expense_date'].invalid && expenseForm.controls['expense_date'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['expense_date'].errors.required">
+               Expense Date is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Payment Mode:</label>
+                  <select
+                    formControlName="payment_mode"
+                    class="form-control custom-select"
+                  >
+                    <option value="Cash">Cash</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Net Banking">Net Banking</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Payment Mode
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['payment_mode'].invalid && expenseForm.controls['payment_mode'].touched" class="alert alert-danger">
+                <div *ngIf="expenseForm.controls['payment_mode'].errors.required">
+              Payment Mode is required.
+              </div>
+            </div>
+      
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let expensiess of expensies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{expensiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="expensiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{expensiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="expensiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1" style="margin-right: 10px">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button
+                type="button"
+                
+                class="btn btn-secondary"
+              >
+                Cancel
+              </button> -->
+              <button type="button" (click)="addQuantity()" class="btn addm">
+                Add More
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

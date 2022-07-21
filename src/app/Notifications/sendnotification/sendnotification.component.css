@@ -1,0 +1,31 @@
+.studentcard{
+    background-color :#4798e8;
+    }
+    .studentcard1{
+      background:linear-gradient(150deg, #17a2b8 0%, #21ba45 150%); 
+      color: white;
+      
+    }
+    .addm{
+      background: #f2711c;
+      color: white;
+    }
+
+
+
+    .dropdown-menu li {
+      position: relative;
+    }
+    .dropdown-menu .dropdown-submenu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: -7px;
+    }
+    .dropdown-menu .dropdown-submenu-left {
+      right: 100%;
+      left: auto;
+    }
+    .dropdown-menu > li:hover > .dropdown-submenu {
+      display: block;
+    }

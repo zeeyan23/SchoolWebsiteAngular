@@ -1,0 +1,238 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header ">
+          <h4 class="m-b-0 text-dark">Register Recieved Books</h4>
+        </div>
+        <form [formGroup]="recievedbookForm" (ngSubmit)="submitForm()"  novalidate>
+          <div class="card-body">
+            <!-- <h4 class="card-title">Register Recieve Book</h4> -->
+          </div>
+          <hr />
+          <div class="form-body">
+            <div class="card-body">
+              <div class="row p-t-20">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Date of Issue :</label>
+                    <input
+                      type="datetime-local"
+                      name="recievedate"
+                      formControlName="recievedate"
+                      class="form-control"
+                      placeholder="enter Accession Number"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">SL no:</label>
+                    <input
+                      type="number"
+                      name="sr_no"
+                      formControlName="sr_no"
+                      class="form-control"
+                      placeholder="enter Accession Number"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Accession Number:</label>
+                    <input
+                      type="text"
+                      name="accession_no"
+                      formControlName="accession_no"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Barcode Id"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Admission No.:</label>
+                    <input
+                      type="text"
+                      name="admission_no"
+                      formControlName="admission_no"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Title"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-10"><h3>Student Details :</h3></div>
+  
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Name :</label>
+                    <input
+                      type="text"
+                      name="name"
+                      formControlName="name"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Name"
+                    />
+                    <small class="form-control-feedback"></small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Class :</label>
+                    <input
+                      type="text"
+                      name="class"
+                      formControlName="class"
+                      class="form-control form-control-danger"
+                      placeholder="Enter class"
+                    />
+                    <small class="form-control-feedback"></small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Roll No.:</label>
+                    <input
+                      type="text"
+                      name="roll_no"
+                      formControlName="roll_no"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Publisher"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">father Name :</label>
+                    <input
+                      type="text"
+                      name="father_name"
+                      formControlName="father_name"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Edition"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Contact No. :</label>
+                    <input
+                      type="text"
+                      name="contact_num"
+                      formControlName="contact_num"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Year"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Remark :</label>
+                    <textarea
+                      class="form-control"
+                      rows="3"
+                      name="remark"
+                      formControlName="remark"
+                      placeholder="Text Address..."
+                    ></textarea>
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-10"><h3>Book Details :</h3></div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Title :</label>
+                    <input
+                      type="text"
+                      name="title"
+                      formControlName="title"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Title"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Author :</label>
+                    <input
+                      type="text"
+                      name="author"
+                      formControlName="author"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Author"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Subject :</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      formControlName="subject"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Subject"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Publisher :</label>
+                    <input
+                      type="text"
+                      name="publisher"
+                      formControlName="publisher"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Source"
+                    />
+                    <small class="form-control-feedback"> </small>
+                  </div>
+                </div>
+              </div>
+              <table class="table" formArrayName="recieves">
+                <tr>
+                  <th colspan="2"></th>
+                  <th width="50px"></th>
+                </tr>
+                <tr *ngFor="let quantity of recieves().controls; let i=index" [formGroupName]="i">
+                  <td>
+                    <label class="control-label"> Feild Name :</label>
+                      <input type="text" formControlName="name" class="form-control">
+                  </td>
+                  <td>
+                    <label class="control-label">Value :</label>
+                      <input type="text" formControlName="value" class="form-control">
+                  </td>
+                  <td>
+                      <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <hr />
+  
+            <div class="form-actions">
+              <div class="card-body">
+                <button type="submit" class="btn studentcard1">
+                  <i class="fa fa-check"></i> Recive
+                </button>
+                <!-- <button type="button" class="btn btn-secondary">Cancel</button> -->
+                <button type="button"  style="margin-left: 10px;" (click)="addQuantity()" class="btn addm">Add More</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

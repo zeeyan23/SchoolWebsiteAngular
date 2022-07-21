@@ -1,0 +1,325 @@
+<div class="row" *ngIf="isDean">
+  <div class="col-lg-12">
+    <div class="card">
+    
+      <form class="form-horizontal">
+        <div class="form-body">
+          
+          <hr class="m-t-0 m-b-40" />
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group row">
+                  <label class="control-label text-right col-md-3"
+                    >Current Budget:</label
+                  >
+                  <div class="col-md-9">
+                    <p class="form-control-static">1000000</p>
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group row">
+                  <label class="control-label text-right col-md-3"
+                    >Total Payment:</label
+                  >
+                  <div class="col-md-9">
+                    <p class="form-control-static">2000000</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group row">
+                  <label class="control-label text-right col-md-3"
+                    >Total Expense:</label
+                  >
+                  <div class="col-md-9">
+                    <p class="form-control-static">11000</p>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          
+          </div>
+
+         
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-sm-12 col-md-6">
+  <div class="card">
+      <div class="card-body">
+    
+          <form class="m-t-20">
+              <div class="row">
+                  <div class="col-md-4">
+                    <label>Academic Year</label>
+                    <select #selectedyear name="academic_year">
+                      <option *ngFor="let item of feetypes" [value]="item.academic_year">{{item.academic_year}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 block-tag">
+                      <button type="button" class="btn studentcard1 btn-rounded" (click)="valueSelectedd(selectedyear.value)" ><i class="fa fa-pencil"></i> search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div> -->
+
+<div class="row" *ngIf="isDean">
+  <div class="col-md-3">
+    <input
+      type="text"
+      id="myInput"
+      class="form-control"
+      style="margin-left: 900px;margin-bottom:20px;"
+      placeholder="Search here..."
+      [(ngModel)]="term"
+      title="Type in a name"
+    />
+  </div>
+</div>
+
+<div class="row" *ngIf="isDean">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">View Income</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SLno.</th>
+                <th scope="col">Total Fees</th>
+                <th scope="col">Total Expense</th>
+                <th scope="col">Total Due Amount</th>
+                <th scope="col">Total Penalties</th>
+                <th scope="col">Academic Year</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let income of incomes | paginate
+              : {
+                  id: 'listing_pagination',
+                  itemsPerPage: 15,
+                  currentPage: page,
+                  totalItems: totalRec
+                }
+            | filter: term; let i = index">
+                <th scope="row">{{(page-1)*15+i+1}}</th>
+                <td>{{ income.total_fee }}</td>
+                <td>{{ income.total_expense }}</td>
+                <td>{{ income.total_Due }}</td>
+                <td>{{ income.penalty }}</td>
+                <td>{{ income.academic_year }}</td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="btn dlt  btn-rounded"
+                    (click)="openIncome(incomeinfomodal ,income)"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions" *ngIf="isDean">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-9">
+            <button
+              type="submit"
+              class="btn pnt"
+              printSectionId="incomee"
+              ngxPrint
+            >
+              <i class="fa fa-pencil"></i>Print
+            </button>
+            <button type="button" style="margin-left: 10px;margin-right: 10px;" class="btn studentcard1" (click)="download()">
+              Download To Excel
+            </button>
+            <!-- <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-pencil"></i> back
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>
+
+
+<div id="incomee">
+  <table border="2" cellspacing="0">
+    <tr>
+      <th colspan="10" style="text-align: center">Income Details</th>
+    </tr>
+      <tr>
+        <th scope="col">SLno.</th>
+        <th scope="col">Total Fees</th>
+        <th scope="col">Total Expense</th>
+        <th scope="col">Total Due Amount</th>
+        <th scope="col">Total Penalties</th>
+        <th scope="col">Academic Year</th>
+       
+      </tr>
+   
+    <tbody>
+      <tr *ngFor="let income of incomes ; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ income.total_fee }}</td>
+        <td>{{ income.total_expense }}</td>
+        <td>{{ income.total_Due }}</td>
+        <td>{{ income.penalty }}</td>
+        <td>{{ income.academic_year }}</td>
+
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #incomeinfomodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="incomeupdateForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <h4 class="card-title">Update Income</h4>
+      </div>
+      <hr />
+      <div class="form-body">
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Total Fee:</label>
+                <input
+                  type="text"
+                  formControlName="total_fee"
+                  [(ngModel)]="income.total_fee"
+                  name="total_fee"
+                  class="form-control"
+                  placeholder="enter Total Fee"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">total expense</label>
+                <input
+                  type="text"
+                  formControlName="total_expense"
+                  [(ngModel)]="income.total_expense"
+                  name="total_expense"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Total expense"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Total Due</label>
+                <input
+                  type="text"
+                  formControlName="total_Due"
+                  [(ngModel)]="income.total_Due"
+                  name="total_Due"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Total due"
+                />
+                <small class="form-control-feedback"> </small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Penalty</label>
+                <input
+                  type="text"
+                  formControlName="penalty"
+                  [(ngModel)]="income.penalty"
+                  name="penalty"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Penalty"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Academic Year</label>
+                <input
+                  type="text"
+                  formControlName="academic_year"
+                  [(ngModel)]="income.academic_year"
+                  name="academic_year"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Academic year"
+                />
+                <small class="form-control-feedback"></small>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <hr />
+
+        <div class="form-actions">
+          <div class="card-body">
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-check"></i> Save
+            </button>
+            <button type="button" style="margin-right: 10px;margin-left: 10px;" (click)="modal.close('Save click')" class="btn btn-dark">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button> -->
+  </div>
+</ng-template>

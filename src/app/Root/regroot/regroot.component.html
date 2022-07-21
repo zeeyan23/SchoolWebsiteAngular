@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header ">
+        <h4 class="m-b-0 text-dark">Register Route</h4>
+      </div>
+      <form [formGroup]="routeregForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Add Route</h4> -->
+        </div>
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Route Name:</label>
+                  <input
+                  type="text"
+                  formControlName="Route_name"
+                  class="form-control form-control-danger"
+                  placeholder="Enter Driver Name"
+                />
+                  
+                </div>
+              </div>
+              <div *ngIf="routeregForm.controls['Route_name'].invalid && routeregForm.controls['Route_name'].touched" class="alert alert-danger">
+                <div *ngIf="routeregForm.controls['Route_name'].errors.required">
+              Route Name is required.
+              </div>
+            </div>
+              <!--/span-->
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                    <label class="control-label">vehicle No.:</label>
+                    <select  class="form-control custom-select" class="form-control"  formControlName="vehicle_num" >
+                        <option *ngFor="let item of vehicle" [value]="item.vehicle_num">{{item.vehicle_num}}</option>
+                      </select>
+                    <small class="form-control-feedback"> </small>
+                </div>
+            </div>
+            <div *ngIf="routeregForm.controls['vehicle_num'].invalid && routeregForm.controls['vehicle_num'].touched" class="alert alert-danger">
+              <div *ngIf="routeregForm.controls['vehicle_num'].errors.required">
+           Vehicle Number is required.
+            </div>
+          </div> 
+
+
+             
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Driver Name</label>
+                  <input
+                    type="text"
+                    formControlName="Driver_name"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Driver Name"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="routeregForm.controls['Driver_name'].invalid && routeregForm.controls['Driver_name'].touched" class="alert alert-danger">
+                <div *ngIf="routeregForm.controls['Driver_name'].errors.required">
+              Driver name is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Amount</label>
+                  <input
+                    type="text"
+                    formControlName="amount"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Amount"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="routeregForm.controls['amount'].invalid && routeregForm.controls['amount'].touched" class="alert alert-danger">
+                <div *ngIf="routeregForm.controls['amount'].errors.required">
+             Amount is required.
+              </div>
+            </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Mobile No.</label>
+                  <input
+                    type="text"
+                    formControlName="mobile_num"
+                    class="form-control form-control-danger"
+                    placeholder="Enter Mobile No."
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="routeregForm.controls['mobile_num'].invalid && routeregForm.controls['mobile_num'].touched" class="alert alert-danger">
+                <div *ngIf="routeregForm.controls['mobile_num'].errors.required">
+              Mobile No. is required.
+              </div>
+            </div>
+
+
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">vehicle type:</label>
+                  <select
+                    class="form-control custom-select"
+                    formControlName="vehicle_type"
+                  >
+                  <option value="Bus">Bus</option>
+                  <option value="Car">Car</option>
+                  <option value="Auto">Auto</option>
+                  <option value="omni">omni</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Vehicle Type
+                  </small>
+                </div>
+              </div>
+              <div *ngIf="routeregForm.controls['vehicle_type'].invalid && routeregForm.controls['vehicle_type'].touched" class="alert alert-danger">
+                <div *ngIf="routeregForm.controls['vehicle_type'].errors.required">
+              Vehicle Type is required.
+              </div>
+            </div>
+
+
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let routeregiess of routeregies; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{routeregiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="routeregiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{routeregiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="routeregiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit"  style="margin-right: 10px;" class="btn studentcard1">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button" class="btn btn-secondary">Cancel</button> -->
+              <button
+              type="button"
+              (click)="addQuantity()"
+              class="btn addm"
+            >
+              Add More
+            </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

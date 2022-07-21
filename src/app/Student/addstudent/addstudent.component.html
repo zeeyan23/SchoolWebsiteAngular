@@ -1,0 +1,717 @@
+<div class="row"  *ngIf="isDean || isStaff">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header studentcard">
+        <h4 class="m-b-0 text-dark">Student Registration Form</h4>
+      </div>
+      <form [formGroup]="csvuploadForm" (ngSubmit)="submitFormm()">
+        <button class="col-md-4">
+          <input type="file" class="custom-file-input" id="customFile" name="myfile"
+                  (change)="onFileSelect($event)" #UploadFileInput>
+                  <!-- <img src="../assets/images/cloud-computing.png" alt="cloud computing" class="upimage"  width="40px" height="40px"> -->
+              <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
+      </button>
+        <button type="submit" class="btn studentcard1" >
+          <i class="fa fa-check"></i> Upload
+        </button>
+        <a
+        class="pl-3"
+        href="assets/Registration.xlsx"
+        download="countCheck.xlsx"
+      >
+      Download Template
+      </a>
+
+      </form>
+      <form [formGroup]="studentregForm" (ngSubmit)="submitForm()">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Add Students</h4> -->
+        </div>
+        
+
+         
+        
+        <hr />
+        <div class="form-body">
+          <div class="card-body">
+            <div class="row p-t-20">
+              <!-- <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Select Student Type:</label>
+                  <select
+                    class="form-control custom-select"
+                    formControlName="student_type"
+                  >
+                    <option value="">New</option>
+                    <option value="">Old</option>
+                  </select>
+                  <small class="form-control-feedback">
+                    Select Student Type
+                  </small>
+                </div>
+              </div> -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Registration No.:</label>
+                  <input
+                    type="text"
+                    formControlName="reg_number"
+                    class="form-control"
+                    ngModel
+                    placeholder="Enter Registration Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['reg_number'].invalid && studentregForm.controls['reg_number'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['reg_number'].errors.required">
+               Register Number is required.
+              </div>
+            </div>
+              <!--/span-->
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Student Name :</label>
+                  <input
+                    type="text"
+                    formControlName="student_name"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Student Name"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['student_name'].invalid && studentregForm.controls['student_name'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['student_name'].errors.required">
+               Student Name is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Class:</label>
+                  <br>
+               
+                  <!-- <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Select Class" 
+              formControlName="class"
+              name="class"
+              list= "ddOptions"
+              [(ngModel)]="selectedclass"
+              />
+              <datalist id="ddOptions" (change)="valueSelected()">
+                <option *ngFor="let test of classmemo" [value]="test.class_name">{{test.class_name}}</option>
+              </datalist> -->
+                 
+              <select  class="form-control custom-select"  [(ngModel)]="selectedclass"  formControlName="class_name" (change)="valueSelected()">
+                <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
+              </select>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['class_name'].invalid && studentregForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['class_name'].errors.required">
+               Class Name is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">section:</label>
+               
+                  <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Section" 
+              formControlName="section"
+              name="section"
+              list= "ddOptions"
+              
+              />
+              <datalist id="ddOptions">
+                <option *ngFor="let test of classmemo" [value]="test.section">{{test.section}}</option>
+              </datalist>
+                 
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['section'].invalid && studentregForm.controls['section'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['section'].errors.required">
+               section is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">DOB:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="Dob"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter DOB"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['Dob'].invalid && studentregForm.controls['Dob'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['Dob'].errors.required">
+               Date of Birth is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <label class="control-label">Select Gender:</label>
+                  <br>
+                  <select
+                    class="form-control custom-select"
+                    formControlName="gender"
+                    ngModel
+                  >
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                  </select>
+                  <small class="form-control-feedback"> Select Gender </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['gender'].invalid && studentregForm.controls['gender'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['gender'].errors.required">
+                  Gender Number is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Fathers Name :</label>
+                  <input
+                    type="text"
+                    formControlName="father_name"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Fathers Name"
+                  />
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['father_name'].invalid && studentregForm.controls['father_name'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['father_name'].errors.required">
+               Father Name is required.
+              </div>
+            </div>
+            <div *ngIf="error" class="alert alert-danger">
+              <strong>Warning!</strong> {{fathname | json}}
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Mothers Name :</label>
+                  <input
+                    type="text"
+                    formControlName="mother_name"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Mothers Name"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['mother_name'].invalid && studentregForm.controls['mother_name'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['mother_name'].errors.required">
+               Mother Name is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Contact Number :</label>
+                  <input
+                    type="text"
+                    formControlName="contact_num"
+                    class="form-control form-control-danger"
+                    ngModel
+                    pattern="[0-9]+"
+                    placeholder="Enter Contact Number"
+                    
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['contact_num'].invalid && studentregForm.controls['contact_num'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['contact_num'].errors.required">
+               Contact Number is required.
+              </div>
+             
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label"
+                    >Alternative Contact Number :</label
+                  >
+                  <input
+                    type="text"
+                    formControlName="alter_num"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Alternative Contact Number"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['alter_num'].invalid && studentregForm.controls['alter_num'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['alter_num'].errors.required">
+               Alternate Number is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Fathers DOB:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="father_dob"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Fathers DOB"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['father_dob'].invalid && studentregForm.controls['father_dob'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['father_dob'].errors.required">
+               Father Date of Birth is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Mothers DOB:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="mother_dob"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Mothers DOB"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['mother_dob'].invalid && studentregForm.controls['mother_dob'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['mother_dob'].errors.required">
+               Mothers Date of Birth is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Anniversary Date:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="anniversary_date"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Anniversary Date"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['anniversary_date'].invalid && studentregForm.controls['anniversary_date'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['anniversary_date'].errors.required">
+               Anniversary Date is required.
+              </div>
+            </div>
+            <!-- <div *ngIf="error" class="alert alert-warning">
+              <strong>Warning!</strong> {{annierror | json}}
+            </div> -->
+           
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Date of admission:</label>
+                  <input
+                    type="datetime-local"
+                    formControlName="date_of_admission"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Admission Date "
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['date_of_admission'].invalid && studentregForm.controls['date_of_admission'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['date_of_admission'].errors.required">
+               Date of Admission is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Fees :</h4>
+                   
+                    <fieldset class="checkbox">
+                      <input type="checkbox"  id="defaultCheck" name="admission_fee" disabled="true"   value="{{feedata[0]?.admission_fee}}" checked
+                      >
+                    <label for="defaultCheck">Admission Fee : {{feedata[0]?.admission_fee}}</label>
+                    </fieldset>
+
+                    <fieldset class="checkbox">
+                      <input type="checkbox"  id="defaultCheck" name="tuition_fee" disabled="true" checked="checked" value="{{feedata[0]?.tuition_fee}}">
+                      <label for="defaultCheck">Tuition Fee : {{feedata[0]?.tuition_fee}}</label>
+                    </fieldset>
+
+                    <fieldset class="checkbox">
+                      <input [type]="'checkbox'" formControlName="transport_fee" [ngModel]="transport_fee" [checked]="transport_fee"  (change)="cost(feedata[0]?.transport_fee, $event.target.checked)">
+                      <label for="defaultCheck">Transport Fee : {{feedata[0]?.transport_fee}}</label>
+   
+                    </fieldset>
+
+                    <fieldset class="checkbox">
+                      <input [type]="'checkbox'" formControlName="food_fee" [ngModel]="food_fee" [checked]="food_fee"  (change)="cost(feedata[0]?.food_fee, $event.target.checked)">
+                      <label for="defaultCheck">Food Fee : {{feedata[0]?.food_fee}}</label>
+                    </fieldset>
+
+                    
+                    <fieldset class="checkbox">
+                      <input [type]="'checkbox'" formControlName="hostel_fee" [ngModel]="hostel_fee" [checked]="hostel_fee"  (change)="cost(feedata[0]?.hostel_fee, $event.target.checked)">
+                      <label for="defaultCheck">Hostel Fee : {{feedata[0]?.hostel_fee}}</label>
+                    </fieldset>
+
+                    <fieldset class="checkbox">
+                      <input type="checkbox"  id="defaultCheck" name="misc_fee" disabled="true"  checked="checked" value="{{feedata[0]?.misc_fee}}">
+                      <label for="defaultCheck">Misc Fee : {{feedata[0]?.misc_fee}}</label>
+                    </fieldset>
+                    <br>
+                    <!-- <fieldset class="checkbox disabled">
+                      <label>
+                       Total Fee
+                      </label>
+                      :10500
+                    </fieldset> -->
+                    <!-- <div *ngFor="let item of feedata"> -->
+                      <!-- <app-goods [goodsData]="item">{{}}</app-goods> -->
+                      <!-- <div class="Fee">{{feedata[0]?.admission_fee}}</div> -->
+                    <!-- </div> -->
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+
+              <label class="control-label">Total Fee :</label>
+              <input
+                type="text"
+                formControlName="total_fee"
+                class="form-control form-control-danger"
+                placeholder="Enter Total Fee"
+                [(ngModel)]="classTotalFee"
+              />
+              </div>
+              </div>
+             
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+              <label class="control-label">Category :</label>
+              <br>
+              <select class="form-control custom-select" formControlName="category"  formControlName="category" ngModel (change)="categorySelected($event.target.value)">
+                <option *ngFor="let cat of catgory" [value]="cat.category">{{cat.category}}</option>
+              </select>
+              </div>
+              </div>
+
+
+               <div class="col-md-4">
+                <div class="form-group has-danger">
+              <label class="control-label">Paid Fee :</label>
+              <input
+                type="text"
+                formControlName="paid_fee"
+                class="form-control form-control-danger"
+                ngModel
+                placeholder="Enter Total Fee"
+              />
+              </div>
+              </div>
+              
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+              <label class="control-label">Due Date:</label>
+              <input
+                type="datetime-local"
+                formControlName="Due_date"
+                class="form-control form-control-danger"
+                ngModel
+                placeholder="Enter Admission Date "
+              />
+              </div>
+              </div>
+
+              <div *ngIf="studentregForm.controls['total_fee'].invalid && studentregForm.controls['total_fee'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['total_fee'].errors.required">
+               Total Fee is required.
+              </div>
+            </div>
+              <div *ngIf="studentregForm.controls['paid_fee'].invalid && studentregForm.controls['paid_fee'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['paid_fee'].errors.required">
+               Paid Fee is required.
+              </div>
+            </div>
+            <div *ngIf="studentregForm.controls['category'].invalid && studentregForm.controls['category'].touched" class="alert alert-danger">
+              <div *ngIf="studentregForm.controls['category'].errors.required">
+             category is required.
+            </div>
+          </div>
+           <div *ngIf="studentregForm.controls['Due_date'].invalid && studentregForm.controls['Due_date'].touched" class="alert alert-danger">
+            <div *ngIf="studentregForm.controls['Due_date'].errors.required">
+           Due Date is required.
+          </div>
+        </div>
+    
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Student Address :</label>
+                  <textarea
+                    class="form-control"
+                    formControlName="student_address"
+                    ngModel
+                    rows="10"
+                    placeholder="Text Address..."
+                  ></textarea>
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['student_address'].invalid && studentregForm.controls['student_address'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['student_address'].errors.required">
+               Student address is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">City :</label>
+                  <input
+                    type="text"
+                    formControlName="city"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter City"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['city'].invalid && studentregForm.controls['city'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['city'].errors.required">
+               City is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">State :</label>
+                  <input
+                    type="text"
+                    formControlName="state"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter State "
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['state'].invalid && studentregForm.controls['state'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['state'].errors.required">
+               State is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Country :</label>
+                  <input
+                    type="text"
+                    formControlName="country"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Country"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['country'].invalid && studentregForm.controls['country'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['country'].errors.required">
+              Country is required.
+              </div>
+            </div>
+
+              
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Pincode :</label>
+                  <input
+                    type="text"
+                    formControlName="pincode"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Pincode"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['pincode'].invalid && studentregForm.controls['pincode'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['pincode'].errors.required">
+               Pincode is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Academic Year:</label>
+                  <input
+                    type="text"
+                    formControlName="academic_year"
+                    class="form-control form-control-danger"
+                    ngModel
+                    placeholder="Enter Academic Year"
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['academic_year'].invalid && studentregForm.controls['academic_year'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['academic_year'].errors.required">
+               Academic Year is required.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                  <label class="control-label">Email Address:</label>
+                  <input
+                    type="email"
+                    formControlName="email_address"
+                    ngModel
+                    class="form-control form-control-danger"
+                    placeholder="Enter Email Address"
+                    UniqueEmail
+                  />
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <div *ngIf="studentregForm.controls['email_address'].invalid && studentregForm.controls['email_address'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['email_address'].errors.required">
+               Email Address is required.
+              </div>
+              <div *ngIf="studentregForm.controls['email_address'].errors.UniqueEmail">
+               Email already exists.
+              </div>
+            </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Student Photo:</label>
+                  <input
+                    formControlName="student_photo"
+                    id="expense_proof"
+                    type="file"
+                    class="form-control"
+                    ngModel
+                    (change)="uploadFile($event)"
+                  />
+                </div>
+                <img
+                  [src]="imageSrc"
+                  *ngIf="imageSrc"
+                  style="height: 200px; width: 300px"
+                />
+              </div>
+              <div *ngIf="studentregForm.controls['student_photo'].invalid && studentregForm.controls['student_photo'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['student_photo'].errors.required">
+               Student photo is required.
+              </div>
+            </div>
+
+
+            </div>
+            <table class="table">
+              <tr>
+                <th colspan="2"></th>
+                <th width="50px">
+                 
+                </th>
+              </tr>
+              <tr
+                *ngFor="let studentiess of studenties; let i = index;"
+                
+              >
+                <td>
+                  <label class="control-label"> Field Name :</label>
+                  <input
+                    type="text"
+                    name="name_{{studentiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="studentiess.name"
+                  />
+                </td>
+                <td>
+                  <label class="control-label">Value :</label>
+                  <input
+                    type="text"
+                    name="value_{{studentiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="studentiess.value"
+                  />
+                </td>
+                <td>
+                  <button (click)="removeQuantity(i)" class="btn btn-danger">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+
+          <div class="form-actions">
+            <div class="card-body">
+              <button type="submit" class="btn studentcard1" style="margin-left: 10px;margin-right: 10px;" [disabled]="!studentregForm.invalid">
+                <i class="fa fa-check"></i> Save
+              </button>
+              <!-- <button type="button"  class="btn btn-secondary">Cancel</button> -->
+               <button
+                    type="button"
+                    (click)="addQuantity()"
+                    class="btn addm"
+                  >
+                    Add More
+                  </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card-body p-3">
+  <div class="card text-success bg-success" *ngIf="success">
+    <div class="card-body">Sucessfully Registered</div>
+    <div class="card-body mt-5">
+      
+    </div>
+  </div>
+  <div class="card text-danger" *ngIf="errMsg">
+    <div class="card-body">Something went wrong. Please Try again!</div>
+  </div>
+</div> -->
