@@ -67,7 +67,11 @@ export class SidebarComponent implements OnInit {
     this.img = this.instiiii[0]["instituteLogo"];
     console.log('hey',this.instituteName);
     });
-    console.log('reeeeeeeeeee',this.instituteName);
     
+  }
+
+  onLogout(){
+    window.localStorage.clear();
+    this.router.navigate(['/authentication/login']);
   }
 }

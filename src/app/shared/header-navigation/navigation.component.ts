@@ -19,15 +19,15 @@ export class NavigationComponent implements AfterViewInit {
 
   public showSearch = false;
   loggedIn: boolean;
+  user: string;
+  email: string;
 
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(){
-    if(window.localStorage.getItem('user') != null){
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
+    this.user = window.localStorage.getItem('user');
+    this.email = window.localStorage.getItem('email');
+    window.localStorage.getItem('user') ? this.loggedIn = true : this.loggedIn = false;
   }
 
   // This is for Notifications

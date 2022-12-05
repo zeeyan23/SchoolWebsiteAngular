@@ -17,7 +17,7 @@ export class ChatInboxComponent {
   constructor() { }
 
   userNameUpdate(name: string): void {
-    this.socket = io.io(`localhost:3000?userName=${name}`);
+/*     this.socket = io.io(`localhost:3000?userName=${name}`);
     this.userName = name;
 
     this.socket.emit('set-user-name', name);
@@ -30,7 +30,7 @@ export class ChatInboxComponent {
       if (data) {
         this.messageList.push({message: data.message, userName: data.userName, mine: false});
       }
-    });
+    }); */
   }
 
   sendMessage(): void {
