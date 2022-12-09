@@ -16,209 +16,209 @@ export class StudenturlService {
     this.mainURL = `${environment.serverUrl}/school`;
   }
   
-//   public Savestudent(studentdata) {  
-//     console.log("Regno : " + studentdata.reg_number);  
-//     console.log("student name : " + studentdata.student_name);  
-//     console.log(studentdata);  
-//     this.Students.push(studentdata)
-//  }  
+/*   public Savestudent(studentdata) {  
+    console.log("Regno : " + studentdata.reg_number);  
+    console.log("student name : " + studentdata.student_name);  
+    console.log(studentdata);  
+    this.Students.push(studentdata)
+ }  
 
-//  public Savestudentexcel(excelstudentdata) {  
-//   console.log("DOB : " + excelstudentdata.dob);  
-//   console.log("Academic year : " + excelstudentdata.academic_year);  
-//   console.log(excelstudentdata);  
-//   this.Students.push(excelstudentdata)
-// } 
+ public Savestudentexcel(excelstudentdata) {  
+  console.log("DOB : " + excelstudentdata.dob);  
+  console.log("Academic year : " + excelstudentdata.academic_year);  
+  console.log(excelstudentdata);  
+  this.Students.push(excelstudentdata)
+} 
 
-//   Students=[{
+  Students=[{
      
-//     Dob: "2021-10-30",
-//     academic_year: "2021",
-//     admission_fee: true,
-//     alter_num: "+918978909878",
-//     anniversary_date: "2021-10-15",
-//     city: "banglore",
-//     class_name: "first",
-//     contact_num: "+918978909878",
-//     country: "India",
-//     date_of_admission: "2021-10-30",
-//     email_address: "dummy12@gmail.com",
-//     father_dob: "2021-10-08",
-//     father_name: "fad",
-//     fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
-//     food_fee: true,
-//     gender: "female",
-//     hostel_fee: true,
-//     misc_fee: "karnataka",
-//     mother_dob: "2021-10-30",
-//     mother_name: "eed",
-//     pincode: "576008",
-//     reg_number: "001",
-//     section: "A",
-//     state: "karnataka",
-//     student_address: "vv puram",
-//     student_name: "kavya",
-//     student_photo: "../assets/images/student1.jpg",
-//     transport_fee: true,
-//     tuition_fee: true,
-//     total_fee:32455,
-//     paid_fee:30000,
-//     category:"2A"
+    Dob: "2021-10-30",
+    academic_year: "2021",
+    admission_fee: true,
+    alter_num: "+918978909878",
+    anniversary_date: "2021-10-15",
+    city: "banglore",
+    class_name: "first",
+    contact_num: "+918978909878",
+    country: "India",
+    date_of_admission: "2021-10-30",
+    email_address: "dummy12@gmail.com",
+    father_dob: "2021-10-08",
+    father_name: "fad",
+    fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
+    food_fee: true,
+    gender: "female",
+    hostel_fee: true,
+    misc_fee: "karnataka",
+    mother_dob: "2021-10-30",
+    mother_name: "eed",
+    pincode: "576008",
+    reg_number: "001",
+    section: "A",
+    state: "karnataka",
+    student_address: "vv puram",
+    student_name: "kavya",
+    student_photo: "../assets/images/student1.jpg",
+    transport_fee: true,
+    tuition_fee: true,
+    total_fee:32455,
+    paid_fee:30000,
+    category:"2A"
 
   
-//    },
+   },
 
-//    {
-//     Dob: "2014-01-14",
-//     academic_year: "2021",
-//     admission_fee: true,
-//     alter_num: "+918873763637",
-//     anniversary_date: "2021-10-15",
-//     city: "banglore",
-//     class_name: "first",
-//     contact_num: "+918978909878",
-//     country: "India",
-//     date_of_admission: "2021-10-30",
-//     email_address: "dummy12@gmail.com",
-//     father_dob: "2021-10-08",
-//     father_name: "fad",
-//     fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
-//     food_fee: true,
-//     gender: "",
-//     hostel_fee: true,
-//     misc_fee: "karnataka",
-//     mother_dob: "2021-10-30",
-//     mother_name: "eed",
-//     pincode: "576008",
-//     reg_number: "002",
-//     section: "B",
-//     state: "karnataka",
-//     student_address: "vv puram",
-//     student_name: "ashwitha",
-//     student_photo: "../assets/images/student2.jpg",
-//     transport_fee: true,
-//     tuition_fee: true,
-//     total_fee:32400,
-//     paid_fee:32400,
-//     category:"C-1"
+   {
+    Dob: "2014-01-14",
+    academic_year: "2021",
+    admission_fee: true,
+    alter_num: "+918873763637",
+    anniversary_date: "2021-10-15",
+    city: "banglore",
+    class_name: "first",
+    contact_num: "+918978909878",
+    country: "India",
+    date_of_admission: "2021-10-30",
+    email_address: "dummy12@gmail.com",
+    father_dob: "2021-10-08",
+    father_name: "fad",
+    fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
+    food_fee: true,
+    gender: "",
+    hostel_fee: true,
+    misc_fee: "karnataka",
+    mother_dob: "2021-10-30",
+    mother_name: "eed",
+    pincode: "576008",
+    reg_number: "002",
+    section: "B",
+    state: "karnataka",
+    student_address: "vv puram",
+    student_name: "ashwitha",
+    student_photo: "../assets/images/student2.jpg",
+    transport_fee: true,
+    tuition_fee: true,
+    total_fee:32400,
+    paid_fee:32400,
+    category:"C-1"
 
-//    },
-//    {
-//     Dob: "1997-02-15",
-//     academic_year: "2021",
-//     admission_fee: true,
-//     alter_num: "+918978909878",
-//     anniversary_date: "2021-10-15",
-//     city: "banglore",
-//     class_name: "second",
-//     contact_num: "+918978909878",
-//     country: "India",
-//     date_of_admission: "2021-10-30",
-//     email_address: "dummy12@gmail.com",
-//     father_dob: "2021-10-08",
-//     father_name: "fad",
-//     fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
-//     food_fee: true,
-//     gender: "male",
-//     hostel_fee: true,
-//     misc_fee: "karnataka",
-//     mother_dob: "2021-10-30",
-//     mother_name: "eed",
-//     pincode: "576008",
-//     reg_number: "003",
-//     section: "A",
-//     state: "karnataka",
-//     student_address: "vv puram",
-//     student_name: "Prashanth",
-//     student_photo: "../assets/images/student3.jpg",
-//     transport_fee: true,
-//     tuition_fee: true,
-//     total_fee:32000,
-//     paid_fee:30000,
-//     category:"ST"
+   },
+   {
+    Dob: "1997-02-15",
+    academic_year: "2021",
+    admission_fee: true,
+    alter_num: "+918978909878",
+    anniversary_date: "2021-10-15",
+    city: "banglore",
+    class_name: "second",
+    contact_num: "+918978909878",
+    country: "India",
+    date_of_admission: "2021-10-30",
+    email_address: "dummy12@gmail.com",
+    father_dob: "2021-10-08",
+    father_name: "fad",
+    fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
+    food_fee: true,
+    gender: "male",
+    hostel_fee: true,
+    misc_fee: "karnataka",
+    mother_dob: "2021-10-30",
+    mother_name: "eed",
+    pincode: "576008",
+    reg_number: "003",
+    section: "A",
+    state: "karnataka",
+    student_address: "vv puram",
+    student_name: "Prashanth",
+    student_photo: "../assets/images/student3.jpg",
+    transport_fee: true,
+    tuition_fee: true,
+    total_fee:32000,
+    paid_fee:30000,
+    category:"ST"
 
-//    },
-//    {
-//     Dob: "1996-03-16",
-//     academic_year: "2021",
-//     admission_fee: true,
-//     alter_num: "+918978909878",
-//     anniversary_date: "2021-10-15",
-//     city: "banglore",
-//     class_name: "second",
-//     contact_num: "+918978909878",
-//     country: "India",
-//     date_of_admission: "2021-10-30",
-//     email_address: "dummy12@gmail.com",
-//     father_dob: "2021-10-08",
-//     father_name: "fad",
-//     fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
-//     food_fee: true,
-//     gender: "female",
-//     hostel_fee: true,
-//     misc_fee: "karnataka",
-//     mother_dob: "2021-10-30",
-//     mother_name: "eed",
-//     pincode: "576008",
-//     reg_number: "004",
-//     section: "B",
-//     state: "karnataka",
-//     student_address: "vv puram",
-//     student_name: "Rashmi",
-//     student_photo: "../assets/images/student4.jpg",
-//     transport_fee: true,
-//     tuition_fee: true,
-//     total_fee:30000,
-//     paid_fee:30000,
-//     category:"SC"
-//  },
-//  {
-//   Dob: "1996-03-16",
-//   academic_year: "2021",
-//   admission_fee: true,
-//   alter_num: "+918978909878",
-//   anniversary_date: "2021-10-15",
-//   city: "banglore",
-//   class_name: "third",
-//   contact_num: "+918978909878",
-//   country: "India",
-//   date_of_admission: "2021-10-30",
-//   email_address: "dummy12@gmail.com",
-//   father_dob: "2021-10-08",
-//   father_name: "fad",
-//   fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
-//   food_fee: true,
-//   gender: "female",
-//   hostel_fee: true,
-//   misc_fee: "karnataka",
-//   mother_dob: "2021-10-30",
-//   mother_name: "eed",
-//   pincode: "576008",
-//   reg_number: "004",
-//   section: "A",
-//   state: "karnataka",
-//   student_address: "vv puram",
-//   student_name: "Nidisha",
-//   student_photo: "../assets/images/student5.jpg",
-//   transport_fee: true,
-//   tuition_fee: true,
-//   total_fee:30000,
-//   paid_fee:30000,
-//   category:"SC"
-// }
+   },
+   {
+    Dob: "1996-03-16",
+    academic_year: "2021",
+    admission_fee: true,
+    alter_num: "+918978909878",
+    anniversary_date: "2021-10-15",
+    city: "banglore",
+    class_name: "second",
+    contact_num: "+918978909878",
+    country: "India",
+    date_of_admission: "2021-10-30",
+    email_address: "dummy12@gmail.com",
+    father_dob: "2021-10-08",
+    father_name: "fad",
+    fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
+    food_fee: true,
+    gender: "female",
+    hostel_fee: true,
+    misc_fee: "karnataka",
+    mother_dob: "2021-10-30",
+    mother_name: "eed",
+    pincode: "576008",
+    reg_number: "004",
+    section: "B",
+    state: "karnataka",
+    student_address: "vv puram",
+    student_name: "Rashmi",
+    student_photo: "../assets/images/student4.jpg",
+    transport_fee: true,
+    tuition_fee: true,
+    total_fee:30000,
+    paid_fee:30000,
+    category:"SC"
+ },
+ {
+  Dob: "1996-03-16",
+  academic_year: "2021",
+  admission_fee: true,
+  alter_num: "+918978909878",
+  anniversary_date: "2021-10-15",
+  city: "banglore",
+  class_name: "third",
+  contact_num: "+918978909878",
+  country: "India",
+  date_of_admission: "2021-10-30",
+  email_address: "dummy12@gmail.com",
+  father_dob: "2021-10-08",
+  father_name: "fad",
+  fileSource: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAA",
+  food_fee: true,
+  gender: "female",
+  hostel_fee: true,
+  misc_fee: "karnataka",
+  mother_dob: "2021-10-30",
+  mother_name: "eed",
+  pincode: "576008",
+  reg_number: "004",
+  section: "A",
+  state: "karnataka",
+  student_address: "vv puram",
+  student_name: "Nidisha",
+  student_photo: "../assets/images/student5.jpg",
+  transport_fee: true,
+  tuition_fee: true,
+  total_fee:30000,
+  paid_fee:30000,
+  category:"SC"
+}
    
-//   ]
-  // getStudentdata(){
-  //   return this.http.get<Studentdata[]>('')
-  // }
+  ]
+  getStudentdata(){
+    return this.http.get<Studentdata[]>('')
+  }
 
-  // createStudent(student:Studentdata){
-  //   console.log('sssssssss',student)
-  //   return this.http.post('', student)
-  // }
+  createStudent(student:Studentdata){
+    console.log('sssssssss',student)
+    return this.http.post('', student)
+  }
 
 
-
+ */
   
   Regstudent(data:any){
     const url = `${this.mainURL}/Student/`;

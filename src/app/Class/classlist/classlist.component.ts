@@ -8,6 +8,7 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { StaffurlService } from 'src/app/shared/services/staffurl.service';
 
 
 @Component({
@@ -41,17 +42,18 @@ export class ClasslistComponent implements OnInit {
   teacher: any;
   classroomData: any;
   classes: any;
-  classess: { id: string; Maths: boolean; class_name: string; computer: boolean; english: boolean; hindi: boolean; kannada: boolean; pt: boolean; science: boolean; section: string; social_science: boolean; teachers: string; }[];
+  classess: any[] = [];
   classesofschool: any;
   closeResult: string;
   classs: any;
   classForm: any;
   isDean: boolean;
+  staffs: any;
 
 
  
 
-  constructor(private classserve : ClassurlService, private modalService: NgbModal,private fb: FormBuilder) { }
+  constructor(private classserve : ClassurlService, private modalService: NgbModal, private staffService: StaffurlService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -77,6 +79,7 @@ export class ClasslistComponent implements OnInit {
    else{
     this.isDean = false;
    }
+    this.getClassDetails();
     this.getStaffDetails();
    }
 
@@ -106,9 +109,14 @@ valueSelected(selectedclass:String , selectedteacher:String){
   console.log('result',this.classes)
 }
 
-
-
 getStaffDetails(){
+  this.staffService.getStaffDetails().subscribe((res: any) =>{
+        this.staffs = res;
+      });
+      
+    }
+
+getClassDetails(){
   this.classserve.getClassDetails().subscribe((res: any) =>{
         console.log(res);
         this.classes = res;
@@ -226,7 +234,7 @@ getStaffDetails(){
       icon: 'error',  
       title: 'Oops...',  
       text: 'Something went wrong!',  
-      footer: '<a href>Why do I have this issue?</a>'  
+      // footer: '<a href>Why do I have this issue?</a>'  
     })  
   } 
   

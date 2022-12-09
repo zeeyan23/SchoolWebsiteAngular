@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StaffurlService } from '../../shared/services/staffurl.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { User } from 'src/app/authentication/signup/signup.component';
+import { DburlService } from 'src/app/dburl.service';
 
 
 @Component({
@@ -15,12 +17,17 @@ export class AddstaffComponent implements OnInit {
   staffForm: FormGroup;
   imageSrc: string;
   selectedFile: File;
-  staffs: any;
+  staffs: any[] = [];
   isDean: boolean;
   public staffies: any[] = [];
-  constructor(private fb:FormBuilder, private staffss :StaffurlService,private router: Router) {
+  registerSubscriber: any;
+  constructor(private fb: FormBuilder,
+     private staffss: StaffurlService,
+     private router: Router,
+     private http: HttpClient,
+     private _url: DburlService,
+    private route: ActivatedRoute) {
     
-
    }
 
   ngOnInit(): void {
@@ -94,11 +101,7 @@ export class AddstaffComponent implements OnInit {
     this.staffss.getStaffDetails().subscribe((res: any) =>{
           console.log(res);
           this.staffs = res;
-
-          // this.studentss = res;
-          // this.studentId = this.students[0]["id"];
         });
-        console.log('reeeeeeeeeee',this.staffs);
         
       }
       
@@ -106,10 +109,21 @@ export class AddstaffComponent implements OnInit {
 submitForm(){
    
   // console.log(this.studentregForm.value);
-  var value = this.staffForm.value
-  
-  console.log(value);
-  var formData: any = new FormData();
+  const value = this.staffForm.value
+  // const value = form.value;
+    const newUser = new User( value.staff_name + value.reg_num, value.staff_name + value.reg_num + '@123', value.email, 'staff');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    this.registerSubscriber = this.http
+      .post(this._url.url + '/users/', newUser, { headers: headers })
+      .subscribe(
+        (responseData) => {
+          this.router.navigate(['login']), { relativeTo: this.route };
+          console.log(responseData);
+        
+      console.log(value);
+      var formData: any = new FormData();
      
       if(this.staffs.filter(({ reg_num }) => reg_num == value.reg_num).length){
         alert("register number already exists!!")
@@ -118,6 +132,7 @@ submitForm(){
 
         formData.append('reg_num', value.reg_num);
        }
+       formData.append('user_id', responseData['id']);
        formData.append('staff_name', value.staff_name);
       // formData.append('startedYear', value.startedYear);
       formData.append('gender', value.gender);
@@ -182,6 +197,12 @@ submitForm(){
      
       
     });
+  },
+  (error) => {
+    console.log(error);
+    this.erroalert();
+  }
+);
     
   }
   simpleAlert(){
@@ -223,7 +244,7 @@ submitForm(){
       icon: 'error',  
       title: 'Oops...',  
       text: 'Something went wrong!',  
-      footer: '<a href>Why do I have this issue?</a>'  
+      // footer: '<a href>Why do I have this issue?</a>'  
     })  
   } 
  

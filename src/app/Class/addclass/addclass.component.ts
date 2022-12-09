@@ -15,7 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class AddclassComponent implements OnInit {
 
   classForm: FormGroup;
-  staffmemo: { staff_name: string; reg_num: string; gendar: string; age: string; dob: string; designation: string; }[];
+  staffmemo: any[] = [];
   staffs: any;
   isDean: boolean;
 
@@ -116,12 +116,10 @@ export class AddclassComponent implements OnInit {
 
     getStaffDetails(){
       this.staffService.getStaffDetails().subscribe((res: any) =>{
-            console.log(res);
             this.staffs = res;
             // this.studentss = res;
             // this.studentId = this.students[0]["id"];
           });
-          console.log('reeeeeeeeeee',this.staffs);
           
         }
 
@@ -166,7 +164,7 @@ export class AddclassComponent implements OnInit {
       icon: 'error',  
       title: 'Oops...',  
       text: 'Something went wrong!',  
-      footer: '<a href>Why do I have this issue?</a>'  
+      // footer: '<a href>Why do I have this issue?</a>'  
     })  
   } 
   

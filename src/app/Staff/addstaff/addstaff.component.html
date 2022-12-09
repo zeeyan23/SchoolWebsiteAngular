@@ -75,7 +75,6 @@
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
                   </select>
-                  <small class="form-control-feedback"> Select Gender </small>
                 </div>
               </div>
               <div
@@ -86,7 +85,7 @@
                 class="alert alert-danger"
               >
                 <div *ngIf="staffForm.controls['gender'].errors.required">
-                  Gender is required.
+                  Gendar is required.
                 </div>
               </div>
 
@@ -167,7 +166,7 @@
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
-                  <label class="control-label">Fathers Name :</label>
+                  <label class="control-label">Father's Name :</label>
                   <input
                     type="text"
                     formControlName="father_name"
@@ -192,7 +191,7 @@
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
-                  <label class="control-label">Mothers Name :</label>
+                  <label class="control-label">Mother's Name :</label>
                   <input
                     type="text"
                     formControlName="mothers_name"
