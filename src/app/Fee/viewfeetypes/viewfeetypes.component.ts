@@ -241,7 +241,7 @@ export class ViewfeetypesComponent implements OnInit {
 
 
     simpleAlert(){
-      Swal.fire('Hi ! Fee Data updated sucessfully');
+      Swal.fire('Hi! Fee Data updated sucessfully');
     }
     
     successAlertNotification(){

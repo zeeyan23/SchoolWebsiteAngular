@@ -264,7 +264,7 @@ this.isParent =false;
   // }
 
   simpleAlert(){
-    Swal.fire('Hi ! Homework updated sucessfully');
+    Swal.fire('Hi! Homework updated sucessfully');
   }
   
   successAlertNotification(){

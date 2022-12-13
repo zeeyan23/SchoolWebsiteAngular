@@ -96,7 +96,7 @@ export class AddquizComponent implements OnInit {
       
     }
     simpleAlert(){
-      Swal.fire('Hi !Quiz Updated successfully');
+      Swal.fire('Hi! Quiz Updated successfully');
     }
     
     successAlertNotification(){

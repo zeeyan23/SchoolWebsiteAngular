@@ -121,7 +121,7 @@ export class AddfundComponent implements OnInit {
       
     }
     simpleAlert(){
-      Swal.fire('Hi ! Updated successfully');
+      Swal.fire('Hi! Data Updated successfully');
     }
     
     successAlertNotification(){

@@ -155,7 +155,7 @@ this.usergroup = usergroup;
   }
 
   simpleAlert(){
-    Swal.fire('Hi ! Leave Updated successfully');
+    Swal.fire('Hi! Leave Updated successfully');
   }
   
   successAlertNotification(){

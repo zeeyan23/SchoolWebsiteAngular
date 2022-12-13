@@ -285,11 +285,11 @@ export class InstitutedetailComponent implements OnInit {
   }
 
   simpleAlert() {
-    Swal.fire("Hi! updated successfully");
+    Swal.fire("Hi! Data updated successfully");
   }
 
   successAlertNotification() {
-    Swal.fire("Institutional Data Registered successfully", "success");
+    Swal.fire("Institution Data Registered successfully", "success");
   }
 
   alertConfirmation() {

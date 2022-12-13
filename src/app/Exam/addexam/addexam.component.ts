@@ -156,7 +156,7 @@ export class AddexamComponent implements OnInit {
       
     }
     simpleAlert(){
-      Swal.fire('Hi !Exam Updated successfully');
+      Swal.fire('Hi! Exam Updated successfully');
     }
     
     successAlertNotification(){

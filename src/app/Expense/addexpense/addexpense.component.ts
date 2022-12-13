@@ -148,7 +148,7 @@ submitForm(){
     
   }
   simpleAlert(){
-    Swal.fire('Hi ! Expense Updated successfully');
+    Swal.fire('Hi! Expense Updated successfully');
   }
   
   successAlertNotification(){

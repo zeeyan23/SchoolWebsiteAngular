@@ -127,11 +127,11 @@ export class AddtimetableComponent implements OnInit {
         
       }
       simpleAlert(){
-        Swal.fire('Hi Welcome! Updated successfully');
+        Swal.fire('Hi! Timetable Updated successfully');
       }
       
       successAlertNotification(){
-        Swal.fire('Hi', 'Congrats! Registered successfully', 'success')
+        Swal.fire('Hi', 'Timetable Registered successfully', 'success')
       }
       
       alertConfirmation(){

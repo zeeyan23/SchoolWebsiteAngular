@@ -287,11 +287,11 @@ export class RecievedlistComponent implements OnInit {
 
 
   simpleAlert(){
-    Swal.fire('Hi !Book Status updated sucessfully');
+    Swal.fire('Hi! Data updated sucessfully');
   }
   
   successAlertNotification(){
-    Swal.fire('Hi', 'Book  Registered successfully', 'success')
+    Swal.fire('Hi', 'Data Added successfully', 'success')
   }
   
   alertConfirmation(){

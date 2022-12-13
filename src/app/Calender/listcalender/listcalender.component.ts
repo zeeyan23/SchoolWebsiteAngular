@@ -170,11 +170,11 @@ getCalDetails(){
   
   }
   simpleAlert(){
-    Swal.fire('Hi !Staff updated sucessfully');
+    Swal.fire('Hi! Calendar updated sucessfully');
   }
   
   successAlertNotification(){
-    Swal.fire('Hi', 'Staff Registered successfully', 'success')
+    Swal.fire('Hi', 'Calendar Registered successfully', 'success')
   }
   
   alertConfirmation(){

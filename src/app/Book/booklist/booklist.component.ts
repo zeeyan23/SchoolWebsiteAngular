@@ -298,7 +298,7 @@ download() {
 }
 
 simpleAlert(){
-  Swal.fire('Hi ! Books updated sucessfully');
+  Swal.fire('Hi! Books updated sucessfully');
 }
 
 successAlertNotification(){

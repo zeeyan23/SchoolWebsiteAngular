@@ -211,11 +211,11 @@ this.getStudentDetails();
   }
 
   simpleAlert(){
-    Swal.fire('Hi ! updated sucessfully');
+    Swal.fire('Hi! Timetable2 updated sucessfully');
   }
   
   successAlertNotification(){
-    Swal.fire('Hi', 'Congrats! Registered successfully', 'success')
+    Swal.fire('Hi', 'Registered successfully', 'success')
   }
   
   alertConfirmation(){

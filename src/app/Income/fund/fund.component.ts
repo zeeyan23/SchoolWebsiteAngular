@@ -190,7 +190,7 @@ export class FundComponent implements OnInit {
   }
 
   simpleAlert(){
-    Swal.fire('Hi ! Fund updated sucessfully');
+    Swal.fire('Hi! Fund updated sucessfully');
   }
   
   successAlertNotification(){

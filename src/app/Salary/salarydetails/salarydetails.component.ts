@@ -230,7 +230,7 @@ export class SalarydetailsComponent implements OnInit {
   }
 
   simpleAlert(){
-    Swal.fire('Hi !Salary updated sucessfully');
+    Swal.fire('Hi! Salary updated sucessfully');
   }
   
   successAlertNotification(){

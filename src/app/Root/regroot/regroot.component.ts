@@ -130,7 +130,7 @@ submitForm(){
     });
   }
   simpleAlert(){
-    Swal.fire('Hi !Route Updated successfully');
+    Swal.fire('Hi! Route Updated successfully');
   }
   
   successAlertNotification(){

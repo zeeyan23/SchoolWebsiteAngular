@@ -303,7 +303,7 @@ export class StafflistComponent implements OnInit {
 
 
  simpleAlert(){
-  Swal.fire('Hi !Staff updated sucessfully');
+  Swal.fire('Hi! Staff updated sucessfully');
 }
 
 successAlertNotification(){

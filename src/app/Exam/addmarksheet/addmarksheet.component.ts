@@ -215,7 +215,7 @@ this.isParent =false;
 }
 
 simpleAlert(){
-  Swal.fire('Hi !Marksheet Updated successfully');
+  Swal.fire('Hi! Marksheet Updated successfully');
 }
 
 successAlertNotification(){

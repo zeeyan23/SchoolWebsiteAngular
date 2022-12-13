@@ -641,7 +641,7 @@ console.log('tttttttttttttttttttttt',this.totalFee);
 
 
   simpleAlert(){
-    Swal.fire('Hi !Student updated sucessfully');
+    Swal.fire('Hi! Student updated sucessfully');
   }
   
   successAlertNotification(){

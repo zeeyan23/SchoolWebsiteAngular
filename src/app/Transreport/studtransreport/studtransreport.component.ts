@@ -399,7 +399,7 @@ export class StudtransreportComponent implements OnInit {
  
 
  simpleAlert(){
-  Swal.fire('Hi ! Report Updated successfully');
+  Swal.fire('Hi! Report Updated successfully');
 }
 
 successAlertNotification(){

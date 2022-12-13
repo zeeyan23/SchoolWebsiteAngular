@@ -230,7 +230,7 @@ export class RootlistComponent implements OnInit {
   }
 
   simpleAlert(){
-    Swal.fire('Hi !Route updated sucessfully');
+    Swal.fire('Hi! Route updated sucessfully');
   }
   
   successAlertNotification(){

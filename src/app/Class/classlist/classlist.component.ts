@@ -103,7 +103,7 @@ valueSelected(selectedclass:String , selectedteacher:String){
   console.log('studentdata',this.classes);
 
   var filteredclass =this.classesofschool.filter(
-    item => item.class_name == selectedclass || item.teachers == selectedteacher
+    item => item.class_name == selectedclass || item.teachers.staff_name == selectedteacher
   );
   this.classes = filteredclass;
   console.log('result',this.classes)
@@ -196,11 +196,11 @@ getClassDetails(){
   
   }
   simpleAlert(){
-    Swal.fire('Hi !Staff updated sucessfully');
+    Swal.fire('Hi! Class updated sucessfully');
   }
   
   successAlertNotification(){
-    Swal.fire('Hi', 'Staff Registered successfully', 'success')
+    Swal.fire('Hi', 'Class Registered successfully', 'success')
   }
   
   alertConfirmation(){

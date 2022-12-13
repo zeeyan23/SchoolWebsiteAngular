@@ -22,7 +22,7 @@
                   <div class="col-md-4">
                     <label>Teacher</label>
                     <select class="form-control custom-select" #selectedteacher name="teachers">
-                      <option *ngFor="let item of classess" [value]="item.teachers">{{item.teachers}}</option>
+                      <option *ngFor="let item of classess" [value]="item.teachers.staff_name">{{item.teachers.staff_name}}</option>
                     </select>
                   </div>
                   <div class="col-md-4 block-tag">
@@ -107,7 +107,7 @@
                 <!-- <td>{{ class.id }}</td> -->
                 <td>{{ classs.class_name }}</td>
                 <td>{{ classs.section }}</td>
-                <td>{{ classs.teachers }}</td>
+                <td>{{ classs.teachers.staff_name }}</td>
                 <td>{{ classs.Maths? 'Maths' : ''}}<br>
                     {{ classs.computer? 'computer' : ''}}<br>
                     {{ classs.english? 'english' : ''}}<br>
@@ -190,7 +190,7 @@
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ class.class_name }}</td>
                 <td>{{ class.section }}</td>
-                <td>{{ class.teachers }}</td>
+                <td>{{ class.teachers.staff_name }}</td>
                 <td>{{ class.Maths? 'Maths' : ''}}<br>
                     {{ class.computer? 'computer' : ''}}<br>
                     {{ class.english? 'english' : ''}}<br>
@@ -286,7 +286,7 @@
           formControlName="teachers"
         
           list= "ddOptions"
-          [(ngModel)]="classs.teachers"
+          [(ngModel)]="classs.teachers.staff_name"
           [ngModelOptions]="{ standalone: true }"
           
           />

@@ -189,7 +189,7 @@ export class ViewexpenseComponent implements OnInit {
 	  }
 
 	  simpleAlert(){
-		Swal.fire('Hi !Expense updated sucessfully');
+		Swal.fire('Hi! Expense updated sucessfully');
 	  }
 	  
 	  successAlertNotification(){

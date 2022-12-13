@@ -276,7 +276,7 @@ export class IssuedlistComponent implements OnInit {
   }
 
   simpleAlert(){
-    Swal.fire('Hi !Book updated sucessfully');
+    Swal.fire('Hi! Book updated sucessfully');
   }
   
   successAlertNotification(){

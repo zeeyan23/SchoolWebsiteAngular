@@ -223,7 +223,7 @@ valueSelectedd() {
       
     }
     simpleAlert(){
-      Swal.fire('Hi !Book Updated successfully');
+      Swal.fire('Hi! Book Updated successfully');
     }
     
     successAlertNotification(){

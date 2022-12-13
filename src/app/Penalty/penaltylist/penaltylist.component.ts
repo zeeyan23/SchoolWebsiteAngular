@@ -207,7 +207,7 @@ export class PenaltylistComponent implements OnInit {
 
 
   simpleAlert(){
-    Swal.fire('Hi ! Penalty updated sucessfully');
+    Swal.fire('Hi! Penalty updated sucessfully');
   }
   
   successAlertNotification(){

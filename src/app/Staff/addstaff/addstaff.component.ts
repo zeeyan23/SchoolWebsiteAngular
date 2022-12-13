@@ -206,7 +206,7 @@ submitForm(){
     
   }
   simpleAlert(){
-    Swal.fire('Hi ! Staff Updated successfully');
+    Swal.fire('Hi! Staff Updated successfully');
   }
   
   successAlertNotification(){

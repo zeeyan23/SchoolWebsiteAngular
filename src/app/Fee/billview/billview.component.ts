@@ -167,11 +167,11 @@ export class BillviewComponent implements OnInit {
   }
 
   simpleAlert() {
-    Swal.fire("Hi Welcome! Updated successfully");
+    Swal.fire("Hi! Updated successfully");
   }
 
   successAlertNotification() {
-    Swal.fire("Hi", "Congrats! Registered successfully", "success");
+    Swal.fire("Hi", "Registered successfully", "success");
   }
 
   alertConfirmation() {

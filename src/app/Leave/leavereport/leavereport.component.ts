@@ -242,11 +242,11 @@ export class LeavereportComponent implements OnInit {
   
   }
   simpleAlert(){
-    Swal.fire('Hi ! Leave Application updated sucessfully');
+    Swal.fire('Hi! Leave Application updated sucessfully');
   }
   
   successAlertNotification(){
-    Swal.fire('Hi', 'Leave Application Sent Registered successfully', 'success')
+    Swal.fire('Hi', 'Leave Application Sent successfully', 'success')
   }
   
   alertConfirmation(){

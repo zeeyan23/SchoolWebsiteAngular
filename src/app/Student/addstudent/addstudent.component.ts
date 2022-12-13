@@ -602,7 +602,7 @@ var formData:any = new FormData();
 
       
   simpleAlert(){
-    Swal.fire('Hi Welcome! This is Simple Alert');
+    Swal.fire('Hi! Student updated successfully');
   }
   
   successAlertNotification(){

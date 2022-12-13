@@ -205,7 +205,7 @@ this.isParent =false;
   }
 
   simpleAlert(){
-    Swal.fire('Hi !Exam Data updated sucessfully');
+    Swal.fire('Hi! Exam Data updated sucessfully');
   }
   
   successAlertNotification(){

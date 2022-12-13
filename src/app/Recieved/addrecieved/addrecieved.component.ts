@@ -108,11 +108,11 @@ export class AddrecievedComponent implements OnInit {
       
     }
     simpleAlert(){
-      Swal.fire('Hi ! Book Updated successfully');
+      Swal.fire('Hi! Data Updated successfully');
     }
     
     successAlertNotification(){
-      Swal.fire('Hi', 'Book Registered successfully', 'success')
+      Swal.fire('Hi', 'Data Added successfully', 'success')
     }
     
     alertConfirmation(){

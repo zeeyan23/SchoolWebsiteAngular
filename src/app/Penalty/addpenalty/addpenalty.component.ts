@@ -140,7 +140,7 @@ export class AddpenaltyComponent implements OnInit {
       
     }
     simpleAlert(){
-      Swal.fire('Hi !Penalty Updated successfully');
+      Swal.fire('Hi! Penalty Updated successfully');
     }
     
     successAlertNotification(){

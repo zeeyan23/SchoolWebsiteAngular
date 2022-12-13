@@ -64,11 +64,11 @@ export class ListquestionComponent implements OnInit {
     
 
     simpleAlert(){
-      Swal.fire('Hi ! updated sucessfully');
+      Swal.fire('Hi! Data updated sucessfully');
       }
       
       successAlertNotification(){
-      Swal.fire('Hi', 'Congrats! Registered successfully', 'success')
+      Swal.fire('Hi', 'Data Added successfully', 'success')
       }
       
       alertConfirmation(){

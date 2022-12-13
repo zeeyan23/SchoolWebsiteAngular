@@ -126,7 +126,7 @@ export class AddclassComponent implements OnInit {
   
 
   simpleAlert(){
-    Swal.fire('Hi !Class updated sucessfully');
+    Swal.fire('Hi! Class updated sucessfully');
   }
   
   successAlertNotification(){
