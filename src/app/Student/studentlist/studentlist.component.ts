@@ -385,7 +385,7 @@ this.studserve.Updatestudent(formData, Id).subscribe((res:any)=>  {
 
   download() {
     let fileName = 'StudentList.csv';
-    let columnNames = ["Regno.","Student Name","Class","Section","Date of Birth","gendar","Fathers Name","Mother Name","Contact Number","Alternate Number","Father Dob","Mother Dob","Anniversary Date","Date Of Admission","Admission Fee","Tuition Fee","Transport Fee","Food Fee", "Hostel Fee", "Misc Fee","Total Fee", "Category", "Paid Fee", "Due Date", "Student address","City","State","Country","Pincode","Academic Year","Email Address","Student Photo"];
+    let columnNames = ["Regno.","Student Name","Class","Section","Date of Birth","gender","Fathers Name","Mother Name","Contact Number","Alternate Number","Father Dob","Mother Dob","Anniversary Date","Date Of Admission","Admission Fee","Tuition Fee","Transport Fee","Food Fee", "Hostel Fee", "Misc Fee","Total Fee", "Category", "Paid Fee", "Due Date", "Student address","City","State","Country","Pincode","Academic Year","Email Address","Student Photo"];
     let header = columnNames.join(',');
 
     let csv = header;

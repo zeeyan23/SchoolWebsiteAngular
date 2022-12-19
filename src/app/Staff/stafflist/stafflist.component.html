@@ -54,7 +54,7 @@
                 <th scope="col">Staff Photo</th>
                 <th scope="col">Staff Name</th>
                 <th scope="col">Reg Number</th>
-                <th scope="col">Gendar</th>
+                <th scope="col">Gender</th>
                 <th scope="col">Age</th>
                 <th scope="col">DOB</th>
                 <th scope="col">Designation</th>
@@ -80,14 +80,14 @@
                 <th scope="row">{{(page-1)*15+i+1}}</th>
                 <td class="zoom-without-container">
                   <img
-                    src="http://localhost:8000{{ staff.staff_photo }}"
+                    src="{{ staff.staff_photo }}"
                     width="200"
                     height="150"
                   />
                 </td>
                 <td>{{ staff.staff_name }}</td>
                 <td>{{ staff.reg_num }}</td>
-                <td>{{ staff.gendar }}</td>
+                <td>{{ staff.gender }}</td>
                 <td>{{ staff.age }}</td>
                 <td>{{ staff.dob | date:'yyyy-MM-dd' }}</td>
                 <td>{{ staff.designation }}</td>
@@ -175,7 +175,7 @@
                 <th scope="col">Staff Photo</th>
                 <th scope="col">Staff Name</th>
                 <th scope="col">Reg Number</th>
-                <th scope="col">Gendar</th>
+                <th scope="col">Gender</th>
                 <th scope="col">Age</th>
                 <th scope="col">DOB</th>
                 <th scope="col">Designation</th>
@@ -186,14 +186,14 @@
         <th scope="row">{{(page-1)*15+i+1}}</th>
         <td class="zoom-without-container">
           <img
-            src="http://localhost:8000{{ staff.staff_photo }}"
+            src="{{ staff.staff_photo }}"
             width="200"
             height="150"
           />
         </td>
         <td>{{ staff.staff_name }}</td>
         <td>{{ staff.reg_num }}</td>
-        <td>{{ staff.gendar }}</td>
+        <td>{{ staff.gender }}</td>
         <td>{{ staff.age }}</td>
         <td>{{ staff.dob | date:'yyyy-MM-dd'}}</td>
         <td>{{ staff.designation }}</td>
@@ -227,7 +227,7 @@
               <div class="form-group">
                 <label>Staff Photo:</label>
                 <img
-                  src="http://localhost:8000{{ staff.staff_photo }}"
+                  src="{{ staff.staff_photo }}"
                   width="300"
                   height="200"
                 />
@@ -276,15 +276,15 @@
                 <label class="control-label">Select Gender:</label>
                 <select
                   class="form-control custom-select"
-                  formControlName="gendar"
-                  [(ngModel)]="staff.gendar"
+                  formControlName="gender"
+                  [(ngModel)]="staff.gender"
                   [ngModelOptions]="{standalone: true}"
 
                 >
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </select>
-                <small class="form-control-feedback"> Select Gender </small>
+                <!-- <small class="form-control-feedback"> Select Gender </small> -->
               </div>
             </div>
 

@@ -106,6 +106,7 @@ this.usergroup = usergroup;
         formData.append('leave_to', value.leave_to);
         formData.append('leave_reason', value.leave_reason);
         formData.append('leave_status', value.leave_status);
+        formData.append('student_reg_number', 0);
         
         console.log(formData);
   

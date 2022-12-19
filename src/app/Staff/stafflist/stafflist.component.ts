@@ -47,7 +47,7 @@ export class StafflistComponent implements OnInit {
   sbj: string;
   ye: string;
   stfp: string;
-  staffss: { age: string; designation: string; dob: string; doj: string; email: string; father_name: string; fileSource: string; gendar: string; mothers_name: string; phone: string; qualification: string; reg_num: string; subject: string; yoe: string; staff_name: string; staff_photo: string; }[];
+  staffss: any[] = [];
   selectedFile: any;
 
   popoverTitle = 'Delete Staff';
@@ -74,7 +74,7 @@ export class StafflistComponent implements OnInit {
  this.staffForm = this.fb.group({
       staff_name: ["", Validators.required],
       reg_num: ["", [Validators.required]],
-      gendar: ["", [Validators.required]],
+      gender: ["", [Validators.required]],
       age: ["", Validators.required],
       dob: ["", [Validators.required]],
       designation: ["", Validators.required],
@@ -133,7 +133,7 @@ export class StafflistComponent implements OnInit {
         formData.append('staff_name', value.staff_name);
         formData.append('reg_num', value.reg_num);
         // formData.append('startedYear', value.startedYear);
-        formData.append('gendar', value.gendar);
+        formData.append('gender', value.gender);
         formData.append('age', value.age);
         formData.append('dob', value.dob);
         formData.append('designation', value.designation);
@@ -213,7 +213,7 @@ export class StafflistComponent implements OnInit {
     let columnNames = [
       "Regno.",
       "Staff Name",
-      "Gendar",
+      "Gender",
       "Age",
       "DOB",
       "Designation",
@@ -237,7 +237,7 @@ export class StafflistComponent implements OnInit {
     for (let i = 0; i < this.staffs.length; ++i) {
       this.regnos = this.staffs[i].reg_num;
       this.stfname = this.staffs[i].staff_name;
-      this.subj = this.staffs[i].gendar;
+      this.subj = this.staffs[i].gender;
       this.phne = this.staffs[i].age;
       this.mail = this.staffs[i].dob;
       this.qualgctin=this.staffs[i].designation;
