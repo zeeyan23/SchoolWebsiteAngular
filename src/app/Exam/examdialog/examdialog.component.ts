@@ -86,12 +86,12 @@ export class ExamdialogComponent implements OnInit {
   getexambyidDetails(id){
     this.examserve.getexambyidDetails(id).subscribe((res: any) =>{
           console.log(res);
-          this.examname = res['exam_name']
-          this.startdate = res['start_date']
-          this.enddate = res['end_date']
-          this.totmarks = res[ 'Total_marks']
-          this.hour = res[ 'hour']
-          this.classname = res[ 'class_name']
+          this.examname = res[0]['exam_name']
+          this.startdate = res[0]['start_date']
+          this.enddate = res[0]['end_date']
+          this.totmarks = res[0][ 'Total_marks']
+          this.hour = res[0][ 'hour']
+          this.classname = res[0][ 'class_name']
           console.log('saaa',this.mathsmax)
           
           // this.studentss = res;

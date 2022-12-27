@@ -38,7 +38,8 @@
   .container-fluid{
     padding-top: -10px;
     padding-left: 100px;
-    width: 1700px;
+    /* width: 1700px; */
+    width: 100%;
     background-color: #eee8e811;
     margin-left: 150px;
 }
@@ -47,7 +48,8 @@
     display: none;
   }
   table{
-    width: 800px;
+    /* width: 800px; */
+    width: 100%;
     background-color: antiquewhite;
   }
   .btn{

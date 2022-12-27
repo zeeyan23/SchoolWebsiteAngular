@@ -26,9 +26,9 @@
                     <option value="Class B Teacher">Class B Teacher</option>
                     <option value="Class C teacher">Class C teacher</option>
                   </select>
-                    <small class="form-control-feedback">
+                    <!-- <small class="form-control-feedback">
                       Select sender
-                    </small>
+                    </small> -->
                   </div>
                 </div>
                 <div *ngIf="notificationForm.controls['Send_from'].invalid && notificationForm.controls['Send_from'].touched" class="alert alert-danger">
@@ -51,9 +51,9 @@
                         <option value="class">class</option>
                         <option value="Parents">Parents</option>
                       </select>
-                      <small class="form-control-feedback">
+                      <!-- <small class="form-control-feedback">
                         Send to Expense
-                      </small>
+                      </small> -->
                     </div>
                   </div>
                   <div *ngIf="notificationForm.controls['send_to'].invalid && notificationForm.controls['send_to'].touched" class="alert alert-danger">
@@ -97,7 +97,7 @@
                         rows="5"
                         placeholder="Text Address..."
                       ></textarea>
-                      <small class="form-control-feedback"> </small>
+                      <!-- <small class="form-control-feedback"> </small> -->
                     </div>
                   </div>
                   <div *ngIf="notificationForm.controls['noty_message'].invalid && notificationForm.controls['noty_message'].touched" class="alert alert-danger">

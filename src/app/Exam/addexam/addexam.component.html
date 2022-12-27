@@ -19,9 +19,9 @@
                     type="text"
                     formControlName="exam_name"
                     class="form-control form-control-danger"
-                    placeholder="Enter First Name"
+                    placeholder="Enter Name"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="examForm.controls['exam_name'].invalid && examForm.controls['exam_name'].touched" class="alert alert-danger">
@@ -40,7 +40,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Second Name"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="examForm.controls['start_date'].invalid && examForm.controls['start_date'].touched" class="alert alert-danger">
@@ -59,7 +59,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Phone Number"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="examForm.controls['end_date'].invalid && examForm.controls['end_date'].touched" class="alert alert-danger">
@@ -70,14 +70,14 @@
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
-                  <label class="control-label">Total marks</label>
+                  <label class="control-label">Total Marks</label>
                   <input
                     type="text"
                     formControlName="Total_marks"
                     class="form-control form-control-danger"
-                    placeholder="Enter Amount"
+                    placeholder="Enter Marks"
                   />
-                  <small class="form-control-feedback"></small>
+                  <!-- <small class="form-control-feedback"></small> -->
                 </div>
               </div>
               <div *ngIf="examForm.controls['Total_marks'].invalid && examForm.controls['Total_marks'].touched" class="alert alert-danger">
@@ -94,9 +94,9 @@
                     type="text"
                     formControlName="hour"
                     class="form-control form-control-danger"
-                    placeholder="Enter Message"
+                    placeholder="Enter Hour"
                   />
-                  <small class="form-control-feedback"></small>
+                  <!-- <small class="form-control-feedback"></small> -->
                 </div>
               </div>
               <div *ngIf="examForm.controls['hour'].invalid && examForm.controls['hour'].touched" class="alert alert-danger">
@@ -112,7 +112,7 @@
                     <select  class="form-control custom-select" class="form-control"  formControlName="class_name" >
                         <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
                       </select>
-                    <small class="form-control-feedback"> </small>
+                    <!-- <small class="form-control-feedback"> </small> -->
                 </div>
             </div>
             <div *ngIf="examForm.controls['class_name'].invalid && examForm.controls['class_name'].touched" class="alert alert-danger">
@@ -124,38 +124,40 @@
               <!--/span-->
             </div>
             <table class="table">
-              <tr>
-                <th colspan="2"></th>
-                <th width="50px">
-                 
-                </th>
-              </tr>
-              <tr
-                *ngFor="let examiess of examies; let i = index;"
-                
-              >
+              <tr *ngFor="let examiess of examies; let i = index;">
                 <td>
-                  <label class="control-label"> Field Name :</label>
+                  <label class="control-label">Date :</label>
                   <input
-                    type="text"
-                    name="name_{{examiess.id}}"
-                    class="form-control"
-                    placeholder="Name" 
-                    [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="examiess.name"
-                  />
-                </td>
-                <td>
-                  <label class="control-label">Value :</label>
-                  <input
-                    type="text"
-                    name="value_{{examiess.id}}"
+                    type="date"
+                    name="examdate_{{examiess.id}}"
                     class="form-control"
                     placeholder="value"
                     [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="examiess.value"
+                    [(ngModel)]="examiess.exam_date"
                   />
                 </td>
+                <td>
+                  <label class="control-label">Time :</label>
+                  <input
+                    type="time"
+                    name="examtime_{{examiess.id}}"
+                    class="form-control"
+                    placeholder="value"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="examiess.exam_time"
+                  />
+                </td>
+                <td>
+                  <label class="control-label"> Subject :</label>
+                  <input
+                    type="text"
+                    name="subject_{{examiess.id}}"
+                    class="form-control"
+                    placeholder="Name" 
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="examiess.subject"
+                  />
+                </td> 
                 <td>
                   <button (click)="removeQuantity(i)" class="btn btn-danger">
                     Remove

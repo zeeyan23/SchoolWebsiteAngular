@@ -5,7 +5,7 @@
     <div class="col-md-8">
     <div class="card">
     <div class="card-header card-header-success">
-      <button mat-raised-button id="modal-cancel-button" style="margin-left:550px;margin-right: 20px;" (click)="closeModal()">Close</button>
+      <button mat-raised-button id="modal-cancel-button" style="margin-right: 20px;" (click)="closeModal()">Close</button>
  
     <button
     type="button"
@@ -21,23 +21,21 @@
         <table #screen cellspacing="0" border="3"  cellpadding="2">
             <tr height="60" style="background-color: rgb(21, 21, 110);color:white;text-align: center;font-size: large;">
                 <th colspan="15">Kinara school</th>
-                <img src="../assets/images/kinara_school_yermal.png" alt="Flowers in Chania" width="100" height="100">
+                <img src="../assets/images/kinara_school_yermal.png" alt="Logo" width="100" height="100">
             </tr>
             <tr>
-                <th rowspan="3">SLno</th>
-                <th rowspan="3">exam Name</th>
-                <th rowspan="3">start Date</th>
-                <th rowspan="3">end Date</th>
+                <th rowspan="3">Exam Name</th>
+                <th rowspan="3">Start Date</th>
+                <th rowspan="3">End Date</th>
                 <th rowspan="3">Total Marks</th>
-                <th rowspan="3">hour</th>
-                <th rowspan="3">class name</th>
+                <th rowspan="3">Hour</th>
+                <th rowspan="3">Class Name</th>
             </tr>
         <tbody>
           <tr>
-            <td>1</td>
             <td>{{examname}}</td>
-            <td>{{startdate}}</td>
-            <td>{{enddate}}</td>
+            <td>{{startdate | date:'yyyy-MM-dd'}}</td>
+            <td>{{enddate | date:'yyyy-MM-dd'}}</td>
             <td>{{totmarks}}</td>
             <td>{{hour}}</td>
             <td>{{classname}}</td>

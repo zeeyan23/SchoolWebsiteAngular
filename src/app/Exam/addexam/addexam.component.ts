@@ -82,8 +82,9 @@ export class AddexamComponent implements OnInit {
   addQuantity() {
     this.examies.push({
       id: this.examies.length + 1,
-      name: '',
-      value: '',
+      exam_date: '',
+      exam_time: '',
+      subject: ''
     });
   }
 
@@ -124,8 +125,9 @@ export class AddexamComponent implements OnInit {
           for(let i=0; i<this.examies.length; i++){    
             const extraData = {
               exam: res.id,
-              name: this.examies[i].name,
-              value: this.examies[i].value,
+              exam_date: this.examies[i].exam_date,
+              exam_time: this.examies[i].exam_time,
+              subject: this.examies[i].subject,
             };
             console.log('extraadataaa',extraData)
   

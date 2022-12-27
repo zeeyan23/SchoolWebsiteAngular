@@ -37,7 +37,7 @@
                     <select  class="form-control custom-select" class="form-control"  formControlName="vehicle_num" >
                         <option *ngFor="let item of vehicle" [value]="item.vehicle_num">{{item.vehicle_num}}</option>
                       </select>
-                    <small class="form-control-feedback"> </small>
+                    <!-- <small class="form-control-feedback"> </small> -->
                 </div>
             </div>
             <div *ngIf="routeregForm.controls['vehicle_num'].invalid && routeregForm.controls['vehicle_num'].touched" class="alert alert-danger">
@@ -57,7 +57,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Driver Name"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="routeregForm.controls['Driver_name'].invalid && routeregForm.controls['Driver_name'].touched" class="alert alert-danger">
@@ -76,7 +76,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Amount"
                   />
-                  <small class="form-control-feedback"></small>
+                  <!-- <small class="form-control-feedback"></small> -->
                 </div>
               </div>
               <div *ngIf="routeregForm.controls['amount'].invalid && routeregForm.controls['amount'].touched" class="alert alert-danger">
@@ -95,7 +95,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Mobile No."
                   />
-                  <small class="form-control-feedback"></small>
+                  <!-- <small class="form-control-feedback"></small> -->
                 </div>
               </div>
               <div *ngIf="routeregForm.controls['mobile_num'].invalid && routeregForm.controls['mobile_num'].touched" class="alert alert-danger">

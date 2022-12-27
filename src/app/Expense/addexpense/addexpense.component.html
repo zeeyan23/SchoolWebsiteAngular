@@ -25,9 +25,9 @@
                     <option value="Class Expenses">Class Expenses</option>
                     <option value="Purchase">Purchase</option>
                   </select>
-                  <small class="form-control-feedback">
+                  <!-- <small class="form-control-feedback">
                     Select your Expense
-                  </small>
+                  </small> -->
                 </div>
               </div>
               <div *ngIf="expenseForm.controls['expense_type'].invalid && expenseForm.controls['expense_type'].touched" class="alert alert-danger">
@@ -45,7 +45,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Expense Details"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="expenseForm.controls['expense_detail'].invalid && expenseForm.controls['expense_detail'].touched" class="alert alert-danger">
@@ -63,7 +63,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Amount"
                   />
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
                 </div>
               </div>
               <div *ngIf="expenseForm.controls['amount'].invalid && expenseForm.controls['amount'].touched" class="alert alert-danger">
@@ -105,7 +105,7 @@
                     class="form-control form-control-danger"
                     placeholder="Enter Expense Date"
                   />
-                  <small class="form-control-feedback"></small>
+                  <!-- <small class="form-control-feedback"></small> -->
                 </div>
               </div>
               <div *ngIf="expenseForm.controls['expense_date'].invalid && expenseForm.controls['expense_date'].touched" class="alert alert-danger">
@@ -125,9 +125,9 @@
                     <option value="Cheque">Cheque</option>
                     <option value="Net Banking">Net Banking</option>
                   </select>
-                  <small class="form-control-feedback">
+                  <!-- <small class="form-control-feedback">
                     Select Payment Mode
-                  </small>
+                  </small> -->
                 </div>
               </div>
               <div *ngIf="expenseForm.controls['payment_mode'].invalid && expenseForm.controls['payment_mode'].touched" class="alert alert-danger">

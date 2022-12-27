@@ -222,7 +222,7 @@
                   name="regno"
                   readonly
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
          
@@ -239,7 +239,7 @@
                   name="name"
                   readonly
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -254,7 +254,7 @@
                   name="gender"
                   readonly
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -269,7 +269,7 @@
                   name="class"
                   readonly
                 />
-                <small class="form-control-feedback"></small>
+                <!-- <small class="form-control-feedback"></small> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -284,7 +284,7 @@
                   name="mobile"
                   readonly
                 />
-                <small class="form-control-feedback"></small>
+                <!-- <small class="form-control-feedback"></small> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -293,7 +293,7 @@
                   <select  class="form-control custom-select" class="form-control" [(ngModel)]="selectedvehicleno" formControlName="vehicleno" (change)="valueSelected()" >
                       <option *ngFor="let item of vehicle" [value]="item.vehicle_num">{{item.vehicle_num}}</option>
                     </select>
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
               </div>
           </div>
           <div *ngIf="studtransForm.controls['vehicleno'].invalid && studtransForm.controls['vehicleno'].touched" class="alert alert-danger">
@@ -315,7 +315,7 @@
                   name="type"
                   placeholder="Enter Type"
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div *ngIf="studtransForm.controls['types'].invalid && studtransForm.controls['types'].touched" class="alert alert-danger">
@@ -337,7 +337,7 @@
                   name="driver_name"
                   placeholder="Enter Driver Name"
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div *ngIf="studtransForm.controls['driver_name'].invalid && studtransForm.controls['driver_name'].touched" class="alert alert-danger">
@@ -359,7 +359,7 @@
                   name="emp_mobile"
                   placeholder="Enter Driver Phone"
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div *ngIf="studtransForm.controls['emp_mobile'].invalid && studtransForm.controls['emp_mobile'].touched" class="alert alert-danger">
@@ -383,7 +383,7 @@
                   placeholder="Enter Driver Phone"
                 />
   
-                  <small class="form-control-feedback"> </small>
+                  <!-- <small class="form-control-feedback"> </small> -->
               </div>
           </div>
           <div *ngIf="studtransForm.controls['route_name'].invalid && studtransForm.controls['route_name'].touched" class="alert alert-danger">
@@ -406,7 +406,7 @@
                   name="stop_name"
                   placeholder="Enter Stop Name"
                 />
-                <small class="form-control-feedback"> </small>
+                <!-- <small class="form-control-feedback"> </small> -->
               </div>
             </div>
             <div *ngIf="studtransForm.controls['stop_name'].invalid && studtransForm.controls['stop_name'].touched" class="alert alert-danger">

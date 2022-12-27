@@ -16,7 +16,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Student Name :</label>
                                     <input type="text"  formControlName="student_name"  class="form-control" placeholder="enter Student name">
-                                    <small class="form-control-feedback">  </small>
+                                    <!-- <small class="form-control-feedback"></small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['student_name'].invalid && penaltyForm.controls['student_name'].touched" class="alert alert-danger">
@@ -32,7 +32,7 @@
                                     <select  class="form-control custom-select" class="form-control"  formControlName="class_name" >
                                         <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
                                       </select>
-                                    <small class="form-control-feedback"> </small>
+                                    <!-- <small class="form-control-feedback"> </small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['class_name'].invalid && penaltyForm.controls['class_name'].touched" class="alert alert-danger">
@@ -45,7 +45,7 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Section</label>
                                     <input type="text" formControlName="section" class="form-control form-control-danger" placeholder="Enter Section">
-                                    <small class="form-control-feedback"> </small>
+                                    <!-- <small class="form-control-feedback"> </small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['section'].invalid && penaltyForm.controls['section'].touched" class="alert alert-danger">
@@ -59,7 +59,7 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Roll No.:</label>
                                     <input type="text" formControlName="rollno" class="form-control form-control-danger" placeholder="Enter Rollno.">
-                                    <small class="form-control-feedback"></small>
+                                    <!-- <small class="form-control-feedback"></small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['rollno'].invalid && penaltyForm.controls['rollno'].touched" class="alert alert-danger">
@@ -73,7 +73,7 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Penalty Amount</label>
                                     <input type="text" formControlName="penalty"  class="form-control form-control-danger" placeholder="Enter Penalty amount">
-                                    <small class="form-control-feedback"> </small>
+                                    <!-- <small class="form-control-feedback"> </small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['penalty'].invalid && penaltyForm.controls['penalty'].touched" class="alert alert-danger">
@@ -87,7 +87,7 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Penalty Reason:</label>
                                     <input type="text" formControlName="penalty_reason" class="form-control form-control-danger" placeholder="Enter Penalty Reason">
-                                    <small class="form-control-feedback">  </small>
+                                    <!-- <small class="form-control-feedback"></small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['penalty_reason'].invalid && penaltyForm.controls['penalty_reason'].touched" class="alert alert-danger">
@@ -101,7 +101,7 @@
                                 <div class="form-group has-danger">
                                     <label class="control-label">Penalty Remark</label>
                                     <input type="text" formControlName="penalty_remark" class="form-control form-control-danger" placeholder="Enter penalty remark">
-                                    <small class="form-control-feedback">  </small>
+                                    <!-- <small class="form-control-feedback"></small> -->
                                 </div>
                             </div>
                             <div *ngIf="penaltyForm.controls['penalty_remark'].invalid && penaltyForm.controls['penalty_remark'].touched" class="alert alert-danger">
