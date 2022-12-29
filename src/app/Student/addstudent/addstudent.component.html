@@ -62,12 +62,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['reg_number'].invalid && studentregForm.controls['reg_number'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['reg_number'].errors.required">
+                 Register Number is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['reg_number'].invalid && studentregForm.controls['reg_number'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['reg_number'].errors.required">
-               Register Number is required.
               </div>
-            </div>
               <!--/span-->
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -81,12 +81,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['student_name'].invalid && studentregForm.controls['student_name'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['student_name'].errors.required">
+                 Student Name is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['student_name'].invalid && studentregForm.controls['student_name'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['student_name'].errors.required">
-               Student Name is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-success">
@@ -110,12 +110,12 @@
                 <option *ngFor="let item of classmemo" [value]="item.class_name">{{item.class_name}}</option>
               </select>
                 </div>
+                <div *ngIf="studentregForm.controls['class_name'].invalid && studentregForm.controls['class_name'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['class_name'].errors.required">
+                 Class Name is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['class_name'].invalid && studentregForm.controls['class_name'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['class_name'].errors.required">
-               Class Name is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-success">
@@ -135,12 +135,12 @@
               </datalist>
                  
                 </div>
+                <div *ngIf="studentregForm.controls['section'].invalid && studentregForm.controls['section'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['section'].errors.required">
+                 section is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['section'].invalid && studentregForm.controls['section'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['section'].errors.required">
-               section is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -154,12 +154,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['Dob'].invalid && studentregForm.controls['Dob'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['Dob'].errors.required">
+                 Date of Birth is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['Dob'].invalid && studentregForm.controls['Dob'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['Dob'].errors.required">
-               Date of Birth is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-success">
@@ -175,12 +175,12 @@
                   </select>
                   <!-- <small class="form-control-feedback"> Select Gender </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['gender'].invalid && studentregForm.controls['gender'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['gender'].errors.required">
+                    Gender Number is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['gender'].invalid && studentregForm.controls['gender'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['gender'].errors.required">
-                  Gender Number is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -194,15 +194,15 @@
                   />
                   <!-- <small class="form-control-feedback"></small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['father_name'].invalid && studentregForm.controls['father_name'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['father_name'].errors.required">
+                 Father Name is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['father_name'].invalid && studentregForm.controls['father_name'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['father_name'].errors.required">
-               Father Name is required.
               </div>
-            </div>
-            <div *ngIf="error" class="alert alert-danger">
+            <!-- <div *ngIf="error" class="alert alert-danger">
               <strong>Warning!</strong> {{fathname | json}}
-            </div>
+            </div> -->
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -216,12 +216,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['mother_name'].invalid && studentregForm.controls['mother_name'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['mother_name'].errors.required">
+                 Mother Name is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['mother_name'].invalid && studentregForm.controls['mother_name'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['mother_name'].errors.required">
-               Mother Name is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -237,13 +237,13 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['contact_num'].invalid && studentregForm.controls['contact_num'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['contact_num'].errors.required">
+                 Contact Number is required.
+                </div>
+               
               </div>
-              <div *ngIf="studentregForm.controls['contact_num'].invalid && studentregForm.controls['contact_num'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['contact_num'].errors.required">
-               Contact Number is required.
               </div>
-             
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -259,12 +259,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['alter_num'].invalid && studentregForm.controls['alter_num'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['alter_num'].errors.required">
+                 Alternate Number is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['alter_num'].invalid && studentregForm.controls['alter_num'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['alter_num'].errors.required">
-               Alternate Number is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -278,12 +278,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['father_dob'].invalid && studentregForm.controls['father_dob'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['father_dob'].errors.required">
+                 Father Date of Birth is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['father_dob'].invalid && studentregForm.controls['father_dob'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['father_dob'].errors.required">
-               Father Date of Birth is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -297,12 +297,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['mother_dob'].invalid && studentregForm.controls['mother_dob'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['mother_dob'].errors.required">
+                 Mothers Date of Birth is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['mother_dob'].invalid && studentregForm.controls['mother_dob'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['mother_dob'].errors.required">
-               Mothers Date of Birth is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -316,12 +316,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['anniversary_date'].invalid && studentregForm.controls['anniversary_date'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['anniversary_date'].errors.required">
+                 Anniversary Date is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['anniversary_date'].invalid && studentregForm.controls['anniversary_date'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['anniversary_date'].errors.required">
-               Anniversary Date is required.
               </div>
-            </div>
             <!-- <div *ngIf="error" class="alert alert-warning">
               <strong>Warning!</strong> {{annierror | json}}
             </div> -->
@@ -339,12 +339,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['date_of_admission'].invalid && studentregForm.controls['date_of_admission'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['date_of_admission'].errors.required">
+                 Date of Admission is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['date_of_admission'].invalid && studentregForm.controls['date_of_admission'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['date_of_admission'].errors.required">
-               Date of Admission is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="card">
@@ -414,6 +414,11 @@
                 [(ngModel)]="classTotalFee"
               />
               </div>
+              <div *ngIf="studentregForm.controls['total_fee'].invalid && studentregForm.controls['total_fee'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['total_fee'].errors.required">
+               Total Fee is required.
+              </div>
+            </div>
               </div>
              
               <div class="col-md-4">
@@ -424,6 +429,11 @@
                 <option *ngFor="let cat of catgory" [value]="cat.category">{{cat.category}}</option>
               </select>
               </div>
+              <div *ngIf="studentregForm.controls['category'].invalid && studentregForm.controls['category'].touched" class="alert alert-danger">
+                <div *ngIf="studentregForm.controls['category'].errors.required">
+               category is required.
+              </div>
+            </div>
               </div>
 
 
@@ -438,42 +448,33 @@
                 placeholder="Enter Total Fee"
               />
               </div>
-              </div>
-              
-
-              <div class="col-md-4">
-                <div class="form-group has-danger">
-              <label class="control-label">Due Date:</label>
-              <input
-                type="datetime-local"
-                formControlName="Due_date"
-                class="form-control form-control-danger"
-                ngModel
-                placeholder="Enter Admission Date "
-              />
-              </div>
-              </div>
-
-              <div *ngIf="studentregForm.controls['total_fee'].invalid && studentregForm.controls['total_fee'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['total_fee'].errors.required">
-               Total Fee is required.
-              </div>
-            </div>
               <div *ngIf="studentregForm.controls['paid_fee'].invalid && studentregForm.controls['paid_fee'].touched" class="alert alert-danger">
                 <div *ngIf="studentregForm.controls['paid_fee'].errors.required">
                Paid Fee is required.
               </div>
             </div>
-            <div *ngIf="studentregForm.controls['category'].invalid && studentregForm.controls['category'].touched" class="alert alert-danger">
-              <div *ngIf="studentregForm.controls['category'].errors.required">
-             category is required.
-            </div>
-          </div>
-           <div *ngIf="studentregForm.controls['Due_date'].invalid && studentregForm.controls['Due_date'].touched" class="alert alert-danger">
-            <div *ngIf="studentregForm.controls['Due_date'].errors.required">
-           Due Date is required.
-          </div>
-        </div>
+              </div>
+              
+
+              <div class="col-md-4">
+                <div class="form-group has-danger">
+                <label class="control-label">Due Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="Due_date"
+                  class="form-control form-control-danger"
+                  ngModel
+                  placeholder="Enter Admission Date "
+                />
+                </div>
+                <div *ngIf="studentregForm.controls['Due_date'].invalid && studentregForm.controls['Due_date'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['Due_date'].errors.required">
+                 Due Date is required.
+                </div>
+              </div>
+              </div>
+
+           
     
 
               <div class="col-md-4">
@@ -488,12 +489,12 @@
                   ></textarea>
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['student_address'].invalid && studentregForm.controls['student_address'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['student_address'].errors.required">
+                 Student address is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['student_address'].invalid && studentregForm.controls['student_address'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['student_address'].errors.required">
-               Student address is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -507,12 +508,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['city'].invalid && studentregForm.controls['city'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['city'].errors.required">
+                 City is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['city'].invalid && studentregForm.controls['city'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['city'].errors.required">
-               City is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -526,12 +527,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['state'].invalid && studentregForm.controls['state'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['state'].errors.required">
+                 State is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['state'].invalid && studentregForm.controls['state'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['state'].errors.required">
-               State is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -545,12 +546,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['country'].invalid && studentregForm.controls['country'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['country'].errors.required">
+                Country is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['country'].invalid && studentregForm.controls['country'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['country'].errors.required">
-              Country is required.
               </div>
-            </div>
 
               
               <div class="col-md-4">
@@ -565,12 +566,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['pincode'].invalid && studentregForm.controls['pincode'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['pincode'].errors.required">
+                 Pincode is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['pincode'].invalid && studentregForm.controls['pincode'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['pincode'].errors.required">
-               Pincode is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -584,12 +585,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['academic_year'].invalid && studentregForm.controls['academic_year'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['academic_year'].errors.required">
+                 Academic Year is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['academic_year'].invalid && studentregForm.controls['academic_year'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['academic_year'].errors.required">
-               Academic Year is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -604,15 +605,15 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="studentregForm.controls['email_address'].invalid && studentregForm.controls['email_address'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['email_address'].errors.required">
+                 Email Address is required.
+                </div>
+                <div *ngIf="studentregForm.controls['email_address'].errors.UniqueEmail">
+                 Email already exists.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['email_address'].invalid && studentregForm.controls['email_address'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['email_address'].errors.required">
-               Email Address is required.
               </div>
-              <div *ngIf="studentregForm.controls['email_address'].errors.UniqueEmail">
-               Email already exists.
-              </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group">
@@ -631,12 +632,12 @@
                   *ngIf="imageSrc"
                   style="height: 200px; width: 300px"
                 />
+                <div *ngIf="studentregForm.controls['student_photo'].invalid && studentregForm.controls['student_photo'].touched" class="alert alert-danger">
+                  <div *ngIf="studentregForm.controls['student_photo'].errors.required">
+                 Student photo is required.
+                </div>
               </div>
-              <div *ngIf="studentregForm.controls['student_photo'].invalid && studentregForm.controls['student_photo'].touched" class="alert alert-danger">
-                <div *ngIf="studentregForm.controls['student_photo'].errors.required">
-               Student photo is required.
               </div>
-            </div>
 
 
             </div>

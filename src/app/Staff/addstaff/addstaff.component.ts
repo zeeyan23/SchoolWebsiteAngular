@@ -119,7 +119,8 @@ submitForm(){
       .post(this._url.url + '/users/', newUser, { headers: headers })
       .subscribe(
         (responseData) => {
-          this.router.navigate(['login']), { relativeTo: this.route };
+          // this.router.navigate(['/#/staff/stafflist/']), { relativeTo: this.route };
+          this.staffForm.reset();
           console.log(responseData);
         
       console.log(value);

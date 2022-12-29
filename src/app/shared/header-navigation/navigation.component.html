@@ -161,11 +161,11 @@
     <!-- ============================================================== -->
     <!-- Messages -->
     <!-- ============================================================== -->
-    <li class="nav-item" ngbDropdown>
-        <!-- <a ngbDropdownToggle class="nav-link waves-effect waves-dark" href="javascript:void(0)" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <!--  <li class="nav-item" ngbDropdown>
+        <a ngbDropdownToggle class="nav-link waves-effect waves-dark" href="javascript:void(0)" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="font-20 ti-email"></i>
 
-        </a> -->
+        </a>
         <div class="mailbox" aria-labelledby="2" ngbDropdownMenu>
             <span class="with-arrow">
                 <span class="bg-danger"></span>
@@ -179,7 +179,6 @@
                 </li>
                 <li>
                     <div class="message-center message-body" [perfectScrollbar]="config">
-                        <!-- Message -->
                         <a href="javascript:void(0)" class="message-item" *ngFor="let mymessage of mymessages">
                             <span class="user-img">
                                 <img src="{{mymessage.useravatar}}" alt="user" class="rounded-circle">
@@ -201,7 +200,7 @@
                 </li>
             </ul>
         </div>
-    </li>
+    </li> -->
     <!-- ============================================================== -->
     <!-- End Messages -->
     <!-- ============================================================== -->
@@ -215,25 +214,26 @@
     <!-- ============================================================== -->
     <!-- Search -->
     <!-- ============================================================== -->
-    <li class="nav-item search-box">
-        <!-- <a (click)="showSearch = !showSearch" class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+   <!--  <li class="nav-item search-box">
+        <a (click)="showSearch = !showSearch" class="nav-link waves-effect waves-dark" href="javascript:void(0)">
             <i class="ti-search"></i>
-        </a> -->
+        </a>
         <form class="app-search position-absolute" [ngClass]="{'show-search': showSearch}">
             <input type="text" class="form-control" placeholder="Search &amp; enter">
             <a class="srh-btn" (click)="showSearch = !showSearch">
                 <i class="ti-close font-16"></i>
             </a>
         </form>
-    </li>
+    </li> -->
     <!-- ============================================================== -->
     <!-- create new -->
     <!-- ============================================================== -->
-    <li class="nav-item" ngbDropdown placement="bottom-right">
-        <!-- <a ngbDropdownToggle class="nav-link" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+    <!-- language icon and dropdown -->
+ <!--    <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a ngbDropdownToggle class="nav-link" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="flag-icon flag-icon-us font-18"></i>
-        </a> -->
+        </a>
         <div class="dropdown-menu-right" aria-labelledby="navbarDropdown2" ngbDropdownMenu>
             <a class="dropdown-item" href="#">
                 <i class="flag-icon flag-icon-us"></i> English</a>
@@ -244,7 +244,7 @@
             <a class="dropdown-item" href="#">
                 <i class="flag-icon flag-icon-de"></i> German</a>
         </div>
-    </li>
+    </li> -->
 
     <!-- ============================================================== -->
     <!-- User profile and search -->
@@ -268,21 +268,21 @@
                 </div>
             </div>
             <a class="dropdown-item" href="javascript:void(0)">
-                <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                <i class="text-dark ti-user m-r-5 m-l-5"></i> My Profile</a>
             <a class="dropdown-item" href="javascript:void(0)">
-                <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                <i class="text-dark ti-wallet m-r-5 m-l-5"></i> My Balance</a>
             <a class="dropdown-item" href="javascript:void(0)">
-                <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                <i class="text-dark ti-email m-r-5 m-l-5"></i> Inbox</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript:void(0)">
-                <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                <i class="text-dark ti-settings m-r-5 m-l-5"></i> Account Setting</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="onLogout()" [routerLink]="['authentication/login']" *ngIf="loggedIn == true">
-                <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                <i class="text-dark fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
             <div class="dropdown-divider"></div>
-            <div class="p-l-30 p-10">
+            <!-- <div class="p-l-30 p-10">
                 <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-            </div>
+            </div> -->
         </div>
     </li>
     <!-- ============================================================== -->

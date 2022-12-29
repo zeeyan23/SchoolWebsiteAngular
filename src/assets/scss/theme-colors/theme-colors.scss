@@ -21,18 +21,18 @@
       }
       &[data-logobg='skin6'] {
         background: $skin6;
-        .navbar-brand {
-          .dark-logo {
-            display: inline;
-          }
-          .light-logo {
-            display: none;
-          }
-        }
-        .nav-toggler,
-        .topbartoggler {
-          color: $body-color;
-        }
+        // .navbar-brand {
+        //   .dark-logo {
+        //     display: inline;
+        //   }
+        //   .light-logo {
+        //     display: none;
+        //   }
+        // }
+        // .nav-toggler,
+        // .topbartoggler {
+        //   color: $body-color;
+        // }
       }
     }
     .topbar .navbar-collapse,

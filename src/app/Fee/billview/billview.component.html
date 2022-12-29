@@ -23,18 +23,18 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
-              </div>
-              <div
-                *ngIf="
-                  addcategoryForm.controls['category'].invalid &&
-                  addcategoryForm.controls['category'].touched
-                "
-                class="alert alert-danger"
-              >
                 <div
-                  *ngIf="addcategoryForm.controls['category'].errors.required"
+                  *ngIf="
+                    addcategoryForm.controls['category'].invalid &&
+                    addcategoryForm.controls['category'].touched
+                  "
+                  class="alert alert-danger"
                 >
-                  Category is required.
+                  <div
+                    *ngIf="addcategoryForm.controls['category'].errors.required"
+                  >
+                    Category is required.
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
@@ -45,22 +45,24 @@
                     formControlName="Percentage"
                     class="form-control form-control-danger"
                     name="Percentage"
-                    placeholder="Enter Percentage"
+                    min="0"
+                    max="100"
+                    placeholder="Enter Fee concession in Percentage."
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
-              </div>
-              <div
-                *ngIf="
-                  addcategoryForm.controls['Percentage'].invalid &&
-                  addcategoryForm.controls['Percentage'].touched
-                "
-                class="alert alert-danger"
-              >
                 <div
-                  *ngIf="addcategoryForm.controls['Percentage'].errors.required"
+                  *ngIf="
+                    addcategoryForm.controls['Percentage'].invalid &&
+                    addcategoryForm.controls['Percentage'].touched
+                  "
+                  class="alert alert-danger"
                 >
-                  Percentage is required.
+                  <div
+                    *ngIf="addcategoryForm.controls['Percentage'].errors.required"
+                  >
+                    Percentage is required.
+                  </div>
                 </div>
               </div>
             </div>
@@ -90,3 +92,85 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="row">
+  <div class="col-lg-10">
+    <div class="card">
+      <div class="card-header studentcard">
+        <h4 class="card-title">View Concessions for Category</h4>
+
+        <div class="table-responsive studentcard2">
+          <table class="table table-hover studentcard2 ">
+            <thead class="studentcard text-white">
+              <tr>
+                <th scope="col">SL.NO</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Section</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Subjects</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+              <tr *ngFor="
+              let classs of classes
+                | paginate
+                  : {
+                      id: 'listing_pagination',
+                      itemsPerPage: 15,
+                      currentPage: page,
+                      totalItems: totalRec
+                    }
+                | filter: term;
+              let i = index
+            " >
+            <th scope="row">{{(page-1)*10+i+1}}</th>
+              
+                <td>{{ classs.class_name }}</td>
+                <td>{{ classs.section }}</td>
+                <td>{{ classs.teachers.staff_name }}</td>
+                <td>{{ classs.Maths? 'Maths' : ''}}<br>
+                    {{ classs.computer? 'computer' : ''}}<br>
+                    {{ classs.english? 'english' : ''}}<br>
+                    {{ classs.hindi? 'hindi' : ''}}<br>
+                    {{ classs.kannada? 'kannada' : ''}}<br>
+                    {{ classs.pt? 'pt' : ''}}<br>
+                    {{ classs.science? 'science' : ''}}<br>
+                    {{ classs.social_science? 'social_science' : ''}}</td>
+                    <td>
+                      <button
+                      type="button"
+                      class="btn dlt btn-rounded text-white"
+                      (click)="openclass(classinfomodal, classs)"
+                    >
+                      <i class="far fa-edit"></i>
+                    </button>
+                      <button 
+                        class="btn btn-outline-secondary"
+                        mwlConfirmationPopover
+                        [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage"
+                        placement="left"
+                        (confirm)="deleteRow(class.id)"
+                        (cancel)="cancelClicked = true">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls
+              id="listing_pagination"
+              maxSize="5"
+              directionLinks="true"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div> -->

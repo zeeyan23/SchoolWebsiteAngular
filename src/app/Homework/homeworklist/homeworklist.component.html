@@ -207,10 +207,13 @@
                   [ngModelOptions]="{ standalone: true }"
                   
                 >
-                  <option value="">Maths</option>
-                  <option value="">Science</option>
-                  <option value="">Social</option>
-                  <option value="">Computer</option>
+                  <option value="Kannada">Kannada</option>
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi</option>
+                  <option value="Maths">Mathematics</option>
+                  <option value="Science">Science</option>
+                  <option value="Social">Social Science</option>
+                  <option value="Computer">Computer</option>
                 </select>
                 <!-- <small class="form-control-feedback">
                   Select your Subject
@@ -228,6 +231,21 @@
                   class="form-control form-control-danger"
                   name="homework_date"
                   placeholder="Enter Date"
+                />
+                <!-- <small class="form-control-feedback"></small> -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group has-danger">
+                <label class="control-label">Due Date:</label>
+                <input
+                  type="datetime-local"
+                  formControlName="due_date"
+                  [(ngModel)]="homework.due_date"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control form-control-danger"
+                  name="due_date"
+                  placeholder="Enter Due Date"
                 />
                 <!-- <small class="form-control-feedback"></small> -->
               </div>

@@ -31,6 +31,7 @@ export class AddhomeworkComponent implements OnInit {
       section: ['',[Validators.required]],
       subject: ['',[Validators.required]],
       homework_date: ['',[Validators.required]],
+      due_date: ['', [Validators.required]],
       remark: ['',Validators.required],
       homework_photo: [null],
      fileSource : ['',Validators.required],
@@ -93,6 +94,7 @@ submitForm(){
       // formData.append('startedYear', value.startedYear);
       formData.append('subject', value.subject);
       formData.append('homework_date', value.homework_date);
+      formData.append('due_date', value.due_date);
       formData.append('remark', value.remark);
       if(this.selectedFile == null){
        formData.append('homework_photo', "");

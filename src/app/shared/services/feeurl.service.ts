@@ -21,8 +21,8 @@ export class FeeurlService {
     this.Fees.push(feesdata)
  } 
  public Savecat(catdata) {  
-  console.log("Class Name : " + catdata.category);  
-  console.log("Academic Year : " + catdata.Percentage);  
+  console.log("category : " + catdata.category);  
+  console.log("Percentage : " + catdata.Percentage);  
   console.log(catdata);  
   this.Fees.push(catdata)
 }

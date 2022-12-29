@@ -12,14 +12,14 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "",
-    title: "Dashboards",
+    title: "Dashboard",
     icon: "icon-Car-Wheel",
     class: "has-arrow",
     extralink: false,
     submenu: [
       {
         path: "/dashboard/dashboard1",
-        title: "Dashboard 1",
+        title: "Dashboard",
         icon: "",
         class: "",
         extralink: false,

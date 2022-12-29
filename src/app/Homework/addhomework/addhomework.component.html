@@ -59,10 +59,13 @@
                         formControlName="subject"
                         class="form-control custom-select"
                       >
-                        <option value="Maths">Maths</option>
-                        <option value="Science">Science</option>
-                        <option value="Social">Social</option>
-                        <option value="Computer"></option>
+                      <option value="Kannada">Kannada</option>
+                      <option value="English">English</option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="Maths">Mathematics</option>
+                      <option value="Science">Science</option>
+                      <option value="Social">Social Science</option>
+                      <option value="Computer">Computer</option>
                       </select>
                       <!-- <small class="form-control-feedback">
                         Select your Subject
@@ -90,9 +93,27 @@
                   </div>
                   <div *ngIf="homeworkForm.controls['homework_date'].invalid && homeworkForm.controls['homework_date'].touched" class="alert alert-danger">
                     <div *ngIf="homeworkForm.controls['homework_date'].errors.required">
-                  Homework is required.
+                  Homework Date is required.
                   </div>
                 </div>
+
+                <div class="col-md-4">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Due Date:</label>
+                    <input
+                      type="datetime-local"
+                      formControlName="due_date"
+                      class="form-control form-control-danger"
+                      placeholder="Enter Due Date"
+                    />
+                    <!-- <small class="form-control-feedback"></small> -->
+                  </div>
+                </div>
+                <div *ngIf="homeworkForm.controls['due_date'].invalid && homeworkForm.controls['due_date'].touched" class="alert alert-danger">
+                  <div *ngIf="homeworkForm.controls['due_date'].errors.required">
+                Due Date is required.
+                </div>
+              </div>
 
 
                 <!--/span-->
