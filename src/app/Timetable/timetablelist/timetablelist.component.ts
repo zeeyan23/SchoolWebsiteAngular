@@ -24,11 +24,11 @@ export class TimetablelistComponent implements OnInit {
   date: any;
   tablelist: any[] = [];
   timetabless: any;
-  timetablesss: { class: string; section: string; date: string; tablelist: { from_time: string; to_time: string; monday: string; tuesday: string; wednesday: string; thursday: string; friday: string; saturday: string; }[]; }[];
+  timetablesss: { class: string; section: string; date: string; tablelist: { from_time: string; to_time: string; monday: string; Tuesday: string; wednesday: string; thursday: string; friday: string; saturday: string; }[]; }[];
   timetabForm: any;
   timetable: any;
   tableofschool: any;
-  Temptimetable: { class_name: string; section: string; timetable_date: string; periods: { from_time: string; to_time: string; monday: string; tuesday: string; wednesday: string; thursday: string; friday: string; saturday: string; }[]; }[];
+  Temptimetable: { class_name: string; section: string; timetable_date: string; periods: { from_time: string; to_time: string; monday: string; Tuesday: string; wednesday: string; thursday: string; friday: string; saturday: string; }[]; }[];
   dialog: any;
   isDean: boolean;
   isStaff: boolean;

@@ -108,14 +108,15 @@
                 <td>{{ classs.class_name }}</td>
                 <td>{{ classs.section }}</td>
                 <td>{{ classs.teachers.staff_name }}</td>
-                <td>{{ classs.Maths? 'Maths' <br> : ''}}
-                    {{ classs.computer? 'computer' <br> : ''}}
-                    {{ classs.english? 'english' <br> : ''}}
-                    {{ classs.hindi? 'hindi' <br> : ''}}
-                    {{ classs.kannada? 'kannada' <br> : ''}}
-                    {{ classs.pt? 'pt' <br> : ''}}
-                    {{ classs.science? 'science' <br> : ''}}
-                    {{ classs.social_science? 'social_science' : ''}}</td>
+                <td>{{ classs.Maths? 'Maths' : ''}}<br>
+                  {{ classs.english? 'English' : ''}}<br>
+                  {{ classs.hindi? 'Hindi' : ''}}<br>
+                  {{ classs.kannada? 'Kannada' : ''}}<br>
+                  {{ classs.science? 'Science' : ''}}<br>
+                  {{ classs.social_science? 'Social Science' : ''}}<br>
+                  {{ classs.computer? 'Computer' : ''}}<br>
+                  {{ classs.pt? 'Physical Training' : ''}}
+                  </td>
                     <td>
                       <button
                       type="button"

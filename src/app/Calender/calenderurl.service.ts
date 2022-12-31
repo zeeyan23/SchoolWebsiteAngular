@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -34,8 +34,12 @@ export class CalenderurlService {
 
 
 Regcalendar(data:any){
+  let headers = new HttpHeaders({
+    // 'Content-Type': 'application/json',
+    'Authorization': 'Token ' + localStorage.getItem('token')
+  });
   const url = `${this.mainURL}/Calendar/`;
-  return this.http.post(url, data);
+  return this.http.post(url, data, { headers: headers });
 }
 
 Updatecal(formData: any, Id: any){
