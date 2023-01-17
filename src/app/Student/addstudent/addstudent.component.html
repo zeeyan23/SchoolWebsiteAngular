@@ -278,11 +278,11 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
-                <div *ngIf="studentregForm.controls['father_dob'].invalid && studentregForm.controls['father_dob'].touched" class="alert alert-danger">
+                <!-- <div *ngIf="studentregForm.controls['father_dob'].invalid && studentregForm.controls['father_dob'].touched" class="alert alert-danger">
                   <div *ngIf="studentregForm.controls['father_dob'].errors.required">
                  Father Date of Birth is required.
                 </div>
-              </div>
+              </div> -->
               </div>
 
               <div class="col-md-4">
@@ -297,11 +297,11 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
-                <div *ngIf="studentregForm.controls['mother_dob'].invalid && studentregForm.controls['mother_dob'].touched" class="alert alert-danger">
+                <!-- <div *ngIf="studentregForm.controls['mother_dob'].invalid && studentregForm.controls['mother_dob'].touched" class="alert alert-danger">
                   <div *ngIf="studentregForm.controls['mother_dob'].errors.required">
                  Mothers Date of Birth is required.
                 </div>
-              </div>
+              </div> -->
               </div>
 
               <div class="col-md-4">
@@ -316,11 +316,11 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
-                <div *ngIf="studentregForm.controls['anniversary_date'].invalid && studentregForm.controls['anniversary_date'].touched" class="alert alert-danger">
+                <!-- <div *ngIf="studentregForm.controls['anniversary_date'].invalid && studentregForm.controls['anniversary_date'].touched" class="alert alert-danger">
                   <div *ngIf="studentregForm.controls['anniversary_date'].errors.required">
                  Anniversary Date is required.
                 </div>
-              </div>
+              </div> -->
               </div>
             <!-- <div *ngIf="error" class="alert alert-warning">
               <strong>Warning!</strong> {{annierror | json}}
@@ -484,7 +484,7 @@
                     class="form-control"
                     formControlName="student_address"
                     ngModel
-                    rows="10"
+                    rows="2"
                     placeholder="Text Address..."
                   ></textarea>
                   <!-- <small class="form-control-feedback"> </small> -->

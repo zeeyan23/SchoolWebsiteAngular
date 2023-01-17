@@ -1,8 +1,8 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { InstituteurlService } from 'src/app/institute/instituteurl.service';
 import * as c3 from 'c3';
 import { StudenturlService } from 'src/app/shared/services/studenturl.service';
 import { ExpenseurlService } from 'src/app/expense/expenseurl.service';
+import { InstituteurlService } from 'src/app/institute/instituteurl.service';
 @Component({
     selector: 'app-info-card',
     templateUrl: './info-card.component.html'

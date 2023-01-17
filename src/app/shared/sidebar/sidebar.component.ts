@@ -1,9 +1,9 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { InstituteurlService } from 'src/app/institute/instituteurl.service';
 import { ROUTES } from './menu-items';
 import { RouteInfo } from './sidebar.metadata';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InstituteurlService } from 'src/app/institute/instituteurl.service';
 
 
 declare var $: any;
