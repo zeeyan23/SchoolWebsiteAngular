@@ -1,21 +1,25 @@
 <div class="row">
+
     <!-- Column -->
     <div class="col-md-7 col-lg-8">
-        <ngx-charts-bar-vertical
-        [view]="view"
-        [scheme]="colorScheme"
-        [results]="single"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        (select)="onSelect($event)">
-      </ngx-charts-bar-vertical>
-
+        <div class="card">
+            <div class="card-body">
+                <ngx-charts-bar-vertical
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="card">
@@ -25,10 +29,11 @@
                         <i class="icon-Cloud-Sun display-5"></i>
                     </div>
                     <div>
-                        <h1 class="m-b-0 font-light">35
-                            <sup>o</sup>
-                        </h1>
-                        <h5 class="font-light">Clear and sunny</h5>
+                        <h5 class="font-light" id="location"></h5>
+                        <h1 class="m-y-0 font-light" id="temperature"></h1>
+                        <h5 class="font-light" id="description"></h5>
+                        
+                        
                     </div>
                 </div>
                 <div style="height: 170px">
@@ -44,8 +49,8 @@
                         </span>
                     </div>
                     <div class="m-l-10">
-                        <h4 class="m-b-0">Monday</h4>
-                        <h6 class="font-light m-b-0">March 2019</h6>
+                        <h4 class="m-b-0">{{currentDay}}</h4>
+                        <h6 class="font-light m-b-0">{{currentDate}}</h6>
                     </div>
                 </div>
             </div>

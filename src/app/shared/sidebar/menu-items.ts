@@ -770,39 +770,39 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
 
-  {
-    path: "",
-    title: "Forum",
-    icon: "mdi mdi-dots-horizontal",
-    class: "nav-small-cap",
-    extralink: true,
-    submenu: [],
-  },
-  {
-    path: "",
-    title: " Group Chat",
-    icon: "icon-Books",
-    class: "has-arrow",
-    extralink: false,
-    submenu: [
-      {
-          path: "group-chat/chatbox",
-          title: 'Send Message',
-          icon: '',
-          class: '',
-          extralink: false,
-          submenu: []
-      }
-      // {
-      //     path: 'leave/leavereport',
-      //     title: 'Leave Report',
-      //     icon: '',
-      //     class: '',
-      //     extralink: false,
-      //     submenu: []
-      // },
-    ],
-  },
+  // {
+  //   path: "",
+  //   title: "Forum",
+  //   icon: "mdi mdi-dots-horizontal",
+  //   class: "nav-small-cap",
+  //   extralink: true,
+  //   submenu: [],
+  // },
+  // {
+  //   path: "",
+  //   title: " Group Chat",
+  //   icon: "icon-Books",
+  //   class: "has-arrow",
+  //   extralink: false,
+  //   submenu: [
+  //     {
+  //         path: "group-chat/chatbox",
+  //         title: 'Send Message',
+  //         icon: '',
+  //         class: '',
+  //         extralink: false,
+  //         submenu: []
+  //     }
+  //     // {
+  //     //     path: 'leave/leavereport',
+  //     //     title: 'Leave Report',
+  //     //     icon: '',
+  //     //     class: '',
+  //     //     extralink: false,
+  //     //     submenu: []
+  //     // },
+  //   ],
+  // },
 
   // {
   //   path: "",

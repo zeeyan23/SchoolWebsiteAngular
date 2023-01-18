@@ -3,11 +3,14 @@ import * as c3 from 'c3';
 import { StudenturlService } from 'src/app/shared/services/studenturl.service';
 import { ExpenseurlService } from 'src/app/expense/expenseurl.service';
 import { InstituteurlService } from 'src/app/institute/instituteurl.service';
+import { intToString } from '../../../shared/utils/util-functions';
 @Component({
     selector: 'app-info-card',
     templateUrl: './info-card.component.html'
 })
 export class InfocardComponent implements AfterViewInit, OnInit {
+    
+    intToString = intToString;
     allcountdata: any;
     studentcount: any;
     staffcount: any;
@@ -150,20 +153,15 @@ export class InfocardComponent implements AfterViewInit, OnInit {
 
       public getStudentDetails(){
         this.studserve.getStudentDetails().subscribe((res: any) =>{
-            console.log(res);
             this.students = res;
             var totalfee =  this.students.reduce((sum, item) => sum + item.total_fee, 0);
-             this.totalfees =totalfee;
-             console.log(this.totalfees);
+             this.totalfees = totalfee;
 
              var totalpaid =  this.students.reduce((sum, item) => sum + item.paid_fee, 0);
              this.totalpaidfee = totalpaid;
-             console.log(this.totalpaidfee);
 
              var totaldue =  this.totalfees-this.totalpaidfee
-             this.totalduefee =totaldue
-             console.log(this.totalduefee);
-         console.log('reeeeeeeeeee',this.students);
+             this.totalduefee = totaldue;
             });
           }
 

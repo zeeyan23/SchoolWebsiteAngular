@@ -125,6 +125,14 @@ export class IncomeurlService {
     {
       "income": 150000, 
       "year": 2022
+    },
+    {
+      "income": 140000,
+       "year": 2023
+    },
+    {
+      "income": 150000, 
+      "year": 2024
     }
     ]);
   }

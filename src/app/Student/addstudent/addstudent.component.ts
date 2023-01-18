@@ -55,7 +55,6 @@ export class AddstudentComponent implements OnInit {
   studentexpo: any;
   students: any;
   studentss: any;
-  studentId: any;
   feedatas: any;
   catgory: any;
   checked: any;
@@ -324,7 +323,6 @@ public getStudentDetails(){
   this.stude.getStudentDetails().subscribe((res: any) =>{
         console.log(res);
         this.students = res;
-        this.studentId = this.students[0]["id"];
       });
       console.log('reeeeeeeeeee',this.students);
       
@@ -484,13 +482,21 @@ var formData:any = new FormData();
     console.log(value);
  
       var formData:any = new FormData();
-       if(this.students.filter(({ reg_number }) => reg_number == value.reg_number).length){
+      var studentsRegCheck = this.students.filter(({ reg_number }) => reg_number == value.reg_number).length;
+      var classSectionCheck = this.classmemo.filter(({ class_name, section }) => class_name == value.class_name && section == value.section).length;
+       if(studentsRegCheck){
         alert("register number already exists!!")
+      }
+       if(!classSectionCheck){
+        alert("Class with this section doesn't exists!!")
+       }
+       if(studentsRegCheck && !classSectionCheck){
+        this.error = "Something went wrong please check the Data!!"
+        this.erroalert()
        }
        else{
         formData.append('reg_number', value.reg_number);
         
-       }
        formData.append('student_name', value.student_name);
         // formData.append('startedYear', value.startedYear);
         formData.append('class_name', value.class_name);
@@ -597,6 +603,7 @@ var formData:any = new FormData();
       }); 
       this.saveForm=true;
       this.updateForm =false;
+    }
     }
 
 
