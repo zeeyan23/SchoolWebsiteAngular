@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RootlistComponent } from './rootlist.component';
 
@@ -6,7 +6,7 @@ describe('RootlistComponent', () => {
   let component: RootlistComponent;
   let fixture: ComponentFixture<RootlistComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RootlistComponent ]
     })

@@ -261,7 +261,7 @@ export const Approutes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(Approutes)],
+  imports: [RouterModule.forRoot(Approutes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
   providers: [ ]
 })
