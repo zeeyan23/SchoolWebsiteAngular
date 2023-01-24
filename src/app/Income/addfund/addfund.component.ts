@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -16,10 +16,10 @@ import { IncomeurlService } from "../incomeurl.service";
   styleUrls: ["./addfund.component.css"],
 })
 export class AddfundComponent implements OnInit {
-  fundForm: FormGroup;
+  fundForm: UntypedFormGroup;
   isDean: boolean;
   public fundies :any[]=[];
-  constructor(private fb: FormBuilder, private incomserve :IncomeurlService) {
+  constructor(private fb: UntypedFormBuilder, private incomserve :IncomeurlService) {
     
   }
 
@@ -40,7 +40,7 @@ export class AddfundComponent implements OnInit {
    }
   }
  
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

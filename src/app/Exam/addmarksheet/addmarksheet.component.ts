@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ExamurlService } from '../examurl.service';
 
@@ -17,14 +17,14 @@ import { ExamurlService } from '../examurl.service';
   styleUrls: ['./addmarksheet.component.css']
 })
 export class AddmarksheetComponent implements OnInit {
-  addmarksheetForm: FormGroup;
+  addmarksheetForm: UntypedFormGroup;
   isDean: boolean;
   isStaff: boolean;
   isParent: boolean;
 
   public bookies : any[]=[];
 
-  constructor(private fb:FormBuilder, private markserve : ExamurlService) { }
+  constructor(private fb:UntypedFormBuilder, private markserve : ExamurlService) { }
 
   ngOnInit(): void {
     this.addmarksheetForm = this.fb.group({
@@ -92,7 +92,7 @@ this.isParent =false;
   }
 
 
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

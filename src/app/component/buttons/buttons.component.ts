@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 @Component({
   templateUrl: 'buttons.component.html'
 })
 export class ButtonsComponent {
-  public checkboxGroupForm: FormGroup;
+  public checkboxGroupForm: UntypedFormGroup;
 
-  public radioGroupForm: FormGroup;
+  public radioGroupForm: UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   model = {
     left: true,

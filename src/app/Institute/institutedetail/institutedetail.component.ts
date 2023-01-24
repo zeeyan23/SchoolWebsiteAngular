@@ -7,10 +7,10 @@ import {
 } from "@angular/common/http";
 import { Instidata } from "./../instidata";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { trackByHourSegment } from "angular-calendar/modules/common/util";
@@ -23,7 +23,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
   styleUrls: ["./institutedetail.component.css"],
 })
 export class InstitutedetailComponent implements OnInit {
-  instituteForm: FormGroup;
+  instituteForm: UntypedFormGroup;
   imageSrc: string;
   institutedetail: any[];
 
@@ -64,7 +64,7 @@ export class InstitutedetailComponent implements OnInit {
   instit: any;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private insti: InstituteurlService,
     private http: HttpClient
   ) {
@@ -113,7 +113,7 @@ export class InstitutedetailComponent implements OnInit {
 
   //  add more field functions
 
-   newQuantity(): FormGroup {
+   newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

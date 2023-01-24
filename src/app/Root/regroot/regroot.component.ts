@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { RooturlService } from "../rooturl.service";
@@ -17,12 +17,12 @@ import { VehicleurlService } from "src/app/vehicle/vehicleurl.service";
   styleUrls: ["./regroot.component.css"],
 })
 export class RegrootComponent implements OnInit {
-  routeregForm: FormGroup;
+  routeregForm: UntypedFormGroup;
   vehicle: any;
 
   public routeregies:any[]=[]
 
-  constructor(private fb: FormBuilder,  private rootserve :RooturlService , private vehicleserve :VehicleurlService) {}
+  constructor(private fb: UntypedFormBuilder,  private rootserve :RooturlService , private vehicleserve :VehicleurlService) {}
 
   ngOnInit() {
     this.routeregForm = this.fb.group({
@@ -50,7 +50,7 @@ export class RegrootComponent implements OnInit {
  
 
  
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

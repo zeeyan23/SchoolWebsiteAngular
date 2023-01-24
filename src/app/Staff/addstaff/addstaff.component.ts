@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StaffurlService } from '../../shared/services/staffurl.service';
@@ -14,14 +14,14 @@ import { DburlService } from 'src/app/dburl.service';
   styleUrls: ['./addstaff.component.css']
 })
 export class AddstaffComponent implements OnInit {
-  staffForm: FormGroup;
+  staffForm: UntypedFormGroup;
   imageSrc: string;
   selectedFile: File;
   staffs: any[] = [];
   isDean: boolean;
   public staffies: any[] = [];
   registerSubscriber: any;
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
      private staffss: StaffurlService,
      private router: Router,
      private http: HttpClient,
@@ -64,7 +64,7 @@ export class AddstaffComponent implements OnInit {
   }
 
    
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

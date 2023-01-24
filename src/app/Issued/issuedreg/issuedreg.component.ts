@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -18,7 +18,7 @@ import { StudenturlService } from "src/app/shared/services/studenturl.service";
   styleUrls: ["./issuedreg.component.css"],
 })
 export class IssuedregComponent implements OnInit {
-  issuebookForm: FormGroup;
+  issuebookForm: UntypedFormGroup;
   bookdata: any;
   selectedaccno: any;
   bookdatas: any;
@@ -35,7 +35,7 @@ export class IssuedregComponent implements OnInit {
   fathername: any;
   isDean: boolean;
   public issuesies :any[]=[];
-  constructor(private fb: FormBuilder,private bookserve: BookService,private studentserve :StudenturlService,  private issuedserve : IssuedurlService) {}
+  constructor(private fb: UntypedFormBuilder,private bookserve: BookService,private studentserve :StudenturlService,  private issuedserve : IssuedurlService) {}
 
   ngOnInit(): void {
     this.issuebookForm = this.fb.group({
@@ -71,7 +71,7 @@ export class IssuedregComponent implements OnInit {
 
 
 
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

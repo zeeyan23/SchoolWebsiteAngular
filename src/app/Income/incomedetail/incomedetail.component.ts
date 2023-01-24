@@ -1,5 +1,5 @@
 import { IncomeurlService } from "./../incomeurl.service";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import {
   NgbModal,
@@ -34,7 +34,7 @@ export class IncomedetailComponent implements OnInit {
   page: number = 1;
   loading = false;
   term: any;
-  incomeupdateForm: FormGroup;
+  incomeupdateForm: UntypedFormGroup;
   totlfee: string;
   totlex: string;
   totldue: string;
@@ -44,7 +44,7 @@ export class IncomedetailComponent implements OnInit {
   constructor(
     private incomeserve: IncomeurlService,
     private modalService: NgbModal,
-	private fb: FormBuilder,
+	private fb: UntypedFormBuilder,
   ) {}
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Injectable()
 export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
@@ -55,7 +55,7 @@ export class NgbdtimepickerBasicComponent {
 
   // This is for the validation
   time3;
-  ctrl = new FormControl('', (control: FormControl) => {
+  ctrl = new UntypedFormControl('', (control: UntypedFormControl) => {
     const value = control.value;
 
     if (!value) {

@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 
@@ -34,7 +34,7 @@ export class StafftransreportComponent implements OnInit {
     Amount: string;
   }[];
   stafrep: any;
-  stafftransForm: FormGroup;
+  stafftransForm: UntypedFormGroup;
   classname: string;
   academicyear: string;
   admissionfee: string;
@@ -50,7 +50,7 @@ export class StafftransreportComponent implements OnInit {
   loading = false;
   term: any;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private transer: TransreporturlService,
     private modalService: NgbModal
   ) {}

@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { StudenturlService } from "src/app/shared/services/studenturl.service";
@@ -28,7 +28,7 @@ export class StudtransreportComponent implements OnInit {
 
   closeResult: string;
   stud: any;
-  studtransForm: FormGroup;
+  studtransForm: UntypedFormGroup;
   classname: string;
   academicyear: string;
   admissionfee: string;
@@ -79,7 +79,7 @@ export class StudtransreportComponent implements OnInit {
  
   
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private transer: TransreporturlService,
     private modalService: NgbModal,
     private studentserve : StudenturlService,

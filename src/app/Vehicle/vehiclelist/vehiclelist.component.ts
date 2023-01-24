@@ -2,7 +2,7 @@ import { VehicleurlService } from './../vehicleurl.service';
 import { Component, OnInit } from '@angular/core';
 
 
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms'
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms'
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -20,10 +20,10 @@ export class VehiclelistComponent implements OnInit {
   private _id: any;
   class_name: any;
   feeDetail: any;
-  editProfileForm: FormGroup;
+  editProfileForm: UntypedFormGroup;
   class: any;
   
-  vehicleregForm: FormGroup;
+  vehicleregForm: UntypedFormGroup;
   vehicles: any;
   classname: string;
   academicyear: string;
@@ -59,7 +59,7 @@ export class VehiclelistComponent implements OnInit {
   momofman: string;
   manofmon: any;
 
-  constructor(private fb: FormBuilder,private modalService: NgbModal, private vehicleserve:VehicleurlService) { }
+  constructor(private fb: UntypedFormBuilder,private modalService: NgbModal, private vehicleserve:VehicleurlService) { }
 
   ngOnInit(): void {
      

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-sendnotification',
   templateUrl: './sendnotification.component.html',
@@ -8,10 +8,10 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 export class SendnotificationComponent implements OnInit {
 
   imageSrc: string;
-  notificationForm: FormGroup;
+  notificationForm: UntypedFormGroup;
   isDean: boolean;
   isStaff: boolean;
-  constructor( private fb:FormBuilder) {
+  constructor( private fb:UntypedFormBuilder) {
   
    }
 
@@ -39,11 +39,11 @@ export class SendnotificationComponent implements OnInit {
     
    }
   }
-  expensies() : FormArray {
-    return this.notificationForm.get("expensies") as FormArray
+  expensies() : UntypedFormArray {
+    return this.notificationForm.get("expensies") as UntypedFormArray
   }
    
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
       name: '',
       value: '',

@@ -5,7 +5,7 @@ import {
   ModalDismissReasons,
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -46,7 +46,7 @@ export class ListcalenderComponent implements OnInit {
 
  
 
-  constructor(private calserve : CalenderurlService, private modalService: NgbModal,private fb: FormBuilder) { }
+  constructor(private calserve : CalenderurlService, private modalService: NgbModal,private fb: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.addeventForm = this.fb.group({

@@ -2,7 +2,7 @@ import { Feedata } from "./../feedata";
 import { FeeurlService } from "../../shared/services/feeurl.service";
 import { Component, OnInit } from "@angular/core";
 // import { MatDialog} from '@angular/material/dialog';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
 
 import {
   NgbModal,
@@ -42,13 +42,13 @@ export class ViewfeetypesComponent implements OnInit {
   page: number = 1;
   loading = false;
   term: any;
-  editfeeForm: FormGroup;
+  editfeeForm: UntypedFormGroup;
   feeee: any;
   feeofschool: any;
   isDean: boolean;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private feetypeservice: FeeurlService,
     private modalService: NgbModal
   ) {}

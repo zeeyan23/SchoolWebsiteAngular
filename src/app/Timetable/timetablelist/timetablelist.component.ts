@@ -7,7 +7,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TimetabledialogComponent } from '../timetabledialog/timetabledialog.component';
 @Component({
@@ -39,7 +39,7 @@ export class TimetablelistComponent implements OnInit {
   staff: any;
   term: any;
 
-  constructor(private timeserve: TimetableurlService,private fb:FormBuilder, private modalService: NgbModal, public matDialog: MatDialog,) {
+  constructor(private timeserve: TimetableurlService,private fb:UntypedFormBuilder, private modalService: NgbModal, public matDialog: MatDialog,) {
     this.timetabForm = this.fb.group({
        
       class_name:['',Validators.required],

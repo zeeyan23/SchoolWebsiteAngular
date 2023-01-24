@@ -1,6 +1,6 @@
 import { BookService } from './../book.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -11,13 +11,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./addbooks.component.css']
 })
 export class AddbooksComponent implements OnInit {
-  addbookForm: FormGroup;
+  addbookForm: UntypedFormGroup;
   isDean: boolean;
   isStaff: boolean;
 
   public bookies:any[]=[];
 
-  constructor(private fb:FormBuilder, private bookserve : BookService) { }
+  constructor(private fb:UntypedFormBuilder, private bookserve : BookService) { }
 
   ngOnInit(): void {
     this.addbookForm = this.fb.group({
@@ -48,7 +48,7 @@ export class AddbooksComponent implements OnInit {
   }
 
  
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

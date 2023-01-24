@@ -2,10 +2,10 @@ import { RooturlService } from './../rooturl.service';
 import { Component, OnInit } from '@angular/core';
 
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -26,10 +26,10 @@ export class RootlistComponent implements OnInit {
   private _id: any;
   class_name: any;
   feeDetail: any;
-  editProfileForm: FormGroup;
+  editProfileForm: UntypedFormGroup;
   class: any;
 
-  routeregForm: FormGroup;
+  routeregForm: UntypedFormGroup;
   root: any;
  
   classname: any;
@@ -53,7 +53,7 @@ export class RootlistComponent implements OnInit {
   roots: any;
   isDean: boolean;
 
-  constructor(private fb: FormBuilder,private modalService: NgbModal,private rootserv :RooturlService) { }
+  constructor(private fb: UntypedFormBuilder,private modalService: NgbModal,private rootserv :RooturlService) { }
 
   ngOnInit(): void {
 

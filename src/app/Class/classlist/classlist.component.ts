@@ -5,7 +5,7 @@ import {
   ModalDismissReasons,
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { StaffurlService } from 'src/app/shared/services/staffurl.service';
@@ -53,7 +53,7 @@ export class ClasslistComponent implements OnInit {
 
  
 
-  constructor(private classserve : ClassurlService, private modalService: NgbModal, private staffService: StaffurlService, private fb: FormBuilder) { }
+  constructor(private classserve : ClassurlService, private modalService: NgbModal, private staffService: StaffurlService, private fb: UntypedFormBuilder) { }
 
   ngOnInit(): void {
 

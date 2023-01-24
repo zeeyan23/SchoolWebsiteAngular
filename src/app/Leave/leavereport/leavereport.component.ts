@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { Leavedata } from "../leavedata";
@@ -24,7 +24,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class LeavereportComponent implements OnInit {
   closeResult: string;
   leave: any;
-  leaveForm: FormGroup;
+  leaveForm: UntypedFormGroup;
   leaves: any;
   userid: string;
   userrole: string;
@@ -58,7 +58,7 @@ export class LeavereportComponent implements OnInit {
   constructor(
     private leaveser: LeaveurlService,
     private modalService: NgbModal,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, FormArray, UntypedFormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 // import * as XLSX from 'xlsx';
 import {StudenturlService} from '../../shared/services/studenturl.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -29,7 +29,7 @@ export class AddstudentComponent implements OnInit {
 
 
    data :any;
-   studentregForm: FormGroup;
+   studentregForm: UntypedFormGroup;
   imageSrc: string;
   classmemo: any[] = [];
   exceldata: any;
@@ -71,7 +71,7 @@ export class AddstudentComponent implements OnInit {
   classTotalFee3: any;
   isDean: boolean;
   isStaff: boolean;
-  csvuploadForm: FormGroup;
+  csvuploadForm: UntypedFormGroup;
   studentID: any;
   public studenties: any[] = [];
  
@@ -79,7 +79,7 @@ export class AddstudentComponent implements OnInit {
 
 
   
-  constructor(private fb:FormBuilder , private stude :StudenturlService,private router: Router,
+  constructor(private fb:UntypedFormBuilder , private stude :StudenturlService,private router: Router,
     private clshh:ClassurlService,
     private feee:FeeurlService,
     private http: HttpClient,
@@ -186,7 +186,7 @@ this.csvuploadForm= this.fb.group({
   }
 
 
- newQuantity(): FormGroup {
+ newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })
@@ -239,7 +239,7 @@ this.csvuploadForm= this.fb.group({
 
 
   get reg_number(){
-    return this.studentregForm.get('reg_number') as FormControl
+    return this.studentregForm.get('reg_number') as UntypedFormControl
   }
 
 

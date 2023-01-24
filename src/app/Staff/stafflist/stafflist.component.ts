@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { Staffdata } from "../staffdata";
@@ -31,7 +31,7 @@ export class StafflistComponent implements OnInit {
   mail: string;
   qualgctin: string;
   staffdetails: Staffdata[];
-  staffForm: FormGroup;
+  staffForm: UntypedFormGroup;
   totalRec: number;
   page: number = 1;
   loading = false;
@@ -66,7 +66,7 @@ export class StafflistComponent implements OnInit {
   constructor(
     private stafserve: StaffurlService,
     private modalService: NgbModal,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {

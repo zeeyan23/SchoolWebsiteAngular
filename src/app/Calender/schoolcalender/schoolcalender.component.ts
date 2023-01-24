@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import {  CalendarEvent, CalendarView } from 'angular-calendar';
 import startOfDay from 'date-fns/startOfDay/index';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -24,7 +24,7 @@ import { DatePipe } from '@angular/common';
 })
 export class SchoolcalenderComponent implements AfterViewInit  {
   caldata: any=[];
-  addeventForm: FormGroup;
+  addeventForm: UntypedFormGroup;
   startdate: string;
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Month;
@@ -34,7 +34,7 @@ export class SchoolcalenderComponent implements AfterViewInit  {
   
 
 
-  constructor(private fb:FormBuilder ,private router: Router,private calendersss : CalenderurlService,public datepipe: DatePipe) { 
+  constructor(private fb:UntypedFormBuilder ,private router: Router,private calendersss : CalenderurlService,public datepipe: DatePipe) { 
 
   }
 

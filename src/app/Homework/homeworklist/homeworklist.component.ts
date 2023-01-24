@@ -9,10 +9,10 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import { HomeworkurlService } from "../../shared/services/homeworkurl.service";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -33,7 +33,7 @@ export class HomeworklistComponent implements OnInit {
   page: number = 1;
   loading = false;
   term: any;
-  homeworkForm: FormGroup;
+  homeworkForm: UntypedFormGroup;
   imageSrc: string;
   printData: any = {};
   class_name: any;
@@ -60,7 +60,7 @@ export class HomeworklistComponent implements OnInit {
   constructor(
     private homeserve: HomeworkurlService,
     private modalService: NgbModal,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private clshh :ClassurlService
   ) {}
 

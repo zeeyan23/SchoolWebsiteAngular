@@ -2,10 +2,10 @@ import { IssuedurlService } from "./../issuedurl.service";
 
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import {
@@ -23,7 +23,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class IssuedlistComponent implements OnInit {
  
-  issuebookForm: FormGroup;
+  issuebookForm: UntypedFormGroup;
   issue: any;
   closeResult: string;
   classname: string;
@@ -61,7 +61,7 @@ export class IssuedlistComponent implements OnInit {
 
   constructor(
     private issueee: IssuedurlService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private modalService: NgbModal
   ) {}
 

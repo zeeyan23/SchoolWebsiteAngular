@@ -2,10 +2,10 @@ import { ReporturlService } from "./../reporturl.service";
 import { StudenturlService } from "src/app/shared/services/studenturl.service";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import {
@@ -42,7 +42,7 @@ export class PaidstudentsComponent implements OnInit {
   loading = false;
   term: any;
   paid: any;
-  paidinfoForm: FormGroup;
+  paidinfoForm: UntypedFormGroup;
   paytab: any;
   paysofschool: any;
   Due_date: any;
@@ -60,7 +60,7 @@ export class PaidstudentsComponent implements OnInit {
   constructor(
     private reposervice: ReporturlService,private studentservice: StudenturlService,
     private modalService: NgbModal,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public datepipe: DatePipe
   ) {}
 

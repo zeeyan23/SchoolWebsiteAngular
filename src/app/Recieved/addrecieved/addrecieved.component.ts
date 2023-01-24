@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { RecievedurlService } from '../recievedurl.service';
 
@@ -10,9 +10,9 @@ import { RecievedurlService } from '../recievedurl.service';
   styleUrls: ['./addrecieved.component.css']
 })
 export class AddrecievedComponent implements OnInit {
-  recievedbookForm: FormGroup;
+  recievedbookForm: UntypedFormGroup;
 
-  constructor(private fb:FormBuilder, private recieveserve : RecievedurlService) { }
+  constructor(private fb:UntypedFormBuilder, private recieveserve : RecievedurlService) { }
   ngOnInit(): void {
     this.recievedbookForm = this.fb.group({
        
@@ -35,11 +35,11 @@ export class AddrecievedComponent implements OnInit {
     });
   }
 
-  recieves() : FormArray {
-    return this.recievedbookForm.get("recieves") as FormArray
+  recieves() : UntypedFormArray {
+    return this.recievedbookForm.get("recieves") as UntypedFormArray
   }
    
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
       name: '',
       value: '',

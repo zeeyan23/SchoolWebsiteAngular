@@ -1,10 +1,10 @@
 import { FeeurlService } from "../../shared/services/feeurl.service";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -19,7 +19,7 @@ import { ClassurlService } from "src/app/shared/services/classurl.service";
   styleUrls: ["./addfee.component.css"],
 })
 export class AddfeeComponent implements OnInit {
-  feetypeForm: FormGroup;
+  feetypeForm: UntypedFormGroup;
   classmemo: {
     id: string;
     Maths: boolean;
@@ -38,7 +38,7 @@ export class AddfeeComponent implements OnInit {
   public feeses: any[] = [];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private feeserve: FeeurlService,
     private router: Router,
     private clshh : ClassurlService
@@ -71,7 +71,7 @@ export class AddfeeComponent implements OnInit {
   }
 
   
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

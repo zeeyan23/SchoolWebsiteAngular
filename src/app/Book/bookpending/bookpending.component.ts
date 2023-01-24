@@ -3,10 +3,10 @@ import { Component, OnInit } from "@angular/core";
 import { IssuedurlService } from "src/app/issued/issuedurl.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import {
@@ -39,7 +39,7 @@ export class BookpendingComponent implements OnInit {
   term: any;
   issued: any;
   book_status: any;
-  issuebookForm: FormGroup;
+  issuebookForm: UntypedFormGroup;
   booksofschool: any;
   penbookss: any;
   issueddate: any;
@@ -64,7 +64,7 @@ export class BookpendingComponent implements OnInit {
 
   constructor(
     private booki: BookService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private modalService: NgbModal,
     private issues :IssuedurlService
   ) {}

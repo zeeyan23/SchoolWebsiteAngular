@@ -1,7 +1,7 @@
 import { QuizurlService } from '../quizurl.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class ListquestionComponent implements OnInit {
   isStaff: boolean;
 
 
-  constructor(private quizserve:QuizurlService ,private modalService: NgbModal ,private fb:FormBuilder) { }
+  constructor(private quizserve:QuizurlService ,private modalService: NgbModal ,private fb:UntypedFormBuilder) { }
 
   ngOnInit(): void {
   

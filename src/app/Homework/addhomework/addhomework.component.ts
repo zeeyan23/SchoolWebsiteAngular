@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { HomeworkurlService } from 'src/app/shared/services/homeworkurl.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -14,13 +14,13 @@ import { ClassurlService } from 'src/app/shared/services/classurl.service';
 })
 export class AddhomeworkComponent implements OnInit {
 
-  homeworkForm: FormGroup;
+  homeworkForm: UntypedFormGroup;
   imageSrc: string;
   selectedFile: any;
   classmemo: any;
   isDean: boolean;
   isStaff: boolean;
-  constructor( private fb:FormBuilder,private homewrk:HomeworkurlService,private router:Router, private clshh :ClassurlService) {
+  constructor( private fb:UntypedFormBuilder,private homewrk:HomeworkurlService,private router:Router, private clshh :ClassurlService) {
    
    }
 

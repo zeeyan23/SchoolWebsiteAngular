@@ -1,6 +1,6 @@
 import { ClassurlService } from '../../shared/services/classurl.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StaffurlService } from 'src/app/shared/services/staffurl.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,13 +14,13 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class AddclassComponent implements OnInit {
 
-  classForm: FormGroup;
+  classForm: UntypedFormGroup;
   staffmemo: any[] = [];
   staffs: any;
   isDean: boolean;
 
  
-  constructor(private fb:FormBuilder ,private clshh:ClassurlService, private router: Router,
+  constructor(private fb:UntypedFormBuilder ,private clshh:ClassurlService, private router: Router,
     private staffService: StaffurlService
     ) {
    

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-addclasswork',
@@ -8,9 +8,9 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 })
 export class AddclassworkComponent implements OnInit {
 
-  classworkForm: FormGroup;
+  classworkForm: UntypedFormGroup;
 
-  constructor( private fb:FormBuilder) {
+  constructor( private fb:UntypedFormBuilder) {
     
    }
 

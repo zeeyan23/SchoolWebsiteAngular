@@ -1,6 +1,6 @@
 import { ExpenseurlService } from './../expenseurl.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -12,14 +12,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AddexpenseComponent implements OnInit {
 
-  expenseForm: FormGroup;
+  expenseForm: UntypedFormGroup;
   imageSrc: string;
   selectedFile: File;
   isDean: boolean;
   studentID: any;
   expenceID: any;
   public expensies: any[] = [];
-  constructor( private fb:FormBuilder , private expenserve :ExpenseurlService) {
+  constructor( private fb:UntypedFormBuilder , private expenserve :ExpenseurlService) {
   
    }
 
@@ -45,7 +45,7 @@ export class AddexpenseComponent implements OnInit {
   }
   }
  
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

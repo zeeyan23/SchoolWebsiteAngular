@@ -1,7 +1,7 @@
 import { CategoryService } from './../../shared/services/category.service';
 import { FeeurlService } from "../../shared/services/feeurl.service";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder,Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder,Validators } from "@angular/forms";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
@@ -22,10 +22,10 @@ export class BillviewComponent implements OnInit {
   closeResult: string;
   totalRec: number;
   page: number = 1;
-  addcategoryForm: FormGroup;
+  addcategoryForm: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private feetypeservice: FeeurlService,
     private catserve : CategoryService
     // private modalService: NgbModal

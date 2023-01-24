@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -24,14 +24,14 @@ export class AddexamComponent implements OnInit {
   loading = false;
   term: any;
   exam: { exam_name: string; start_date: string; end_date: string; Total_marks: string; hour: string; class: string; }[];
-  examForm: FormGroup;
+  examForm: UntypedFormGroup;
   classmemo: any;
   isDean: boolean;
   isStaff: boolean;
   isParent: boolean;
   public examies:any[]=[];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private examserve :ExamurlService,
     private clshh :ClassurlService
   ) {}
@@ -73,7 +73,7 @@ export class AddexamComponent implements OnInit {
       }
 
  
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

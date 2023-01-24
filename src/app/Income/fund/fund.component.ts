@@ -5,7 +5,7 @@ import {
   ModalDismissReasons,
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class FundComponent implements OnInit {
   closeResult: string;
   fund: any;
-  fundForm: FormGroup;
+  fundForm: UntypedFormGroup;
   expensess: string;
   amount: any;
   datefex: any;
@@ -40,7 +40,7 @@ export class FundComponent implements OnInit {
   mag: string;
   isDean: boolean;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private incserve: IncomeurlService,
     private modalService: NgbModal
   ) {}

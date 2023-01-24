@@ -1,6 +1,6 @@
 import { BookService } from './../book.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {
   NgbModal,
@@ -18,7 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class BooklistComponent implements OnInit {
  
-  addbookForm: FormGroup;
+  addbookForm: UntypedFormGroup;
   book: any;
   closeResult: string;
   classname: string;
@@ -57,7 +57,7 @@ export class BooklistComponent implements OnInit {
   bokdate: any;
 
 
-  constructor( private booky:BookService,private fb:FormBuilder,  private modalService: NgbModal) { }
+  constructor( private booky:BookService,private fb:UntypedFormBuilder,  private modalService: NgbModal) { }
 
   ngOnInit(): void {
 

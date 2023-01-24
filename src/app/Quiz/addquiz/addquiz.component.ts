@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -16,11 +16,11 @@ import {QuizurlService} from './../quizurl.service';
   styleUrls: ["./addquiz.component.css"],
 })
 export class AddquizComponent implements OnInit {
-  addquizForm: FormGroup;
+  addquizForm: UntypedFormGroup;
   isDean: boolean;
   isStaff: boolean;
 
-  constructor(private fb: FormBuilder, private quizserve :QuizurlService) {}
+  constructor(private fb: UntypedFormBuilder, private quizserve :QuizurlService) {}
 
   ngOnInit(): void {
     this.addquizForm = this.fb.group({

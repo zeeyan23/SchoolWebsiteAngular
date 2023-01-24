@@ -5,7 +5,7 @@ import {
   ModalDismissReasons,
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -25,7 +25,7 @@ export class ListexamComponent implements OnInit {
   loading = false;
   term: any;
   
-  examForm: FormGroup;
+  examForm: UntypedFormGroup;
   
   exam: any;
   examname: string;
@@ -41,7 +41,7 @@ export class ListexamComponent implements OnInit {
   isStaff: boolean;
   isParent: boolean;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private examserve: ExamurlService,
     public matDialog: MatDialog
   ) {}

@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 
@@ -26,11 +26,11 @@ export class ClassworklistComponent implements OnInit {
   totalRec: number;
   page: number = 1;
   loading = false;
-  classworkForm: FormGroup;
+  classworkForm: UntypedFormGroup;
   constructor(
     private homeser: HomeworkurlService,
     private modalService: NgbModal,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {

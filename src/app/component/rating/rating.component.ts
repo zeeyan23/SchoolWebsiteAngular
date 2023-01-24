@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-ngbd-rating',
@@ -44,7 +44,7 @@ export class NgbdratingBasicComponent {
 	hovered = 0;
 	readonly = false;
 	// for form integration
-	ctrl = new FormControl(null, Validators.required);
+	ctrl = new UntypedFormControl(null, Validators.required);
 
 	toggle() {
 		if (this.ctrl.disabled) {

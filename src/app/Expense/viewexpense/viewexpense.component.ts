@@ -1,7 +1,7 @@
 import { ExpenseurlService } from './../expenseurl.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -19,7 +19,7 @@ export class ViewexpenseComponent implements OnInit {
 	datefex: string;
 	paym: string;
 	expensess: string;
-	expenseForm: FormGroup;
+	expenseForm: UntypedFormGroup;
 	totalRec: number;
   page: number = 1;
   loading = false;
@@ -32,7 +32,7 @@ export class ViewexpenseComponent implements OnInit {
 	isDean: boolean;
 	expensdate: any;
 	expensdatess: string;
-  constructor(private expenseserve:ExpenseurlService ,private modalService: NgbModal ,private fb:FormBuilder) { }
+  constructor(private expenseserve:ExpenseurlService ,private modalService: NgbModal ,private fb:UntypedFormBuilder) { }
 
   ngOnInit(): void {
    

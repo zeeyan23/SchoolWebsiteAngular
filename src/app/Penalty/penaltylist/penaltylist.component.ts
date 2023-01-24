@@ -1,7 +1,7 @@
 import { PenaltyurlService } from "./../penaltyurl.service";
 import { Component, OnInit } from "@angular/core";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import {
   NgbModal,
@@ -41,7 +41,7 @@ export class PenaltylistComponent implements OnInit {
   penaltiesofschool: any;
   isDean: boolean;
 
-  constructor(private penalserve: PenaltyurlService, private fb: FormBuilder,  private modalService: NgbModal, ) {}
+  constructor(private penalserve: PenaltyurlService, private fb: UntypedFormBuilder,  private modalService: NgbModal, ) {}
 
   ngOnInit(): void {
   

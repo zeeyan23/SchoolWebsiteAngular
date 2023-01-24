@@ -1,7 +1,7 @@
 import { StudenturlService } from '../../shared/services/studenturl.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import {Studentdata} from '../studentdata';
 import { isNgTemplate } from '@angular/compiler';
 import { FeeurlService } from 'src/app/shared/services/feeurl.service';
@@ -38,7 +38,7 @@ export class StudentlistComponent implements OnInit {
   page: number = 1;
   loading = false;
  
-  studentregForm: FormGroup;
+  studentregForm: UntypedFormGroup;
 
 
 
@@ -116,7 +116,7 @@ export class StudentlistComponent implements OnInit {
   isStaff: boolean;
   extrastud: any;
 
-  constructor(  private clshh:ClassurlService,private fb:FormBuilder,private studserve :StudenturlService,private modalService: NgbModal, private feee: FeeurlService, private http: HttpClient,
+  constructor(  private clshh:ClassurlService,private fb:UntypedFormBuilder,private studserve :StudenturlService,private modalService: NgbModal, private feee: FeeurlService, private http: HttpClient,
     private catry :CategoryService,
     public datepipe: DatePipe) {
 

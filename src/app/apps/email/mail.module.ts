@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
 import { AppState } from './app.state';
@@ -12,7 +12,7 @@ import { MailComposeComponent } from './mail-compose/mail-compose.component';
 import { MailListComponent } from './mail-list/mail-list.component';
 import { MailDetailComponent } from './mail-detail/mail-detail.component';
 
-export const routes = [
+export const routes: Routes = [
   {
     path: '',
     component: MailComponent,

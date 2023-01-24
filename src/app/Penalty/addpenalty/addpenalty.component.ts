@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -17,11 +17,11 @@ import { ClassurlService } from "src/app/shared/services/classurl.service";
   styleUrls: ["./addpenalty.component.css"],
 })
 export class AddpenaltyComponent implements OnInit {
-  penaltyForm: FormGroup;
+  penaltyForm: UntypedFormGroup;
   classmemo: any;
   isDean: boolean;
   public penalties :any[]=[];
-  constructor(private fb: FormBuilder ,private penalserv: PenaltyurlService , private clshh :ClassurlService) {
+  constructor(private fb: UntypedFormBuilder ,private penalserv: PenaltyurlService , private clshh :ClassurlService) {
     this.penaltyForm = this.fb.group({
       student_name: ["", Validators.required],
       class_name: ["", [Validators.required]],
@@ -56,7 +56,7 @@ export class AddpenaltyComponent implements OnInit {
       }
 
 
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

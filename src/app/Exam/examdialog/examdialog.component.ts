@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExamurlService } from '../examurl.service';
 import * as _html2canvas from "html2canvas";
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 const html2canvas: any = _html2canvas;
 
 @Component({
@@ -64,7 +64,7 @@ export class ExamdialogComponent implements OnInit {
   startdate: any;
   enddate: any;
 
-  constructor(private examserve:ExamurlService ,private fb:FormBuilder,public dialogRef: MatDialogRef<ExamdialogComponent>,@Inject(MAT_DIALOG_DATA) public data :any) { 
+  constructor(private examserve:ExamurlService ,private fb:UntypedFormBuilder,public dialogRef: MatDialogRef<ExamdialogComponent>,@Inject(MAT_DIALOG_DATA) public data :any) { 
     // this.student_data = this.examserve.Exam;
     this.id=data;
   }

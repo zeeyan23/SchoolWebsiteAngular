@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { VehicleurlService } from '../vehicleurl.service';
 
@@ -11,13 +11,13 @@ import { VehicleurlService } from '../vehicleurl.service';
 })
 export class RegvehicleComponent implements OnInit {
 
-  vehicleregForm: FormGroup;
+  vehicleregForm: UntypedFormGroup;
   imageSrc: string;
   selectedFile: any;
 
   public vehicleregies: any[]=[];
 
-  constructor(private fb:FormBuilder, private vehicleserve : VehicleurlService) { 
+  constructor(private fb:UntypedFormBuilder, private vehicleserve : VehicleurlService) { 
    
   }
 
@@ -47,7 +47,7 @@ export class RegvehicleComponent implements OnInit {
 
  
    
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

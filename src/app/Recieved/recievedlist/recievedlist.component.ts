@@ -2,10 +2,10 @@ import { RecievedurlService } from "./../recievedurl.service";
 import { Component, OnInit } from "@angular/core";
 import { IssuedurlService } from "src/app/issued/issuedurl.service";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import {
@@ -23,7 +23,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class RecievedlistComponent implements OnInit {
 
-  recievedbookForm: FormGroup;
+  recievedbookForm: UntypedFormGroup;
   closeResult: string;
   recieve: any;
   classname: string;
@@ -39,7 +39,7 @@ export class RecievedlistComponent implements OnInit {
   loading = false;
   term: any;
   book_status: any;
-  issuebookForm: FormGroup;
+  issuebookForm: UntypedFormGroup;
   recieves: any;
   recievve: any;
   booksofschool: any;
@@ -64,7 +64,7 @@ export class RecievedlistComponent implements OnInit {
 
   constructor(
     private recievess: RecievedurlService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private modalService: NgbModal,
     private issue :IssuedurlService
   ) {}

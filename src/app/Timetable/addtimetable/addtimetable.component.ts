@@ -1,6 +1,6 @@
 import { TimetableurlService } from './../timetableurl.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -11,11 +11,11 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./addtimetable.component.css']
 })
 export class AddtimetableComponent implements OnInit {
-  timetabForm: FormGroup;
+  timetabForm: UntypedFormGroup;
   isDean: boolean;
 
  public periods: any[]=[];
-  constructor(private fb:FormBuilder,private timeserve: TimetableurlService) { 
+  constructor(private fb:UntypedFormBuilder,private timeserve: TimetableurlService) { 
     this.timetabForm = this.fb.group({
        
       class_name:['',Validators.required],
@@ -45,7 +45,7 @@ export class AddtimetableComponent implements OnInit {
   }
 
   
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

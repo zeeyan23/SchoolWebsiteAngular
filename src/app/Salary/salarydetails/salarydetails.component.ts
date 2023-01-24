@@ -6,10 +6,10 @@ import {
   NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -21,7 +21,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ["./salarydetails.component.css"],
 })
 export class SalarydetailsComponent implements OnInit {
-  salaryForm: FormGroup;
+  salaryForm: UntypedFormGroup;
   closeResult: string;
   salary: any;
 
@@ -53,7 +53,7 @@ export class SalarydetailsComponent implements OnInit {
   isDean: boolean;
   saldate: string;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private modalService: NgbModal,
     private salaryserv: SalaryurlService
   ) {}

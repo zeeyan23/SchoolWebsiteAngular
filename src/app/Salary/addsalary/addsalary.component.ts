@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, FormControl, FormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { SalaryurlService } from '../salaryurl.service';
 import { StaffurlService } from 'src/app/shared/services/staffurl.service';
@@ -12,11 +12,11 @@ import { StaffurlService } from 'src/app/shared/services/staffurl.service';
 })
 export class AddsalaryComponent implements OnInit {
 
-  salaryForm: FormGroup;
+  salaryForm: UntypedFormGroup;
   staffs: any;
   isDean: boolean;
   public salaries: any[]=[];
-  constructor(private fb:FormBuilder , private salserve : SalaryurlService, private staffService : StaffurlService) {
+  constructor(private fb:UntypedFormBuilder , private salserve : SalaryurlService, private staffService : StaffurlService) {
     this.salaryForm = this.fb.group({
        
       name:['',Validators.required],
@@ -55,7 +55,7 @@ export class AddsalaryComponent implements OnInit {
       }
 
    
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })

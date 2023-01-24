@@ -1,10 +1,10 @@
 import { LeaveurlService } from './../leaveurl.service';
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
 } from "@angular/forms";
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,7 +17,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ["./leaveappl.component.css"],
 })
 export class LeaveapplComponent implements OnInit {
-  leaveForm: FormGroup;
+  leaveForm: UntypedFormGroup;
   isDean: boolean;
   isStaff: boolean;
   isParent: boolean;
@@ -25,7 +25,7 @@ export class LeaveapplComponent implements OnInit {
   userid: string;
   usergroup: string;
   public leaves: any[] = [];
-  constructor(private fb: FormBuilder,private leaveserve :LeaveurlService) {
+  constructor(private fb: UntypedFormBuilder,private leaveserve :LeaveurlService) {
    
   }
 
@@ -75,7 +75,7 @@ this.usergroup = usergroup;
   }
 
 
-  newQuantity(): FormGroup {
+  newQuantity(): UntypedFormGroup {
     return this.fb.group({
      
     })
