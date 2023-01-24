@@ -143,7 +143,6 @@
       }
     }
   },
-  "defaultProject": "admin-bite-angular",
   "cli": {
     "analytics": false
   }
