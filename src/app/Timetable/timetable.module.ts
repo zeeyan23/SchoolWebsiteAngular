@@ -19,15 +19,15 @@ import { TimetabledialogComponent } from './timetabledialog/timetabledialog.comp
 
 @NgModule({
     imports: [
-      CommonModule,
-      RouterModule.forChild(TimetableRoutes),
-      NgxPrintModule,
-      Ng2SearchPipeModule,
-      NgxPaginationModule,
-      FormsModule ,
-       ReactiveFormsModule , MatDialogModule],
-    declarations: [ AddtimetableComponent, TimetablelistComponent, TeacheravailableComponent, TimetabledialogComponent],
-    exports: [AddtimetableComponent],
-    entryComponents: [TimetabledialogComponent]
-  })
+        CommonModule,
+        RouterModule.forChild(TimetableRoutes),
+        NgxPrintModule,
+        Ng2SearchPipeModule,
+        NgxPaginationModule,
+        FormsModule,
+        ReactiveFormsModule, MatDialogModule
+    ],
+    declarations: [AddtimetableComponent, TimetablelistComponent, TeacheravailableComponent, TimetabledialogComponent],
+    exports: [AddtimetableComponent]
+})
   export class TimetableModule {}

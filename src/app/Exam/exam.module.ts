@@ -16,25 +16,22 @@ import { DialogmarksheetComponent } from "./dialogmarksheet/dialogmarksheet.comp
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(ExamRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    Ng2SearchPipeModule,
-    NgxPaginationModule,
-    NgxPrintModule
-    
-  ],
-  declarations: [
-    ListexamComponent,
-    AddexamComponent,
-    AddmarksheetComponent,
-    ShowmarksheetComponent,
-    ExamdialogComponent,
-  
-  ],
-  exports: [ListexamComponent,AddexamComponent,AddmarksheetComponent],
-  entryComponents: [DialogmarksheetComponent,ExamdialogComponent]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(ExamRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        Ng2SearchPipeModule,
+        NgxPaginationModule,
+        NgxPrintModule
+    ],
+    declarations: [
+        ListexamComponent,
+        AddexamComponent,
+        AddmarksheetComponent,
+        ShowmarksheetComponent,
+        ExamdialogComponent,
+    ],
+    exports: [ListexamComponent, AddexamComponent, AddmarksheetComponent]
 })
 export class ExamModule {}
