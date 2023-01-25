@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## if error - 
 `npm i --force`
-`npm install ngx-print@1.2.0-beta.5`
+`npm install ngx-print@1.2.0-beta.5 --force`
 
 ## Development server
 

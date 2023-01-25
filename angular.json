@@ -47,8 +47,7 @@
               "src/styles.css",
               {
                 "input": "node_modules/flatpickr/dist/flatpickr.css",
-                "bundleName": "flatpickr",
-                "lazy": false
+                "bundleName": "flatpickr"
               },
               "node_modules/chartist/dist/chartist.css",
               "node_modules/c3/c3.min.css",
