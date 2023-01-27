@@ -30,7 +30,8 @@
               "@agm/core",
               "@swimlane/ngx-charts",
               "@mattlewis92/dom-autoscroller",
-              "calendar-utils"
+              "calendar-utils",
+              "sweetalert2"
             ],
             "outputPath": "dist",
             "index": "src/index.html",
