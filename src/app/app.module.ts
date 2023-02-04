@@ -97,7 +97,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbModalModule,
     FlatpickrModule.forRoot(),
     ToastrModule.forRoot(),
-    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(Approutes, { useHash: false }),
     PerfectScrollbarModule,
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule.forRoot(),
