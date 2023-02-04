@@ -29,12 +29,12 @@
                     Select your Expense
                   </small> -->
                 </div>
+                <div *ngIf="expenseForm.controls['expense_type'].invalid && expenseForm.controls['expense_type'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['expense_type'].errors.required">
+                Expense Type is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['expense_type'].invalid && expenseForm.controls['expense_type'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['expense_type'].errors.required">
-              Expense Type is required.
               </div>
-            </div>
               <!--/span-->
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -47,12 +47,12 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="expenseForm.controls['expense_detail'].invalid && expenseForm.controls['expense_detail'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['expense_detail'].errors.required">
+                 Expense Details is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['expense_detail'].invalid && expenseForm.controls['expense_detail'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['expense_detail'].errors.required">
-               Expense Details is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-danger">
@@ -65,16 +65,16 @@
                   />
                   <!-- <small class="form-control-feedback"> </small> -->
                 </div>
+                <div *ngIf="expenseForm.controls['amount'].invalid && expenseForm.controls['amount'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['amount'].errors.required">
+                 Amount is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['amount'].invalid && expenseForm.controls['amount'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['amount'].errors.required">
-               Amount is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Proof:</label>
+                  <label>Receipt:</label>
                   <input
                     formControlName="expense_proof"
                     id="expense_proof"
@@ -88,12 +88,12 @@
                   *ngIf="imageSrc"
                   style="height: 200px; width: 300px"
                 />
+                <div *ngIf="expenseForm.controls['expense_proof'].invalid && expenseForm.controls['expense_proof'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['expense_proof'].errors.required">
+                Expense Proof photo is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['expense_proof'].invalid && expenseForm.controls['expense_proof'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['expense_proof'].errors.required">
-              Expense Proof photo is required.
               </div>
-            </div>
 
 
               <div class="col-md-4">
@@ -107,12 +107,12 @@
                   />
                   <!-- <small class="form-control-feedback"></small> -->
                 </div>
+                <div *ngIf="expenseForm.controls['expense_date'].invalid && expenseForm.controls['expense_date'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['expense_date'].errors.required">
+                 Expense Date is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['expense_date'].invalid && expenseForm.controls['expense_date'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['expense_date'].errors.required">
-               Expense Date is required.
               </div>
-            </div>
 
               <div class="col-md-4">
                 <div class="form-group has-success">
@@ -129,12 +129,12 @@
                     Select Payment Mode
                   </small> -->
                 </div>
+                <div *ngIf="expenseForm.controls['payment_mode'].invalid && expenseForm.controls['payment_mode'].touched" class="alert alert-danger">
+                  <div *ngIf="expenseForm.controls['payment_mode'].errors.required">
+                Payment Mode is required.
+                </div>
               </div>
-              <div *ngIf="expenseForm.controls['payment_mode'].invalid && expenseForm.controls['payment_mode'].touched" class="alert alert-danger">
-                <div *ngIf="expenseForm.controls['payment_mode'].errors.required">
-              Payment Mode is required.
               </div>
-            </div>
       
             </div>
             <table class="table">

@@ -36,6 +36,10 @@ export class ClasslistComponent implements OnInit {
   hindi: any;
   kannada: any;
   pt: any;
+  drawing: any;
+  evs: any;
+  lib: any;
+  gk: any;
   science: any;
   section: any;
   social_science: any;
@@ -67,8 +71,13 @@ export class ClasslistComponent implements OnInit {
       Maths:[''],
       science:[''],
       social_science:[''],
-      computer:[''],
       pt:[''],
+      drawing: [''],
+      evs: [''],
+      lib: [''],
+      gk: [''],
+      computer:[''],
+
       teachers:['',[Validators.required]]
      
     });
@@ -82,6 +91,7 @@ export class ClasslistComponent implements OnInit {
     this.getClassDetails();
     this.getStaffDetails();
    }
+
 
 
   deleteRow(Id): void{
@@ -127,6 +137,59 @@ getClassDetails(){
       console.log('reeeeeeeeeee',this.classes);
       
     }
+
+    getSubject(selectedClass){
+      console.log(selectedClass);
+      var subjects = [];
+      if(selectedClass.Maths) {
+        subjects.push('Maths')
+      }
+      if(selectedClass.english) {
+        subjects.push('English')
+      }
+      if(selectedClass.hindi) {
+        subjects.push('Hindi')
+      }
+      if(selectedClass.kannada) {
+        subjects.push('Kannada')
+      }
+      if(selectedClass.science) {
+        subjects.push('Science')
+      }
+      if(selectedClass.social_science) {
+        subjects.push('Social Science')
+      }
+      if(selectedClass.drawing) {
+        subjects.push('Drawing')
+      }
+      if(selectedClass.evs) {
+        subjects.push('EVS')
+      }
+      if(selectedClass.lib) {
+        subjects.push('Lib')
+      }
+      if(selectedClass.gk) {
+        subjects.push('GK')
+      }
+      if(selectedClass.computer) {
+        subjects.push('Computer')
+      }
+      if(selectedClass.pt) {
+        subjects.push('Physical Training')
+      }
+
+      if(subjects){
+        // make array
+        // convert array to string
+        let subjectString = subjects.toString();
+        // replace comma with newline
+        let triggeredModel = subjectString.replace(/,/g, '<br>');
+        return triggeredModel
+      } else {
+        return subjects
+      }
+    }
+
     openclass(classinfomodal, classs) {
       console.log("id iss:", classs);
       this.classs = classs;
@@ -166,6 +229,10 @@ getClassDetails(){
       formData.append('science', value.science);
       formData.append('social_science', value.social_science);
       formData.append('computer', value.computer);
+      formData.append('drawing', value.drawing);
+      formData.append('evs', value.evs);
+      formData.append('lib', value.lib);
+      formData.append('gk', value.gk);
       formData.append('pt', value.pt);
       formData.append('teachers', value.teachers);
  

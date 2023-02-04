@@ -108,14 +108,7 @@
                 <td>{{ classs.class_name }}</td>
                 <td>{{ classs.section }}</td>
                 <td>{{ classs.teachers.staff_name }}</td>
-                <td>{{ classs.Maths? 'Maths' : ''}}<br>
-                  {{ classs.english? 'English' : ''}}<br>
-                  {{ classs.hindi? 'Hindi' : ''}}<br>
-                  {{ classs.kannada? 'Kannada' : ''}}<br>
-                  {{ classs.science? 'Science' : ''}}<br>
-                  {{ classs.social_science? 'Social Science' : ''}}<br>
-                  {{ classs.computer? 'Computer' : ''}}<br>
-                  {{ classs.pt? 'Physical Training' : ''}}
+                <td [innerHTML]="getSubject(classs)">
                   </td>
                     <td>
                       <button
@@ -250,12 +243,12 @@
                 </select>
 
               </div>
+              <div *ngIf="classForm.controls['class_name'].invalid && classForm.controls['class_name'].touched" class="alert alert-danger">
+                <div *ngIf="classForm.controls['class_name'].errors.required">
+               Class Name is required.
+              </div>
             </div>
-            <div *ngIf="classForm.controls['class_name'].invalid && classForm.controls['class_name'].touched" class="alert alert-danger">
-              <div *ngIf="classForm.controls['class_name'].errors.required">
-             Class Name is required.
             </div>
-          </div>
 
             <div class="col-md-4">
               <div class="form-group has-danger">
@@ -270,12 +263,12 @@
                 />
                 <!-- <small class="form-control-feedback"> </small> -->
               </div>
+              <div *ngIf="classForm.controls['section'].invalid && classForm.controls['section'].touched" class="alert alert-danger">
+                <div *ngIf="classForm.controls['section'].errors.required">
+               Section is required.
+              </div>
             </div>
-            <div *ngIf="classForm.controls['section'].invalid && classForm.controls['section'].touched" class="alert alert-danger">
-              <div *ngIf="classForm.controls['section'].errors.required">
-             Section is required.
             </div>
-          </div>
           <div class="col-md-4">
             <div class="form-group has-success">
               <label class="control-label">Teachers:</label>
@@ -296,12 +289,12 @@
           </datalist>
              
             </div>
+            <div *ngIf="classForm.controls['teachers'].invalid && classForm.controls['teachers'].touched" class="alert alert-danger">
+              <div *ngIf="classForm.controls['teachers'].errors.required">
+            Staff name is required.
+            </div>
           </div>
-          <div *ngIf="classForm.controls['teachers'].invalid && classForm.controls['teachers'].touched" class="alert alert-danger">
-            <div *ngIf="classForm.controls['teachers'].errors.required">
-          Staff name is required.
           </div>
-        </div>
 
             <div class="col-md-4">
               <div class="card">
@@ -395,13 +388,11 @@
                     <label>
                       <input
                         type="checkbox"
-                        value="computer"
-                        name="computer"
-                        formControlName="computer"
-                        [(ngModel)]="classs.computer"
-                        [ngModelOptions]="{ standalone: true }"
+                        value="pt"
+                        name="pt"
+                        formControlName="pt"
                       />
-                      Computer
+                    Physical Training
                     </label>
                   
                   </fieldset>
@@ -409,13 +400,59 @@
                     <label>
                       <input
                         type="checkbox"
-                        value="pt"
-                        name="pt"
-                        formControlName="pt"
-                        [(ngModel)]="classs.pt"
-                        [ngModelOptions]="{ standalone: true }"
+                        value="drawing"
+                        name="drawing"
+                        formControlName="drawing"
                       />
-                    Physical Training
+                    Drawing
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="evs"
+                        name="evs"
+                        formControlName="evs"
+                      />
+                    EVS
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="lib"
+                        name="lib"
+                        formControlName="lib"
+                      />
+                    Lib
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="gk"
+                        name="gk"
+                        formControlName="gk"
+                      />
+                    GK
+                    </label>
+                  
+                  </fieldset>
+                  <fieldset class="checkbox disabled">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="computer"
+                        name="computer"
+                        formControlName="computer"
+                      />
+                      Computer
                     </label>
                   
                   </fieldset>

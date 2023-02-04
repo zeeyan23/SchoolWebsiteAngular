@@ -54,6 +54,10 @@ export class AddclassComponent implements OnInit {
       social_science:[''],
       computer:[''],
       pt:[''],
+      drawing: [''],
+      evs: [''],
+      lib: [''],
+      gk: [''],
       teachers:['',[Validators.required]]
      
     });
@@ -80,6 +84,10 @@ export class AddclassComponent implements OnInit {
         formData.append('science', value.science);
         formData.append('social_science', value.social_science);
         formData.append('computer', value.computer);
+        formData.append('drawing', value.drawing);
+        formData.append('evs', value.evs);
+        formData.append('lib', value.lib);
+        formData.append('gk', value.gk);
         formData.append('pt', value.pt);
         formData.append('teachers', value.teachers);
         
