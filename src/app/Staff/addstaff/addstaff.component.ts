@@ -120,8 +120,8 @@ submitForm(){
       .subscribe(
         (responseData) => {
           // this.router.navigate(['/#/staff/stafflist/']), { relativeTo: this.route };
-          this.staffForm.reset();
-          console.log(responseData);
+          // this.staffForm.reset();
+          // console.log(responseData);
         
       console.log(value);
       var formData: any = new FormData();
@@ -182,6 +182,7 @@ submitForm(){
       }
      
       this.successAlertNotification()
+      this.staffForm.reset();
       // this.success = true;
       // this.errMsg = false;
       // this.showForm = false;

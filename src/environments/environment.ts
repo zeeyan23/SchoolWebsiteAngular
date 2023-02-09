@@ -13,7 +13,7 @@ export const environment = {
   //   appId: "1:769424485793:web:5778d2cc54b4d932e36fe0",
   //   measurementId: "G-W7XPRBM76K"
   // }
-  serverUrl: 'http://localhost:8000',
+  serverUrl: 'https://software.arohagroup.com',
 };
 
 /*
