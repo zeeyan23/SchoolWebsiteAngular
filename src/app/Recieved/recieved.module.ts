@@ -9,7 +9,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { RecievedRoutes } from "./recieved.routing";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { NgxPrintModule } from "ngx-print";
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    NgxPrintModule,
+   // NgxPrintModule,
   ],
   declarations: [RecievedlistComponent, AddrecievedComponent],
   exports: [RecievedlistComponent, AddrecievedComponent],

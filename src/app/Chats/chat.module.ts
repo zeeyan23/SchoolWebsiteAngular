@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { Routes, RouterModule } from '@angular/router';
 import {ChatRoutes} from './chat.routing';
@@ -17,7 +17,7 @@ import {ChatRoutes} from './chat.routing';
       FormsModule , ReactiveFormsModule,
       Ng2SearchPipeModule,
       NgxPaginationModule,
-      NgxPrintModule,
+    //  NgxPrintModule,
       PerfectScrollbarModule
      
 

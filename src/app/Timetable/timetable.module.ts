@@ -1,6 +1,6 @@
 import { AddtimetableComponent } from './addtimetable/addtimetable.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
-import {NgxPrintModule} from 'ngx-print';
+// import {NgxPrintModule} from 'ngx-print';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { TimetabledialogComponent } from './timetabledialog/timetabledialog.comp
     imports: [
         CommonModule,
         RouterModule.forChild(TimetableRoutes),
-        NgxPrintModule,
+       // NgxPrintModule,
         Ng2SearchPipeModule,
         NgxPaginationModule,
         FormsModule,

@@ -1,7 +1,7 @@
 import { IncomedetailComponent } from "./incomedetail/incomedetail.component";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -20,7 +20,7 @@ import { AddfundComponent } from "./addfund/addfund.component";
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    NgxPrintModule,
+   // NgxPrintModule,
   ],
   declarations: [IncomedetailComponent, FundComponent, AddfundComponent],
   exports: [IncomedetailComponent],

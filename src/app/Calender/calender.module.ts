@@ -12,7 +12,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { Routes, RouterModule } from '@angular/router';
 import {CalenderRoutes} from './calender.routing';
@@ -31,7 +31,7 @@ import { ListcalenderComponent } from './listcalender/listcalender.component';
       Ng2SearchPipeModule,
       NgxPaginationModule, 
       ReactiveFormsModule,
-      NgxPrintModule,
+     // NgxPrintModule,
       FlatpickrModule.forRoot(),
       ConfirmationPopoverModule.forRoot({
         confirmButtonType: 'danger', // set defaults here

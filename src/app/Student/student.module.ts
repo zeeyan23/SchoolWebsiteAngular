@@ -1,6 +1,6 @@
 import { StudentlistComponent } from './studentlist/studentlist.component';
 import { AddstudentComponent } from './addstudent/addstudent.component';
-import {NgxPrintModule} from 'ngx-print';
+// import {NgxPrintModule} from 'ngx-print';
 import {FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     imports: [
       CommonModule,
       RouterModule.forChild(StudentRoutes),
-      NgxPrintModule,
+    //  NgxPrintModule,
       FormsModule , 
       ReactiveFormsModule,
       Ng2SearchPipeModule,

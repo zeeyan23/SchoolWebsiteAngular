@@ -1,7 +1,7 @@
 import { RootlistComponent } from './rootlist/rootlist.component';
 import { RegrootComponent } from './regroot/regroot.component';
 
-import {NgxPrintModule} from 'ngx-print';
+// import {NgxPrintModule} from 'ngx-print';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     imports: [
       CommonModule,
       RouterModule.forChild(RootRoutes),
-      NgxPrintModule,
+    //  NgxPrintModule,
       FormsModule , 
       ReactiveFormsModule,
       Ng2SearchPipeModule,

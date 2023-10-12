@@ -10,7 +10,7 @@ import { StudentfeeinfoComponent } from "./studentfeeinfo/studentfeeinfo.compone
 import { BillviewComponent } from "./billview/billview.component";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { NgxPrintModule } from "ngx-print";
     RouterModule.forChild(FeeRoutes),
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    NgxPrintModule,
+   // NgxPrintModule,
   ],
   declarations: [
     AddfeeComponent,

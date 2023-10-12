@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { Routes, RouterModule } from '@angular/router';
 import {ClassRoutes} from './class.routing';
@@ -20,7 +20,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
       FormsModule , ReactiveFormsModule,
       Ng2SearchPipeModule,
       NgxPaginationModule,
-      NgxPrintModule,
+     // NgxPrintModule,
       ConfirmationPopoverModule.forRoot({
         confirmButtonType: 'danger', // set defaults here
       }),

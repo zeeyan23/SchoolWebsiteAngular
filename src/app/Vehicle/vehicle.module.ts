@@ -1,7 +1,7 @@
 import { VehiclelistComponent } from "./vehiclelist/vehiclelist.component";
 import { RegvehicleComponent } from "./regvehicle/regvehicle.component";
 
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -16,7 +16,7 @@ import { NgxPaginationModule } from "ngx-pagination";
   imports: [
     CommonModule,
     RouterModule.forChild(VehicleRoutes),
-    NgxPrintModule,
+    //NgxPrintModule,
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,

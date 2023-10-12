@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { DatePipe } from '@angular/common';
 
@@ -22,7 +22,7 @@ import {FeereportRoutes} from './feereport.routing';
       RouterModule.forChild(FeereportRoutes),
       Ng2SearchPipeModule,
       NgxPaginationModule,
-      NgxPrintModule,
+    //  NgxPrintModule,
       FormsModule,
       ReactiveFormsModule
     ],

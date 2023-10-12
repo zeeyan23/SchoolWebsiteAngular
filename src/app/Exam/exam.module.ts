@@ -6,7 +6,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { NgxPrintModule } from "ngx-print";
+//import { NgxPrintModule } from "ngx-print";
 
 import { Routes, RouterModule } from "@angular/router";
 import { ExamRoutes } from "./exam.routing";
@@ -23,7 +23,7 @@ import { DialogmarksheetComponent } from "./dialogmarksheet/dialogmarksheet.comp
         ReactiveFormsModule,
         Ng2SearchPipeModule,
         NgxPaginationModule,
-        NgxPrintModule
+       // NgxPrintModule
     ],
     declarations: [
         ListexamComponent,
