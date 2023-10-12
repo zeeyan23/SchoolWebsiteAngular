@@ -49,3 +49,4 @@ add `dockerignore` and `Dockerfile` in your root directory
 
 `docker run --name [container-name] -p 4200:4200 [image]`
 
+"# SchoolWebsiteAngular" 
