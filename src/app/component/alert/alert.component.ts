@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
   selector: 'app-ngbd-alert',
   templateUrl: 'alert.component.html',
   styles: [`
-    :host >>> .alert-custom {
+    :host >> .alert-custom {
       color: #99004d;
       background-color: #f169b4;
       border-color: #800040;

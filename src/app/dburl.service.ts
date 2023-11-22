@@ -7,6 +7,6 @@ export class DburlService {
 
   constructor() { }
 
-  url = 'https://software.arohagroup.com/school';
+  url = 'http://127.0.0.1:8000/school';
   // url = 'https://frozen-savannah-71231.herokuapp.com/school';
 }
